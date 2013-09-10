@@ -46,6 +46,7 @@ public class Home extends ActionBarActivity {
         
         initSlidingMenu();
         initViews();
+        showScreen(0);
     }
 
     private void initSlidingMenu() {
@@ -132,7 +133,7 @@ public class Home extends ActionBarActivity {
 
 		switch (id) {
 		case R.id.entry_1:
-			
+			fragment = new CasesListFragment();
 			currentTitle="Lost&Found";
 			CURRENT_SCREEN = SCREEN_1;
 			break;
@@ -167,7 +168,7 @@ public class Home extends ActionBarActivity {
 			CURRENT_SCREEN = SCREEN_7;
 			break;
 		default:
-			
+			fragment = new CasesListFragment();
 			currentTitle="Lost&Found";
 			CURRENT_SCREEN = SCREEN_1;
 			break;

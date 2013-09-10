@@ -14,5 +14,16 @@
     
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-
+    
+    <string name="report_home">Busca Hogar</string>
+    <string name="report_resolve">- ¡Resuelto!</string>
+    <string name="userName">Asukita Pam</string>
+    <string name="userMsg">Acabo de ver un perrito abandonado cerca de la estación de Xochimilco&#8230;</string>
+    <string name="postTime">hace 2 horas</string>
+    <string name="leerMas">Leer más</string>
+    <string name="alertDisable">Desactivar Alerta</string> 
+    <string name="report">Reportar</string>
+	<string name="share">Compartir</string>
+	<string name="numComnts">233</string>
+    
 </resources>
