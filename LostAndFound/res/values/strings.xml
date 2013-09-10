@@ -10,5 +10,9 @@
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="app_registrer">Registrarme</string>
     <string name="app_newpass">Recuperar contraseña</string>
+    
+    
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
 </resources>

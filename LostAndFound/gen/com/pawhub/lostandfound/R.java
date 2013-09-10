@@ -981,15 +981,17 @@ containing a value of this type.
         public static final int corner_round_bottom=0x7f020059;
         public static final int corner_round_list=0x7f02005a;
         public static final int corner_roundwhite=0x7f02005b;
-        public static final int fbsign=0x7f02005c;
-        public static final int home_ico=0x7f02005d;
-        public static final int ic_launcher=0x7f02005e;
-        public static final int login_btn=0x7f02005f;
-        public static final int or_line=0x7f020060;
-        public static final int oval=0x7f020061;
-        public static final int pawhub_site=0x7f020062;
-        public static final int splash_logo=0x7f020063;
-        public static final int twsign=0x7f020064;
+        public static final int drawer_shadow=0x7f02005c;
+        public static final int fbsign=0x7f02005d;
+        public static final int home_ico=0x7f02005e;
+        public static final int ic_drawer=0x7f02005f;
+        public static final int ic_launcher=0x7f020060;
+        public static final int login_btn=0x7f020061;
+        public static final int or_line=0x7f020062;
+        public static final int oval=0x7f020063;
+        public static final int pawhub_site=0x7f020064;
+        public static final int splash_logo=0x7f020065;
+        public static final int twsign=0x7f020066;
     }
     public static final class id {
         public static final int action_bar=0x7f05001a;
@@ -1187,6 +1189,8 @@ containing a value of this type.
         public static final int app_registrer=0x7f0a0014;
         public static final int app_subtitle=0x7f0a0012;
         public static final int app_title=0x7f0a0011;
+        public static final int drawer_close=0x7f0a0017;
+        public static final int drawer_open=0x7f0a0016;
         public static final int hello_world=0x7f0a000f;
         public static final int title_activity_login_screen=0x7f0a0013;
         public static final int title_activity_splash=0x7f0a0010;
