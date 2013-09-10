@@ -2,7 +2,8 @@ package com.pawhub.lostandfound;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.content.Intent;
+import android.view.View;
 
 public class LoginScreen extends Activity {
 
@@ -12,11 +13,9 @@ public class LoginScreen extends Activity {
 		setContentView(R.layout.activity_login_screen);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login_screen, menu);
-		return true;
+	public void onClickLogin(View v){
+		Intent home=new Intent(this,Home.class);
+		startActivity(home);
 	}
 
 }

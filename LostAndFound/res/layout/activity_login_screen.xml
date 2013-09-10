@@ -48,7 +48,6 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/corner_and_border_white_editext"
             android:ems="10"
-            android:fontFamily="open-sans"
             android:inputType="text"
             android:paddingLeft="4dp" >
         </EditText>
@@ -71,7 +70,7 @@
             android:layout_height="32dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/app_name"
-            android:onClick="onBtnLogin_Click"
+            android:onClick="onClickLogin"
             android:src="@drawable/login_btn" />
 
         <ImageView
