@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">LostAndFound</string>
+    <string name="app_name">Lost &amp; Found</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_splash">Splash</string>
-    
-    
-    
     <string name="app_title">Lost &amp; Found</string>
     <string name="app_subtitle">busca • encuentra • reporta</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="app_registrer">Registrarme</string>
+    <string name="app_newpass">Recuperar contraseña</string>
 
 </resources>

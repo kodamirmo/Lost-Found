@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pawhub.lostandfound"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.1" >
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +14,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.pawhub.lostandfound.Home"
-            android:label="@string/app_name" >
+            android:name="com.pawhub.lostandfound.SplashScreen"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pawhub.lostandfound.SplashScreen"
-            android:label="@string/title_activity_splash" >
+            android:name="com.pawhub.lostandfound.LoginScreen"
+            android:label="@string/title_activity_login_screen" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.pawhub.lostandfound.Home"
+            android:label="@string/app_name" >
         </activity>
     </application>
 
