@@ -15,7 +15,9 @@ public class LoginScreen extends Activity {
 
 	public void onClickLogin(View v){
 		Intent home=new Intent(this,Home.class);
+		home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(home);
+		this.finish();
 	}
 
 }
