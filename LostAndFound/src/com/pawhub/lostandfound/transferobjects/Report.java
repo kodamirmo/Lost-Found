@@ -16,4 +16,41 @@ public abstract class Report implements Serializable{
 	private Boolean hasPicture;
 	private String pathPicture;
 	
+	public Report(String idReport, int petType, String lastlocation,String pathPicture) {
+		
+		this.idReport = idReport;
+		this.petType = petType;
+		this.lastlocation = lastlocation;
+		
+		if(pathPicture!=null){
+			if(!pathPicture.trim().equals("")){
+				this.pathPicture = pathPicture;
+				hasPicture=true;
+			}
+			else	 hasPicture=false;
+		}
+		else 	hasPicture=false;
+
+	}
+
+	public String getIdReport() {
+		return idReport;
+	}
+
+	public int getPetType() {
+		return petType;
+	}
+
+	public String getLastlocation() {
+		return lastlocation;
+	}
+
+	public Boolean getHasPicture() {
+		return hasPicture;
+	}
+
+	public String getPathPicture() {
+		return pathPicture;
+	}
+	
 }
