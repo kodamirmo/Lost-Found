@@ -1,6 +1,8 @@
 package com.pawhub.lostandfound;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -51,7 +53,7 @@ public class Home extends ActionBarActivity {
 
     private void initSlidingMenu() {
 
-		currentTitle = "Lost&Found";
+		currentTitle = "";
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,GravityCompat.START);
@@ -59,6 +61,8 @@ public class Home extends ActionBarActivity {
 		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setIcon(R.drawable.app_name2);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#B71C4E")));
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, 
 		mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open, R.string.drawer_close
@@ -134,7 +138,7 @@ public class Home extends ActionBarActivity {
 		switch (id) {
 		case R.id.entry_1:
 			fragment = new CasesListFragment();
-			currentTitle="Lost&Found";
+			currentTitle="";
 			CURRENT_SCREEN = SCREEN_1;
 			break;
 		case R.id.entry_2:
@@ -169,7 +173,7 @@ public class Home extends ActionBarActivity {
 			break;
 		default:
 			fragment = new CasesListFragment();
-			currentTitle="Lost&Found";
+			currentTitle="";
 			CURRENT_SCREEN = SCREEN_1;
 			break;
 		}
