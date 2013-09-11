@@ -1,6 +1,10 @@
 package com.pawhub.lostandfound.transferobjects;
 
-public abstract class Report {
+import java.io.Serializable;
+
+public abstract class Report implements Serializable{
+	
+	private static final long serialVersionUID = 2330015619136786055L;
 	
 	public static final int TYPE_DOG=0;
 	public static final int TYPE_CAT=1;
