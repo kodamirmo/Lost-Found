@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,28 +53,30 @@ public class Home extends ActionBarActivity {
     }
 
     private void initSlidingMenu() {
+    	
+    	final ActionBar actionBar=getSupportActionBar();
 
 		currentTitle = "";
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,GravityCompat.START);
-
-		
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setIcon(R.drawable.app_name2);
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#B71C4E")));
+	
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setIcon(R.drawable.app_name2);
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#B71C4E")));
+		actionBar.setTitle(currentTitle);
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, 
 		mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open, R.string.drawer_close
 		) {
 			public void onDrawerClosed(View view) {
-				getSupportActionBar().setTitle(currentTitle);
+				actionBar.setTitle(currentTitle);
 				invalidateOptionsMenu(); 
 			}
 
 			public void onDrawerOpened(View drawerView) {
-				getSupportActionBar().setTitle(currentTitle);
+				actionBar.setTitle(currentTitle);
 				invalidateOptionsMenu(); 
 			}
 		};
