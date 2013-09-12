@@ -33,7 +33,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.pawhub.lostandfound.Datail_1"
+            android:name="com.pawhub.lostandfound.Detail_1"
             android:label="@string/title_activity_datail_1" >
         </activity>
     </application>

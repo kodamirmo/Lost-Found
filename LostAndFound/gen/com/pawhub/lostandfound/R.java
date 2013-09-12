@@ -1190,7 +1190,7 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
-        public static final int datail_1=0x7f0c0000;
+        public static final int detail_1=0x7f0c0000;
         public static final int home=0x7f0c0001;
         public static final int login_screen=0x7f0c0002;
         public static final int splash=0x7f0c0003;
