@@ -15,12 +15,14 @@ public abstract class Report implements Serializable{
 	private String lastlocation;
 	private Boolean hasPicture;
 	private String pathPicture;
+	private String comments;
 	
-	public Report(String idReport, int petType, String lastlocation,String pathPicture) {
+	public Report(String idReport, int petType, String lastlocation,String pathPicture,String comments) {
 		
 		this.idReport = idReport;
 		this.petType = petType;
 		this.lastlocation = lastlocation;
+		this.comments= comments;
 		
 		if(pathPicture!=null){
 			if(!pathPicture.trim().equals("")){
@@ -51,6 +53,10 @@ public abstract class Report implements Serializable{
 
 	public String getPathPicture() {
 		return pathPicture;
+	}
+
+	public String getComments() {
+		return comments;
 	}
 	
 }
