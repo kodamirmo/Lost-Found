@@ -28,7 +28,7 @@ public class Home extends ActionBarActivity {
 	private TableRow btn_3;
 	private TableRow btn_4;
 	private TableRow btn_5;
-	private TableRow btn_6;
+	private TableRow btn_6; 
 	private TableRow btn_7;
 
 	private final int SCREEN_1 = 0;
