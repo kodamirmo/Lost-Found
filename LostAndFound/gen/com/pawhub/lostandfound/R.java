@@ -1186,7 +1186,7 @@ containing a value of this type.
         public static final int activity_login_screen=0x7f03001a;
         public static final int activity_splash=0x7f03001b;
         public static final int cases_list_layout=0x7f03001c;
-        public static final int datail_chart_1=0x7f03001d;
+        public static final int detail_chart_1=0x7f03001d;
         public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {

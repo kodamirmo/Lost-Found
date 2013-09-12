@@ -213,6 +213,7 @@
                     android:id="@+id/textShare1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="open-sans"
                     android:text="@string/share"

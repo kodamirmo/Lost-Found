@@ -29,6 +29,6 @@ public class CasesListFragment extends Fragment{
 	
 	private void addDetailChart(){
 		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-		inflater.inflate(R.layout.datail_chart_1,parentLayout);
+		inflater.inflate(R.layout.detail_chart_1,parentLayout);
 	}
 }

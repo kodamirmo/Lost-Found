@@ -411,7 +411,7 @@ int layout activity_home 0x7f030019
 int layout activity_login_screen 0x7f03001a
 int layout activity_splash 0x7f03001b
 int layout cases_list_layout 0x7f03001c
-int layout datail_chart_1 0x7f03001d
+int layout detail_chart_1 0x7f03001d
 int layout support_simple_spinner_dropdown_item 0x7f03001e
 int menu detail_1 0x7f0c0000
 int menu home 0x7f0c0001

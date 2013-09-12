@@ -5,8 +5,14 @@ import com.pawhub.lostandfound.preferences.ConfigData;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.widget.TextView;
+import android.widget.TextView.BufferType;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 
 public class SplashScreen extends Activity {
 
@@ -16,6 +22,18 @@ public class SplashScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		
+		TextView appTitle = (TextView) findViewById(R.id.splash_app_tittle);
+		
+		SpannableString text = new SpannableString("" + appTitle.getText());
+		text.setSpan(new ForegroundColorSpan(Color.rgb(99, 194, 208)), 0, 4, 0);
+		text.setSpan(new ForegroundColorSpan(Color.rgb(255, 255, 255)), 5, 7, 1);
+		text.setSpan(new ForegroundColorSpan(Color.rgb(255, 212, 0)), 7,
+				text.length(), 2);
+		appTitle.setText(text, BufferType.SPANNABLE);
+
+		TextView appsubTitle = (TextView) findViewById(R.id.splash_app_subtittle);
+		appsubTitle.setTypeface(null, Typeface.BOLD);
 		
 		activity=this;
 		
