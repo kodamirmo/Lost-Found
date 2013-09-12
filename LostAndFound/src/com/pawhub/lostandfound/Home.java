@@ -72,12 +72,12 @@ public class Home extends ActionBarActivity {
 		) {
 			public void onDrawerClosed(View view) {
 				actionBar.setTitle(currentTitle);
-				invalidateOptionsMenu(); 
+				supportInvalidateOptionsMenu();
 			}
 
 			public void onDrawerOpened(View drawerView) {
 				actionBar.setTitle(currentTitle);
-				invalidateOptionsMenu(); 
+				supportInvalidateOptionsMenu();
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);

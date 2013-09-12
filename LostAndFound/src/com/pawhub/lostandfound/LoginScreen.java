@@ -19,5 +19,4 @@ public class LoginScreen extends Activity {
 		startActivity(home);
 		this.finish();
 	}
-
 }
