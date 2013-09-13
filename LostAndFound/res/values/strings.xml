@@ -22,9 +22,19 @@
     <string name="report">Reportar</string>
     <string name="share">Compartir</string>
     <string name="numComnts">233</string>
-    <string name="title_activity_datail_1">Datail_1</string>
+    <string name="title_activity_datail_1">Detail_1</string>
     <string name="userMsgLarge">Acabo de ver un perrito abandonado cerca de la estación de Xochimilco, cada vez que paso lo veo comiendo basura, está lastimado.No veo que tenga dueño. Ojalá que alguien pueda hacerse cargo de él!</string>
-	<string name="pinIt">Marcar</string>
+    <string name="pinIt">Marcar</string>
     <string name="checked">Atendido o Resuelto</string>
-    
+    <string name="title_activity_report">ReportActivity</string>
+    <string name="reportType_title">Tipo de Reporte</string>
+    <string name="reportPetName_lbl">Nombre</string>
+    <string name="reportPetAge_lbl">Edad</string>  
+	<string name="reportPetType_lbl">Tipo</string> 
+	<string name="reportPetReportTel_lbl">Teléfono</string>  
+	<string name="reportPetFeatures_lbl">Rasgos</string>  
+	<string name="reportPetReportMsg_lbl">Escribe tu mensaje</string>
+	<string name="reportPetReportTakePic_lbl">Escribe tu mensaje</string>
+	<string name="reportPetReportSelectPic_lbl">Escribe tu mensaje</string> 
+	<string name="publish">Publicar</string>
 </resources>

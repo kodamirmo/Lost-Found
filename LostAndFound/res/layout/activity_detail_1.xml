@@ -136,6 +136,7 @@
                         android:layout_marginRight="35dp"
                         android:layout_marginTop="8dp"
                         android:contentDescription="@string/report"
+                        android:onClick="goToReportActivity"
                         android:src="@drawable/btn_share_blue" />
 
                     <ImageView
@@ -213,33 +214,35 @@
             <ImageView
                 android:layout_width="8dp"
                 android:layout_height="11dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/app_name"
+                android:gravity="center"
                 android:src="@drawable/marcar" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="6dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:text="@string/pinIt"
                 android:textColor="#FFFFFF" />
 
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/share"
+                android:gravity="center"
                 android:src="@drawable/compartir_blue" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:text="@string/share"
                 android:textColor="#FFFFFF" />
         </TableRow>
@@ -253,16 +256,18 @@
             <ImageView
                 android:layout_width="14dp"
                 android:layout_height="11dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/checked"
+                android:gravity="center"
                 android:src="@drawable/checked" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
                 android:text="@string/checked"
                 android:textColor="#FFFFFF" />
         </TableRow>

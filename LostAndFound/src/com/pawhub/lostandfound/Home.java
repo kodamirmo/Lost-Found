@@ -1,5 +1,6 @@
 package com.pawhub.lostandfound;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -201,6 +202,11 @@ public class Home extends ActionBarActivity {
 			int id = v.getId();
 			showScreen(id);
 		}
+	}
+    
+    public void goToDetailPics(View v){
+		Intent detailPicsIntent = new Intent(this, Detail_1.class);
+		startActivity(detailPicsIntent);
 	}
     
 }
