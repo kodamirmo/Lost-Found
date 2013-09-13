@@ -55,6 +55,7 @@ public class SplashScreen extends Activity {
 			return null;
 		}
 		
+		@Override
 		protected void onPostExecute(Void param){
 			
 			Intent loginScreen;

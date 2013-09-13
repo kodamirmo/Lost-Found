@@ -45,7 +45,7 @@ public class Home extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.activity_home);
 
 		initSlidingMenu();
@@ -73,11 +73,13 @@ public class Home extends ActionBarActivity {
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
 				R.string.drawer_close) {
+			@Override
 			public void onDrawerClosed(View view) {
 				actionBar.setTitle(currentTitle);
 				supportInvalidateOptionsMenu();
 			}
 
+			@Override
 			public void onDrawerOpened(View drawerView) {
 				actionBar.setTitle(currentTitle);
 				supportInvalidateOptionsMenu();
@@ -142,7 +144,7 @@ public class Home extends ActionBarActivity {
 		Fragment fragment = null;
 
 		switch (id) {
-		case R.id.entry_1:
+		case R.id.entry_1: 
 			fragment = new CasesListFragment();
 			currentTitle = "";
 			CURRENT_SCREEN = SCREEN_1;
