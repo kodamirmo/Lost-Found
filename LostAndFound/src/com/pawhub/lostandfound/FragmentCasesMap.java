@@ -60,8 +60,9 @@ public class FragmentCasesMap extends Fragment{
 	}
 	
 	private void fillMarkers(){
-		addMarker("Perro","Extraviado",20.4326018,-99.1332049);
-		addMarker("Gato","Adoptado",19.0326018,-99.9332049);
+		//							   19.4326018,-99.1332049
+		addMarker("Perro","Extraviado",19.4326018,-99.1332049);
+		addMarker("Gato","Adoptado",19.5326118,-99.1332149);
 	}
 	
 	private void addMarker(String title,String snippet,double corLat,double corLong){
