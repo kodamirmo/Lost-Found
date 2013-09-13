@@ -23,13 +23,13 @@ public class Home extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 
-	//Change the numbers to the actions name like btn_alerts
+	// Change the numbers to the actions name like btn_alerts
 	private TableRow btn_1;
 	private TableRow btn_2;
 	private TableRow btn_3;
 	private TableRow btn_4;
 	private TableRow btn_5;
-	private TableRow btn_6; 
+	private TableRow btn_6;
 	private TableRow btn_7;
 
 	private final int SCREEN_1 = 0;
@@ -42,35 +42,37 @@ public class Home extends ActionBarActivity {
 
 	private int CURRENT_SCREEN = 0;
 	private String currentTitle;
-	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        
-        initSlidingMenu();
-        initViews();
-        showScreen(0);
-    }
 
-    private void initSlidingMenu() {
-    	
-    	final ActionBar actionBar=getSupportActionBar();
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_home);
+
+		initSlidingMenu();
+		initViews();
+		showScreen(0);
+	}
+
+	private void initSlidingMenu() {
+
+		final ActionBar actionBar = getSupportActionBar();
 
 		currentTitle = "";
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,GravityCompat.START);
-	
+		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
+				GravityCompat.START);
+
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setIcon(R.drawable.app_name2);
-		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#B71C4E")));
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color
+				.parseColor("#B71C4E")));
 		actionBar.setTitle(currentTitle);
 
-		mDrawerToggle = new ActionBarDrawerToggle(this, 
-		mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open, R.string.drawer_close
-		) {
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
 			public void onDrawerClosed(View view) {
 				actionBar.setTitle(currentTitle);
 				supportInvalidateOptionsMenu();
@@ -83,8 +85,8 @@ public class Home extends ActionBarActivity {
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
-    
-    private void initViews() {
+
+	private void initViews() {
 		btn_1 = (TableRow) findViewById(R.id.entry_1);
 		btn_2 = (TableRow) findViewById(R.id.entry_2);
 		btn_3 = (TableRow) findViewById(R.id.entry_3);
@@ -103,13 +105,13 @@ public class Home extends ActionBarActivity {
 		btn_7.setOnClickListener(listener);
 	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
-    }
-    
-    @Override
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.home, menu);
+		return true;
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
@@ -134,50 +136,44 @@ public class Home extends ActionBarActivity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-    
-    private void showScreen(int id) {
+
+	private void showScreen(int id) {
 
 		Fragment fragment = null;
 
 		switch (id) {
 		case R.id.entry_1:
 			fragment = new CasesListFragment();
-			currentTitle="";
+			currentTitle = "";
 			CURRENT_SCREEN = SCREEN_1;
 			break;
 		case R.id.entry_2:
-			
-			
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_2;
 			break;
 		case R.id.entry_3:
-			
-			
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_3;
 			break;
 		case R.id.entry_4:
-	
-	
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_4;
 			break;
 		case R.id.entry_5:
-	
-	
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_5;
 			break;
 		case R.id.entry_6:
-	
-	
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_6;
 			break;
 		case R.id.entry_7:
-	
-	
+			fragment = new FragmentCasesMap();
 			CURRENT_SCREEN = SCREEN_7;
 			break;
 		default:
 			fragment = new CasesListFragment();
-			currentTitle="";
+			currentTitle = "";
 			CURRENT_SCREEN = SCREEN_1;
 			break;
 		}
@@ -187,26 +183,37 @@ public class Home extends ActionBarActivity {
 				.replace(R.id.content_frame, fragment).commit();
 		mDrawerLayout.closeDrawers();
 	}
-    
-    @Override
+
+	public void removeMap() {
+		Fragment mFragment = getSupportFragmentManager().findFragmentById(
+				R.id.content_frame);
+		FragmentCasesMap mapFragment = (FragmentCasesMap) mFragment;
+
+		mapFragment.removeMap();
+	}
+
+	@Override
 	public void onBackPressed() {
 		if (CURRENT_SCREEN == SCREEN_1)
 			finish();
-		else
+		else if (CURRENT_SCREEN == SCREEN_7) {
+			removeMap();
+			showScreen(R.id.entry_1);
+		} else
 			showScreen(R.id.entry_1);
 	}
-    
-    private class MenuListener implements OnClickListener {
+
+	private class MenuListener implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			int id = v.getId();
 			showScreen(id);
 		}
 	}
-    
-    public void goToDetailPics(View v){
+
+	public void goToDetailPics(View v) {
 		Intent detailPicsIntent = new Intent(this, Detail_1.class);
 		startActivity(detailPicsIntent);
 	}
-    
+
 }

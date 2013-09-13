@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_1"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_2"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_3"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_4"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_5"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_6"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>
@@ -211,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="7dp"
-                android:text="@string/app_name"
+                android:text="@string/entry_title_7"
                 android:textColor="#FFF"
                 android:textSize="17sp" />
         </TableRow>

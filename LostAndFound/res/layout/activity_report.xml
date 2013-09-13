@@ -157,7 +157,7 @@
                         android:ems="10"
                         android:fontFamily="open-sans"
                         android:hint="@string/reportPetReportTel_lbl"
-                        android:inputType="text"
+                        android:inputType="phone"
                         android:textColor="#B4B4B4"
                         android:textSize="14sp" >
                     </EditText>
@@ -334,11 +334,11 @@
             android:gravity="center" >
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="11dp"
+               android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/checked"
+                android:layout_marginTop="1dp"
+                android:contentDescription="@string/publish"
                 android:gravity="center"
                 android:src="@drawable/checked" />
 
@@ -358,10 +358,10 @@
             android:gravity="center" >
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="1dp"
                 android:contentDescription="@string/share"
                 android:gravity="center"
                 android:src="@drawable/compartir_blue" />

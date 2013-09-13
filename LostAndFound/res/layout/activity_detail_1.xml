@@ -129,24 +129,24 @@
 
                     <ImageView
                         android:id="@+id/imageShareDetailP"
-                        android:layout_width="62dp"
-                        android:layout_height="16dp"
+                        android:layout_width="85dp"
+                        android:layout_height="22dp"
                         android:layout_alignRight="@+id/linearTypePostDetailP"
                         android:layout_alignTop="@+id/linearTypePostDetailP"
                         android:layout_marginRight="35dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="5dp"
                         android:contentDescription="@string/report"
                         android:onClick="goToReportActivity"
                         android:src="@drawable/btn_share_blue" />
 
                     <ImageView
                         android:id="@+id/imageArrowDownDetailP"
-                        android:layout_width="11dp"
-                        android:layout_height="6dp"
+                        android:layout_width="15dp"
+                        android:layout_height="8dp"
                         android:layout_alignRight="@+id/linearTypePostDetailP"
                         android:layout_alignTop="@+id/linearTypePostDetailP"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="12dp"
                         android:contentDescription="@string/report"
                         android:src="@drawable/arrow_down" />
                 </RelativeLayout>
@@ -212,10 +212,11 @@
             android:layout_weight="1" >
 
             <ImageView
-                android:layout_width="8dp"
-                android:layout_height="11dp"
+                android:layout_width="11dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/app_name"
                 android:gravity="center"
                 android:src="@drawable/marcar" />
@@ -230,10 +231,10 @@
                 android:textColor="#FFFFFF" />
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/share"
                 android:gravity="center"
                 android:src="@drawable/compartir_blue" />
@@ -254,10 +255,10 @@
             android:gravity="right" >
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="11dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/checked"
                 android:gravity="center"
                 android:src="@drawable/checked" />
@@ -265,8 +266,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:text="@string/checked"
                 android:textColor="#FFFFFF" />
