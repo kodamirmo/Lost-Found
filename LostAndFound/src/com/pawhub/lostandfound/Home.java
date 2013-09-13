@@ -181,11 +181,22 @@ public class Home extends ActionBarActivity {
 		mDrawerLayout.closeDrawers();
 	}
     
+    public void removeMap(){
+    	Fragment mFragment=getSupportFragmentManager().findFragmentById(R.id.content_frame);
+    	FragmentCasesMap mapFragment=(FragmentCasesMap)mFragment;
+    	
+    	mapFragment.removeMap();
+	}
+    
     @Override
 	public void onBackPressed() {
 		if (CURRENT_SCREEN == SCREEN_1)
 			finish();
-		else
+		else if(CURRENT_SCREEN== SCREEN_7){
+			removeMap();
+			showScreen(R.id.entry_1);
+		}
+		else 
 			showScreen(R.id.entry_1);
 	}
     

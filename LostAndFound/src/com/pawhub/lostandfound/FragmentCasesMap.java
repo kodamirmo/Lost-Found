@@ -4,11 +4,14 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import android.view.ViewGroup;
 public class FragmentCasesMap extends Fragment{
 	
 	private GoogleMap map;
+	private SupportMapFragment fragmentoDeMapa;
+	private Fragment fragment;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -26,14 +31,16 @@ public class FragmentCasesMap extends Fragment{
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        initMap();
+        if(map==null)
+        	initMap();
 
+        fillMarkers();
     }
 	
 	private void initMap(){
 		
-		Fragment fragment=getFragmentManager().findFragmentById(R.id.myMap);
-        SupportMapFragment fragmentoDeMapa=(SupportMapFragment)fragment;
+		fragment=getFragmentManager().findFragmentById(R.id.myMap);
+        fragmentoDeMapa=(SupportMapFragment)fragment;
     	map=fragmentoDeMapa.getMap();
     	
     	LatLng coordenada=new LatLng(19.4326018,-99.1332049);
@@ -44,6 +51,26 @@ public class FragmentCasesMap extends Fragment{
     	CameraUpdate cameraUpdate =
         	    CameraUpdateFactory.newCameraPosition(camPos);
     	
-    	map.moveCamera(cameraUpdate);
+    	map.moveCamera(cameraUpdate);	
+	}
+	
+	public void removeMap(){
+		Log.i("TAG","Remove map");
+		fragment.getFragmentManager().beginTransaction().remove(fragmentoDeMapa).commit();
+	}
+	
+	private void fillMarkers(){
+		addMarker("Perro","Extraviado",20.4326018,-99.1332049);
+		addMarker("Gato","Adoptado",19.0326018,-99.9332049);
+	}
+	
+	private void addMarker(String title,String snippet,double corLat,double corLong){
+		 LatLng coordenada = new LatLng(corLat,corLong);
+    	 
+    	  map.addMarker(new MarkerOptions()
+          .position(coordenada)
+          .title(title)
+          .snippet(snippet)
+          .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
 	}
 }
