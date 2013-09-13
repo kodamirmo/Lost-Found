@@ -145,33 +145,27 @@ public class Home extends ActionBarActivity {
 			CURRENT_SCREEN = SCREEN_1;
 			break;
 		case R.id.entry_2:
-			
-			
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_2;
 			break;
 		case R.id.entry_3:
-			
-			
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_3;
 			break;
 		case R.id.entry_4:
-	
-	
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_4;
 			break;
 		case R.id.entry_5:
-	
-	
+			fragment = new CasesListFragment();
 			CURRENT_SCREEN = SCREEN_5;
 			break;
 		case R.id.entry_6:
-	
-	
+			fragment = new CasesListFragment();	
 			CURRENT_SCREEN = SCREEN_6;
 			break;
 		case R.id.entry_7:
-	
-	
+			fragment = new FragmentCasesMap();
 			CURRENT_SCREEN = SCREEN_7;
 			break;
 		default:
