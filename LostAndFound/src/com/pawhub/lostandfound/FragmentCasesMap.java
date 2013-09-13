@@ -8,6 +8,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.pawhub.lostandfound.transferobjects.AbuseReport;
+import com.pawhub.lostandfound.views.ReportView;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -60,9 +62,9 @@ public class FragmentCasesMap extends Fragment{
 	}
 	
 	private void fillMarkers(){
-		//							   19.4326018,-99.1332049
 		addMarker("Perro","Extraviado",19.4326018,-99.1332049);
 		addMarker("Gato","Adoptado",19.5326118,-99.1332149);
+		
 	}
 	
 	private void addMarker(String title,String snippet,double corLat,double corLong){
