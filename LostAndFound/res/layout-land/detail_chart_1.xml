@@ -184,7 +184,10 @@
                     android:id="@+id/imagemainAlert1"
                     android:layout_width="22dp"
                     android:layout_height="19dp"
-                    android:layout_margin="5dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="1dp"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/alert_active" />
 
@@ -192,7 +195,7 @@
                     android:id="@+id/textAlert1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
+                    android:layout_marginRight="1dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="open-sans"
                     android:text="@string/alertDisable"
@@ -201,9 +204,12 @@
 
                 <ImageView
                     android:id="@+id/imagemainShare1"
-                    android:layout_width="18dp"
-                    android:layout_height="14dp"
-                    android:layout_margin="5dp"
+                    android:layout_width="22dp"
+                    android:layout_height="19dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="1dp"
                     android:contentDescription="@string/report"
                     android:src="@drawable/home_ico" />
 
@@ -222,16 +228,18 @@
                 android:id="@+id/commentsRowMain"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_weight="0.05"
                 android:gravity="right"
                 android:orientation="horizontal" >
 
                 <ImageView
                     android:id="@+id/imagemainComnts1"
-                    android:layout_width="9dp"
-                    android:layout_height="8dp"
+                    android:layout_width="22dp"
+                    android:layout_height="19dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="1dp"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/msg" />
 

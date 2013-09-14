@@ -72,6 +72,6 @@ public class FragmentCasesMap extends Fragment{
           .position(coordenada)
           .title(title)
           .snippet(snippet)
-          .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
+          .icon(BitmapDescriptorFactory.fromResource(R.drawable.pointer)));
 	}
 }
