@@ -92,6 +92,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/linearmain2"
             android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal" >
 
             <ImageView
@@ -158,7 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/linearmain3"
             android:layout_alignRight="@+id/linearmain3"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="-8dp"
             android:layout_marginRight="9dp"
             android:fontFamily="open-sans"
             android:text="@string/leerMas"
@@ -179,7 +180,7 @@
                 android:id="@+id/alertRowMain"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.95"
+                android:layout_weight="2"
                 android:orientation="horizontal" >
 
                 <ImageView
@@ -193,17 +194,6 @@
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/alert_active" />
 
-                <TextView
-                    android:id="@+id/textAlert1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/alertDisable"
-                    android:textColor="#656565"
-                    android:textSize="12sp" />
-
                 <ImageView
                     android:id="@+id/imagemainShare1"
                     android:layout_width="22dp"
@@ -215,22 +205,13 @@
                     android:contentDescription="@string/report"
                     android:src="@drawable/home_ico" />
 
-                <TextView
-                    android:id="@+id/textShare1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/share"
-                    android:textColor="#656565"
-                    android:textSize="12sp" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/commentsRowMain"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.05"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:orientation="horizontal" >
 

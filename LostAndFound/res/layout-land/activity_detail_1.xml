@@ -11,7 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#F1F1F1"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingBottom="30dp" >
 
             <LinearLayout
                 android:id="@+id/lineardetailP1"
@@ -136,6 +137,7 @@
                         android:layout_marginRight="35dp"
                         android:layout_marginTop="5dp"
                         android:contentDescription="@string/report"
+                        android:onClick="goToReportActivity"
                         android:src="@drawable/btn_share_blue" />
 
                     <ImageView
@@ -153,6 +155,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical" >
 
                     <ImageView

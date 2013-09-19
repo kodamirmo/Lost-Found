@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/linearmain3"
             android:layout_alignRight="@+id/linearmain3"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="-8dp"
             android:layout_marginRight="9dp"
             android:fontFamily="open-sans"
             android:text="@string/leerMas"
@@ -167,6 +167,7 @@
             android:id="@+id/rowMain"
             android:layout_width="match_parent"
             android:layout_height="23dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@+id/linearmain3"
             android:background="@drawable/bottom_corner_round_gray"
             android:gravity="center"
@@ -191,17 +192,6 @@
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/alert_active" />
 
-                <TextView
-                    android:id="@+id/textAlert1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/alertDisable"
-                    android:textColor="#656565"
-                    android:textSize="12sp" />
-
                 <ImageView
                     android:id="@+id/imagemainShare1"
                     android:layout_width="22dp"
@@ -213,15 +203,6 @@
                     android:contentDescription="@string/report"
                     android:src="@drawable/home_ico" />
 
-                <TextView
-                    android:id="@+id/textShare1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/share"
-                    android:textColor="#656565"
-                    android:textSize="12sp" />
             </TableRow>
 
             <TableRow
