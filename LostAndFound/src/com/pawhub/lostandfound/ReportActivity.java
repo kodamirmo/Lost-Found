@@ -1,5 +1,6 @@
 package com.pawhub.lostandfound;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -13,12 +14,14 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class ReportActivity extends FragmentActivity {
 
-	private GoogleMap map;
+	private GoogleMap map; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
+		
+		setTitleColor(Color.RED);
 
 		map = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.reportMap)).getMap();
@@ -37,8 +40,7 @@ public class ReportActivity extends FragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.report, menu);
-		
+		getMenuInflater().inflate(R.menu.report, menu);	
 		return true;
 	}
 
