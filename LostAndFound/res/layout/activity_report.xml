@@ -238,6 +238,7 @@
                             android:id="@+id/imagehReport1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="3dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/finding_home" />
@@ -246,6 +247,7 @@
                             android:id="@+id/imagehReport2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="3dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/finding_home2" />
@@ -254,6 +256,7 @@
                             android:id="@+id/imagehReport3"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="3dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/finding_home3" />
@@ -262,6 +265,7 @@
                             android:id="@+id/imagehReport4"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="3dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/finding_home" />
@@ -270,6 +274,7 @@
                             android:id="@+id/imagehReport5"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="3dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/finding_home2" />
@@ -278,6 +283,7 @@
                             android:id="@+id/imagehReport6"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="3dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/finding_home3" />
@@ -301,7 +307,7 @@
                         android:layout_marginRight="8dp"
                         android:background="@drawable/btn_corner_round_light_gray"
                         android:contentDescription="@string/reportPetReportTakePic_lbl"
-                        android:src="@drawable/cam" />
+                        android:src="@drawable/cam_gray" />
 
                     <ImageButton
                         android:id="@+id/btnSelectPhotoReport"
