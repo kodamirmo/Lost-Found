@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.widget.EditText;
+import android.widget.Spinner;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -15,14 +17,38 @@ import com.google.android.gms.maps.model.LatLng;
 import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
 
 public class ReportActivity extends FragmentActivity {
-
+	
+	//creating necessary elements
+	
 	private GoogleMap map; 
+	
 	private FancyCoverFlow fancyCoverFlow;
+	
+	private Spinner reportType;
+	private Spinner petAge;
+	private Spinner petType;
+	private EditText petName;
+	private EditText reportTel;
+	private EditText petFeatures;
+	private EditText reportMsg;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
+		
+		//calling layout elements
+		
+		reportType = (Spinner) findViewById(R.id.spinnerReportType);
+		petAge = (Spinner) findViewById(R.id.spinnerReportPetAge);
+		petType = (Spinner) findViewById(R.id.spinnerReportPetType);
+		
+		petName = (EditText) findViewById(R.id.editTextpetName);
+		reportTel = (EditText) findViewById(R.id.editTextpetReportTel);;
+		petFeatures = (EditText) findViewById(R.id.editTextpetFeatures);;
+		reportMsg = (EditText) findViewById(R.id.editTextReportMsg);;		
+		
 		
 		//Fancy Cover for Images
 		

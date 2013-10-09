@@ -30,12 +30,13 @@
         </ImageView>
 
         <LinearLayout
-            android:id="@+id/linearmain2"
+           android:id="@+id/linearmain2"
             android:layout_width="match_parent"
-            android:layout_height="31dp"
+            android:layout_height="35dp"
             android:layout_alignParentLeft="true"
+           	android:layout_marginTop="-29dp"
             android:layout_below="@+id/reportImagemain"
-            android:background="#FFD400"
+            android:background="@drawable/detail_chart_transparent_bottom_yellow"
             android:orientation="horizontal" >
 
             <ImageView
