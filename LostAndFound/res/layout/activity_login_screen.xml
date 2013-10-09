@@ -67,7 +67,7 @@
         <ImageButton
             android:id="@+id/loginBtn"
             android:layout_width="227dp"
-            android:layout_height="32dp"
+            android:layout_height="35dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/app_name"
             android:onClick="onClickLogin"

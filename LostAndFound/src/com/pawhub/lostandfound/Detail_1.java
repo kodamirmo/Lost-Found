@@ -12,7 +12,6 @@ public class Detail_1 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_1);
-	
 	}
 
 

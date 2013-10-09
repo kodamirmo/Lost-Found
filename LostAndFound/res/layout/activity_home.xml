@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_alert_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_myreport_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_missing_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_found_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_abuse_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_serchome_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_mapreport_icon" />
 
             <TextView
                 android:layout_width="wrap_content"

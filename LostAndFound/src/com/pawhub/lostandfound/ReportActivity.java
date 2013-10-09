@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,15 +12,29 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
 
 public class ReportActivity extends FragmentActivity {
 
 	private GoogleMap map; 
+	private FancyCoverFlow fancyCoverFlow;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
+		
+		//Fancy Cover for Images
+		
+		this.fancyCoverFlow = (FancyCoverFlow) this.findViewById(R.id.fancyCoverFlow);
+
+        this.fancyCoverFlow.setAdapter(new FancyCoverFlowSampleAdapter());
+        this.fancyCoverFlow.setUnselectedAlpha(1.0f);
+        this.fancyCoverFlow.setUnselectedSaturation(0.0f);
+        this.fancyCoverFlow.setUnselectedScale(0.5f);
+        this.fancyCoverFlow.setMaxRotation(0);
+        this.fancyCoverFlow.setScaleDownGravity(0.2f);
+        this.fancyCoverFlow.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
 		
 		setTitleColor(Color.RED);
 
