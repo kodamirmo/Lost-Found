@@ -18,11 +18,11 @@ public abstract class Report implements Serializable{
 	public static final int CAUSE_LOST=3;
 	public static final int CAUSE_HOMELESS=4;
 	
-	public static final int ABUSE_COLOR=Color.parseColor("#FFD400");
-	public static final int ABUSE_ACCIDENT=Color.parseColor("#F3A2B9");
-	public static final int ABUSE_FOUND=Color.parseColor("#CDE400");
-	public static final int ABUSE_LOST=Color.parseColor("#B71C4E");
-	public static final int ABUSE_HOMELESS=Color.parseColor("#63C2D0");
+	public static final int COLOR_ABUSE=Color.parseColor("#FFD400");
+	public static final int COLOR_ACCIDENT=Color.parseColor("#F3A2B9");
+	public static final int COLOR_FOUND=Color.parseColor("#CDE400");
+	public static final int COLOR_LOST=Color.parseColor("#B71C4E");
+	public static final int COLOR_HOMELESS=Color.parseColor("#63C2D0");
 	
 	private String idReport;
 	private int petType;
@@ -33,21 +33,34 @@ public abstract class Report implements Serializable{
 	
 	protected int typeReport;
 	
-	public Report(String idReport, int petType, String lastlocation,String pathPicture,String comments) {
+	////////////////////////////////////////////
+	private boolean isAlert;
+	private int numComments;
+	private boolean isResolve;
+	private String userName;
+	
+	public Report(String idReport, int petType, String lastlocation,String pathPicture,String comments,
+				boolean isAlert,int numComments, boolean isResolve,String userName) {
 		
 		this.idReport = idReport;
 		this.petType = petType;
 		this.lastlocation = lastlocation;
 		this.comments= comments;
+		this.isAlert=isAlert;
+		this.isResolve=isResolve;
+		this.numComments=numComments;
+		this.userName=userName;
 		
 		if(pathPicture!=null){
 			if(!pathPicture.trim().equals("")){
 				this.pathPicture = pathPicture;
 				hasPicture=true;
 			}
-			else	 hasPicture=false;
+			else	
+				hasPicture=false;
 		}
-		else 	hasPicture=false;
+		else 	
+			hasPicture=false;
 
 	}
 
@@ -77,6 +90,22 @@ public abstract class Report implements Serializable{
 	
 	public int getTypeReport() {
 		return typeReport;
+	}
+
+	public boolean isAlert() {
+		return isAlert;
+	}
+
+	public int getNumComments() {
+		return numComments;
+	}
+
+	public boolean isResolve() {
+		return isResolve;
+	}
+
+	public String getUserName() {
+		return userName;
 	}
 	
 }

@@ -18,7 +18,7 @@
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:paddingTop="8dp" >
- 
+
         <LinearLayout
             android:id="@+id/linearmain2"
             android:layout_width="match_parent"
@@ -37,19 +37,20 @@
                 android:src="@drawable/menu_abuse_icon" />
 
             <TextView
-                android:id="@+id/reportType2Lbl"
+                android:id="@+id/reportTypeLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="open-sans"
-                android:text="@string/report_abuse" 
+                android:text="@string/report_abuse"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvResolve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
@@ -60,15 +61,6 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_alignRight="@+id/linearmain2"
-            android:layout_alignTop="@+id/linearmain2"
-            android:layout_margin="3dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/share_white" />
 
         <LinearLayout
             android:id="@+id/linearmain3"
@@ -115,7 +107,7 @@
                     android:ems="10"
                     android:enabled="false"
                     android:focusable="false"
-                    android:fontFamily="open-sans" 
+                    android:fontFamily="open-sans"
                     android:inputType="textMultiLine"
                     android:text="@string/userMsg2"
                     android:textColor="#656565"
@@ -164,45 +156,58 @@
                 android:layout_weight="2"
                 android:orientation="horizontal" >
 
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="19dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="1dp"
-                    android:contentDescription="@string/app_name"
-                    android:onClick="goToDetailsMap"
-                    android:src="@drawable/alert_active" />
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/layoutAlert"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/alertLbl"
-                    android:textColor="#656565"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content" >
 
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="19dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginTop="1dp"
-                    android:contentDescription="@string/report"
-                    android:src="@drawable/compartir_gray" />
+                    <ImageView
+                        android:id="@+id/ivChart_Alert"
+                        android:layout_width="22dp"
+                        android:layout_height="19dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="1dp"
+                        android:contentDescription="@string/app_name"
+                        android:onClick="goToDetailsMap"
+                        android:src="@drawable/alert_active" />
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="open-sans"
+                        android:text="@string/alertLbl"
+                        android:textColor="#656565"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutShare"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/share"
-                    android:textColor="#656565"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="19dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginTop="1dp"
+                        android:contentDescription="@string/report"
+                        android:src="@drawable/compartir_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="open-sans"
+                        android:text="@string/share"
+                        android:textColor="#656565"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
             <TableRow
@@ -224,6 +229,7 @@
                     android:src="@drawable/msg" />
 
                 <TextView
+                    android:id="@+id/tvNumComments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"

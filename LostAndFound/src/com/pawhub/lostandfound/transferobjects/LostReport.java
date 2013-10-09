@@ -11,8 +11,11 @@ public class LostReport extends Report{
 		
 	public LostReport(String idReport, int petType, String lastlocation,
 			String pathPicture, String comments, String lostDate, int agePet,
-			String colorPet, String namePet) {
-		super(idReport, petType, lastlocation, pathPicture, comments);
+			String colorPet, String namePet,
+			boolean isAlert,int numComments, boolean isResolve,String userName) {
+		
+		super(idReport, petType, lastlocation, pathPicture, comments,isAlert,numComments,isResolve,userName);
+		
 		this.lostDate = lostDate;
 		this.agePet = agePet;
 		this.colorPet = colorPet;

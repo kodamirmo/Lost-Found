@@ -7,8 +7,11 @@ public class AbuseReport extends Report{
 	private String commentAboutSituation; 
 
 	public AbuseReport(String idReport, int petType, String lastlocation,
-			String pathPicture, String comments, String commentAboutSituation) {
-		super(idReport, petType, lastlocation, pathPicture, comments);
+			String pathPicture, String comments, String commentAboutSituation,
+			boolean isAlert,int numComments, boolean isResolve,String userName) {
+		
+		super(idReport, petType, lastlocation, pathPicture, comments,isAlert,numComments,isResolve,userName);
+		
 		this.commentAboutSituation = commentAboutSituation;
 		super.typeReport=CAUSE_ABUSE;
 	}
