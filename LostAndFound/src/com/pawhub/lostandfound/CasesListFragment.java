@@ -23,12 +23,17 @@ public class CasesListFragment extends Fragment{
         parentLayout=(LinearLayout)getView().findViewById(R.id.layoutCasesList);
         
         addDetailChart();
-        addDetailChart();
+        addDetailChart2();
         addDetailChart();
     }
 	
 	private void addDetailChart(){
 		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 		inflater.inflate(R.layout.detail_chart_1,parentLayout);
+	}
+	
+	private void addDetailChart2(){
+		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		inflater.inflate(R.layout.detail_chart_2,parentLayout);
 	}
 }
