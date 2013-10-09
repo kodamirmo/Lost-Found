@@ -18,27 +18,13 @@
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:paddingTop="8dp" >
-
-        <ImageView
-            android:id="@+id/reportImagemain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/app_name"
-            android:maxHeight="215dp"
-            android:onClick="goToDetailPics"
-            android:scaleType="centerInside"
-            android:src="@drawable/finding_home" >
-        </ImageView>
  
         <LinearLayout
             android:id="@+id/linearmain2"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"
-           	android:layout_marginTop="-29dp"
-            android:layout_below="@+id/reportImagemain"
-            android:background="@drawable/detail_chart_transparent_bottom_yellow"
+            android:background="@drawable/detail_chart_magenta"
             android:orientation="horizontal" >
 
             <ImageView
@@ -48,17 +34,17 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_ico" />
+                android:src="@drawable/menu_abuse_icon" />
 
             <TextView
-                android:id="@+id/reportTypeLbl"
+                android:id="@+id/reportType2Lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="open-sans"
-                android:text="@string/report_home"
+                android:text="@string/report_abuse" 
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -70,7 +56,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="open-sans"
                 android:text="@string/report_resolve"
-                android:textColor="#FFD400"
+                android:textColor="#FFd400"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -129,9 +115,9 @@
                     android:ems="10"
                     android:enabled="false"
                     android:focusable="false"
-                    android:fontFamily="open-sans"
+                    android:fontFamily="open-sans" 
                     android:inputType="textMultiLine"
-                    android:text="@string/userMsg"
+                    android:text="@string/userMsg2"
                     android:textColor="#656565"
                     android:textSize="14sp" >
                 </EditText>

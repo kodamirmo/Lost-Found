@@ -31,7 +31,6 @@ public class CasesListFragment extends Fragment{
         
         Bundle arguments=getArguments();
         initScreen(arguments);
-        
     }
 	
 	private void initScreen(Bundle arguments){
@@ -105,5 +104,10 @@ public class CasesListFragment extends Fragment{
 		//inflater.inflate(R.layout.detail_chart_1,parentLayout);
 		View v=inflater.inflate(R.layout.detail_chart_1, null);
 		parentLayout.addView(v);
+	}
+	
+	private void addDetailChart2(){
+		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		inflater.inflate(R.layout.detail_chart_2,parentLayout);
 	}
 }
