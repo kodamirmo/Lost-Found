@@ -56,5 +56,7 @@
     <string name="user2Msg">¿Sabes si alguien está cerca?</string>
     <string name="postTime2">hace 2 minutos</string>
     <string name="title_activity_detail_3">Detail_3</string>
+    <string name="report_abuse">Reporte de Maltrato</string>
+    <string name="userMsg2">Mi vecina tiene 3 gatos encerrados y desde afuera puedo ver que están flacos&#8230;</string>
 
 </resources>
