@@ -17,6 +17,7 @@ public class LostReport extends Report{
 		this.agePet = agePet;
 		this.colorPet = colorPet;
 		this.namePet = namePet;
+		super.typeReport=CAUSE_LOST;
 	}
 
 	public String getLostDate() {

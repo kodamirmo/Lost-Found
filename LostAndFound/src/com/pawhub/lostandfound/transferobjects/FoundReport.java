@@ -15,6 +15,7 @@ public class FoundReport extends Report{
 		this.agePet = agePet;
 		this.colorPet = colorPet;
 		this.actuallyLocation = actuallyLocation;
+		super.typeReport=CAUSE_FOUND;
 	}
 	
 	public int getAgePet() {

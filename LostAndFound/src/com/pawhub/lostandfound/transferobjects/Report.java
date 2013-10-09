@@ -31,6 +31,8 @@ public abstract class Report implements Serializable{
 	private String pathPicture;
 	private String comments;
 	
+	protected int typeReport;
+	
 	public Report(String idReport, int petType, String lastlocation,String pathPicture,String comments) {
 		
 		this.idReport = idReport;
@@ -71,6 +73,10 @@ public abstract class Report implements Serializable{
 
 	public String getComments() {
 		return comments;
+	}
+	
+	public int getTypeReport() {
+		return typeReport;
 	}
 	
 }

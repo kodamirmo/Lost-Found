@@ -8,6 +8,7 @@ public class AccidentReport extends Report{
 			String pathPicture,String comments) {
 		super(idReport, petType, lastlocation, pathPicture,comments);
 
+		super.typeReport=CAUSE_ACCIDENT;
 	}
 
 }

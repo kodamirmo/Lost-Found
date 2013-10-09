@@ -10,6 +10,7 @@ public class AbuseReport extends Report{
 			String pathPicture, String comments, String commentAboutSituation) {
 		super(idReport, petType, lastlocation, pathPicture, comments);
 		this.commentAboutSituation = commentAboutSituation;
+		super.typeReport=CAUSE_ABUSE;
 	}
 
 	public String getCommentAboutSituation() {
