@@ -51,7 +51,7 @@ public class ReportView {
 		if(reportObject.isAlert())
 			imageViewAlert.setImageResource(R.drawable.alert_active);
 		else
-			imageViewAlert.setImageResource(R.drawable.bell);
+			imageViewAlert.setImageResource(R.drawable.menu_alert_icon);
 		
 		LinearLayout layoutAlert=(LinearLayout)v.findViewById(R.id.layoutAlert);
 		
@@ -63,7 +63,7 @@ public class ReportView {
 				if(reportObject.isAlert())
 					imageViewAlert.setImageResource(R.drawable.alert_active);
 				else
-					imageViewAlert.setImageResource(R.drawable.bell);
+					imageViewAlert.setImageResource(R.drawable.menu_alert_icon);
 			}
 		});
 		
