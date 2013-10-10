@@ -59,7 +59,11 @@ public class ReportView {
 			
 			@Override
 			public void onClick(View v) {
-				imageViewAlert.setImageResource(R.drawable.alert_active);
+				reportObject.changeAlert();
+				if(reportObject.isAlert())
+					imageViewAlert.setImageResource(R.drawable.alert_active);
+				else
+					imageViewAlert.setImageResource(R.drawable.bell);
 			}
 		});
 		
@@ -104,6 +108,10 @@ public class ReportView {
 		TextView tvResolve=(TextView)v.findViewById(R.id.tvResolve);
 		if(reportObject.getTypeReport()==Report.CAUSE_ABUSE)
 			tvResolve.setTextColor(Color.parseColor("#63C2D0"));
+		else if(reportObject.getTypeReport()==Report.CAUSE_FOUND)
+			tvResolve.setTextColor(Color.parseColor("#B71C4E"));
+		else if(reportObject.getTypeReport()==Report.CAUSE_ACCIDENT)
+			tvResolve.setTextColor(Color.parseColor("#B71C4E"));
 		if(reportObject.isResolve())
 			tvResolve.setText(" -¡Resuelto!");
 		else

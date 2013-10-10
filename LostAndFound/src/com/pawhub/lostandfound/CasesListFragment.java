@@ -1,12 +1,11 @@
 package com.pawhub.lostandfound;
 
-import com.pawhub.lostandfound.transferobjects.AbuseReport;
-import com.pawhub.lostandfound.transferobjects.AccidentReport;
-import com.pawhub.lostandfound.transferobjects.FoundReport;
-import com.pawhub.lostandfound.transferobjects.HomelessReport;
-import com.pawhub.lostandfound.transferobjects.LostReport;
-import com.pawhub.lostandfound.transferobjects.Report;
-import com.pawhub.lostandfound.views.ReportView;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.pawhub.lostandfound.data.DataSourceDumy;
+import com.pawhub.lostandfound.data.ReportsList;
+
 
 import android.content.Context;
 import android.os.Bundle;
@@ -29,6 +28,8 @@ public class CasesListFragment extends Fragment{
 	private LinearLayout parentLayout;
 	private LayoutInflater inflater;
 	
+	private ReportsList reportList;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         return inflater.inflate(R.layout.cases_list_layout, container, false);
@@ -39,6 +40,9 @@ public class CasesListFragment extends Fragment{
         super.onActivityCreated(state);
         parentLayout=(LinearLayout)getView().findViewById(R.id.layoutCasesList);
         inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        
+        DataSourceDumy dummy=new DataSourceDumy();
+        reportList=new ReportsList(dummy.getData(), inflater);
         
         Bundle arguments=getArguments();
         initScreen(arguments);
@@ -74,61 +78,66 @@ public class CasesListFragment extends Fragment{
 	
 	
 	private void initScreenHome(){
-		AbuseReport report=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ",null,
-				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, false,"Irving");
+		ArrayList<View> auxList=reportList.getAllReports();
+		Iterator<View> iterator=auxList.iterator();
 		
-		AbuseReport report2=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","c",
-				"Este es un comentario acerca de la situacion", "sin comentario", true, 1234, false,"Emmanuel");
-		
-		AbuseReport report3=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","",
-				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, true,"Gonzalez");
-		
-		AccidentReport report4=new AccidentReport("ABCCD", Report.TYPE_CAT, "", null,
-				"Este es un comentario acerca de la situacion", false, 234, false, "Pedro Paramo");
-		
-		FoundReport report5 =new FoundReport("ADSFE", Report.TYPE_OTHER, "", null, 
-				"Este es un comentario acerca de la situacion", 2, "rojo", "", false, 0, true, "Laura Bozo");
-		
-		LostReport report6 =new LostReport("ADASDASF", Report.TYPE_CAT, "", "d", 
-				"Este es un comentario acerca de la situacion", "un año", 2,"azul", "gato",false, 456, false, "Irving Emmanuel");
-		
-		HomelessReport report7 =new HomelessReport("ASDA", Report.TYPE_DOG, "", null,
-				"Este es un comentario acerca de la situacion", true, 23, true, "Paulina Rubio");
-		
-		
-		
-		parentLayout.addView(new ReportView(report, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report2, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report3, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report4, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report5, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report6, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report7, inflater).getReportChart());
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 	
 	private void initScreenAlerts(){
+		ArrayList<View> auxList=reportList.getAlertsReports();
+		Iterator<View> iterator=auxList.iterator();
 		
-		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 	
 	private void initScreenReports(){
+		ArrayList<View> auxList=reportList.getAllReports();
+		Iterator<View> iterator=auxList.iterator();
 		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 	
 	private void initScreenLosts(){
+		ArrayList<View> auxList=reportList.getLostReports();
+		Iterator<View> iterator=auxList.iterator();
 		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 	
 	private void initScreenAbuse(){
+		ArrayList<View> auxList=reportList.getAbuseReports();
+		Iterator<View> iterator=auxList.iterator();
 		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 
 	private void initScreenFound(){
+		ArrayList<View> auxList=reportList.getFoundReports();
+		Iterator<View> iterator=auxList.iterator();
 		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 	
 	private void initScreenHomeless(){
+		ArrayList<View> auxList=reportList.getHomelessReports();
+		Iterator<View> iterator=auxList.iterator();
 		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}	
 	}
 	
 }

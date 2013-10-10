@@ -108,4 +108,8 @@ public abstract class Report implements Serializable{
 		return userName;
 	}
 	
+	public void changeAlert(){
+		isAlert=!isAlert;
+	}
+	
 }
