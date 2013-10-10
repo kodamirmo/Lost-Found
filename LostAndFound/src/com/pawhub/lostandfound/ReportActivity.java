@@ -148,9 +148,9 @@ public class ReportActivity extends FragmentActivity {
 					getContext().getResources().getDrawable(
 							R.drawable.found_icon_blue),
 					getContext().getResources().getDrawable(
-							R.drawable.abuse_icon_blue),
+							R.drawable.abuse_icon),
 					getContext().getResources().getDrawable(
-							R.drawable.home_icon_blue) };
+							R.drawable.home_ico) };
 
 			label.setCompoundDrawablesWithIntrinsicBounds(arr_images[position], null, null, null);
 

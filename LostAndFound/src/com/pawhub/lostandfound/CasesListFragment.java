@@ -1,6 +1,7 @@
 package com.pawhub.lostandfound;
 
 import com.pawhub.lostandfound.transferobjects.AbuseReport;
+import com.pawhub.lostandfound.transferobjects.AccidentReport;
 import com.pawhub.lostandfound.transferobjects.Report;
 import com.pawhub.lostandfound.views.ReportView;
 
@@ -14,12 +15,13 @@ import android.widget.LinearLayout;
 
 public class CasesListFragment extends Fragment{
 
-	private final int SCREEN_ALERTS = 0;
-	private final int SCREEN_REPORTS = 1;
-	private final int SCREEN_LOST = 2;
-	private final int SCREEN_FOUND = 3;
-	private final int SCREEN_ABUSE = 4;
-	private final int SCREEN_HOMELESS = 5;
+	private final int SCREEN_HOME = 0;
+	private final int SCREEN_ALERTS = 1;
+	private final int SCREEN_REPORTS = 2;
+	private final int SCREEN_LOST = 3;
+	private final int SCREEN_FOUND = 4;
+	private final int SCREEN_ABUSE = 5;
+	private final int SCREEN_HOMELESS = 6;
 	
 	private LinearLayout parentLayout;
 	private LayoutInflater inflater;
@@ -43,6 +45,9 @@ public class CasesListFragment extends Fragment{
 		int screenType=arguments.getInt("TYPE");
 		
 		switch(screenType){
+			case SCREEN_HOME:
+				initScreenHome();
+				break;
 			case SCREEN_ALERTS:
 				initScreenAlerts();
 				break;
@@ -60,29 +65,34 @@ public class CasesListFragment extends Fragment{
 				break;
 			case SCREEN_HOMELESS:
 				initScreenHomeless();
-				break;
-				
+				break;		
 		}
+	}
+	
+	
+	private void initScreenHome(){
+		AbuseReport report=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ",null,
+				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, false,"Irving");
+		
+		AbuseReport report2=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","c",
+				"Este es un comentario acerca de la situacion", "sin comentario", true, 1234, false,"Emmanuel");
+		
+		AbuseReport report3=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","",
+				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, true,"Gonzalez");
+		
+		AccidentReport report4=new AccidentReport("ABCCD", Report.TYPE_CAT, "", null,
+				"Este es un comentario acerca de la situacion", false, 234, false, "Pedro Paramo");
+		
+		
+		parentLayout.addView(new ReportView(report, inflater).getReportChart());
+		parentLayout.addView(new ReportView(report2, inflater).getReportChart());
+		parentLayout.addView(new ReportView(report3, inflater).getReportChart());
+		parentLayout.addView(new ReportView(report4, inflater).getReportChart());
 	}
 	
 	private void initScreenAlerts(){
 		
-//		AbuseReport report=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ",null,
-//				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, false,"Irving");
-//		
-//		AbuseReport report2=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","c",
-//				"Este es un comentario acerca de la situacion", "sin comentario", true, 1234, false,"Emmanuel");
-//		
-//		AbuseReport report3=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","",
-//				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, true,"Gonzalez");
-//		
-//		parentLayout.addView(new ReportView(report, inflater).getReportChart());
-//		parentLayout.addView(new ReportView(report2, inflater).getReportChart());
-//		parentLayout.addView(new ReportView(report3, inflater).getReportChart());
-		addDetailChart();
-		addDetailChart2();
-		addDetailChart();
-		addDetailChart2();
+		
 	}
 	
 	private void initScreenReports(){

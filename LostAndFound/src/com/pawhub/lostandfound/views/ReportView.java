@@ -1,6 +1,7 @@
 package com.pawhub.lostandfound.views;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -101,7 +102,8 @@ public class ReportView {
 		
 		////////Resolve
 		TextView tvResolve=(TextView)v.findViewById(R.id.tvResolve);
-		
+		if(reportObject.getTypeReport()==Report.CAUSE_ABUSE)
+			tvResolve.setTextColor(Color.parseColor("#63C2D0"));
 		if(reportObject.isResolve())
 			tvResolve.setText(" -¡Resuelto!");
 		else
