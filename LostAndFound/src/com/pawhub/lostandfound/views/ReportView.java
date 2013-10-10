@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.pawhub.lostandfound.R;
 import com.pawhub.lostandfound.transferobjects.*;
 
-public class ReportView {
+public class ReportView { 
 
 	private Report reportObject;
 	private LayoutInflater inflater;
@@ -19,7 +19,7 @@ public class ReportView {
 	private View reportChart;
 	
 	public ReportView(Report reportObject,LayoutInflater inflater) {
-		this.reportObject = reportObject;
+		this.reportObject = reportObject; 
 		this.inflater=inflater;		
 	}
 	
