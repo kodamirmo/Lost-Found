@@ -19,24 +19,12 @@
         android:paddingRight="3dp"
         android:paddingTop="8dp" >
 
-        <ImageView
-            android:id="@+id/reportImagemain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/app_name"
-            android:onClick="goToDetailPics"
-            android:scaleType="centerCrop"
-            android:src="@drawable/finding_home" >
-        </ImageView>
-
         <LinearLayout
-           android:id="@+id/linearmain2"
+            android:id="@+id/linearmain2"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"
-           	android:layout_marginTop="-29dp"
-            android:layout_below="@+id/reportImagemain"
-            android:background="@drawable/detail_chart_transparent_bottom_yellow"
+            android:background="@drawable/detail_chart_yellow"
             android:orientation="horizontal" >
 
             <ImageView
@@ -132,6 +120,17 @@
                 </EditText>
             </LinearLayout>
         </LinearLayout>
+        
+        <ImageView
+            android:id="@+id/reportImagemain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearmain3"
+            android:contentDescription="@string/app_name"
+            android:onClick="goToDetailPics"
+            android:scaleType="centerCrop"
+            android:src="@drawable/finding_home" >
+        </ImageView>
 
         <TextView
             android:id="@+id/postTimeTxtMain"
@@ -149,20 +148,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/linearmain3"
+            android:layout_alignTop="@+id/reportImagemain"
             android:layout_alignRight="@+id/linearmain3"
-            android:layout_marginBottom="-8dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginRight="9dp"
             android:fontFamily="open-sans"
             android:text="@string/leerMas"
             android:textColor="#63C2D0"
             android:textSize="14sp" />
 
+        
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="23dp"
+            android:layout_below="@+id/reportImagemain"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/linearmain3"
             android:background="@drawable/bottom_corner_round_gray"
             android:gravity="center"
             android:orientation="horizontal"
@@ -183,7 +184,7 @@
                     android:layout_marginTop="1dp"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/alert_active" />
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,8 +204,8 @@
                     android:layout_marginTop="1dp"
                     android:contentDescription="@string/report"
                     android:src="@drawable/compartir_gray" />
-                
-                 <TextView
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -212,7 +213,6 @@
                     android:text="@string/share"
                     android:textColor="#656565"
                     android:textSize="12sp" />
-
             </TableRow>
 
             <TableRow
