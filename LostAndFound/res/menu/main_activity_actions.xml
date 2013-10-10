@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+
+    <!-- Report, should appear as action button -->
+    <item
+        android:id="@+id/action_add_report"
+        android:icon="@drawable/lapiz"
+        yourapp:showAsAction="always"
+        android:title="@string/report"/>
+
+    <!-- Camera, should appear as action button -->
+    <item
+        android:id="@+id/action_camera"
+        android:icon="@drawable/cam"
+        yourapp:showAsAction="always"
+        android:title="@string/reportPetReportTakePic_lbl"/>
+
+    <!-- Alerts, should appear as action button -->
+    <item
+        android:id="@+id/action_alerts"
+        android:icon="@drawable/bell"
+        yourapp:showAsAction="always"
+        android:title="@string/alertLbl"/>
+
+    <!-- Settings, should always be in the overflow -->
+    <item
+        android:id="@+id/action_settings"
+        yourapp:showAsAction="always"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/action_settings" />
+
+</menu>

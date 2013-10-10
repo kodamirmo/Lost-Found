@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +34,7 @@ public class Home extends ActionBarActivity {
 	private TableRow btn_6;
 	private TableRow btn_7;
 
-	private final int SCREEN_HOME=0;
+	private final int SCREEN_HOME = 0;
 	private final int SCREEN_ALERTS = 1;
 	private final int SCREEN_REPORTS = 2;
 	private final int SCREEN_LOST = 3;
@@ -47,7 +48,7 @@ public class Home extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState); 
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
 		initSlidingMenu();
@@ -113,17 +114,55 @@ public class Home extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.home, menu);
-		return true;
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
+
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
+		} else {
+			switch (item.getItemId()) {
+			case R.id.action_add_report:
+				openReport();
+				return true;
+			case R.id.action_camera:
+				openCamera();
+				return true;
+			case R.id.action_alerts:
+				openAlerts();
+				return true;
+			case R.id.action_settings:
+				openSettings();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+			}
 		}
 
-		return super.onOptionsItemSelected(item);
+	}
+
+	private void openSettings() {
+		
+	}
+
+	private void openAlerts() {
+		
+		
+	}
+
+	private void openCamera() {
+		
+	}
+
+	private void openReport() {
+		Intent openRepo = new Intent(this, ReportActivity.class);
+		startActivity(openRepo);
+		
 	}
 
 	@Override
@@ -146,60 +185,60 @@ public class Home extends ActionBarActivity {
 	private void showScreen(int id) {
 
 		Fragment fragment = null;
-		Bundle arguments=new Bundle();
+		Bundle arguments = new Bundle();
 
 		switch (id) {
-			
-			case R.id.entry_Home: 
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_HOME);
-				currentTitle = "";
-				CURRENT_SCREEN = SCREEN_HOME;
-				break;
-			case R.id.entry_1: 
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_ALERTS);
-				currentTitle = "";
-				CURRENT_SCREEN = SCREEN_ALERTS;
-				break;
-			case R.id.entry_2:
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_REPORTS);
-				CURRENT_SCREEN = SCREEN_REPORTS;
-				break;
-			case R.id.entry_3:
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_LOST);
-				CURRENT_SCREEN = SCREEN_LOST;
-				break;
-			case R.id.entry_4:
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_FOUND);
-				CURRENT_SCREEN = SCREEN_FOUND;
-				break;
-			case R.id.entry_5:
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_ABUSE);
-				CURRENT_SCREEN = SCREEN_ABUSE;
-				break;
-			case R.id.entry_6:
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_HOMELESS);
-				CURRENT_SCREEN = SCREEN_HOMELESS;
-				break;
-			case R.id.entry_7:
-				fragment = new FragmentCasesMap();
-				arguments.putInt("TYPE", SCREEN_ALERTS);
-				CURRENT_SCREEN = SCREEN_MAP;
-				break;
-			default:
-				fragment = new CasesListFragment();
-				arguments.putInt("TYPE", SCREEN_HOME);
-				currentTitle = "";
-				CURRENT_SCREEN = SCREEN_HOME;
-				break;
+
+		case R.id.entry_Home:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_HOME);
+			currentTitle = "";
+			CURRENT_SCREEN = SCREEN_HOME;
+			break;
+		case R.id.entry_1:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_ALERTS);
+			currentTitle = "";
+			CURRENT_SCREEN = SCREEN_ALERTS;
+			break;
+		case R.id.entry_2:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_REPORTS);
+			CURRENT_SCREEN = SCREEN_REPORTS;
+			break;
+		case R.id.entry_3:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_LOST);
+			CURRENT_SCREEN = SCREEN_LOST;
+			break;
+		case R.id.entry_4:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_FOUND);
+			CURRENT_SCREEN = SCREEN_FOUND;
+			break;
+		case R.id.entry_5:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_ABUSE);
+			CURRENT_SCREEN = SCREEN_ABUSE;
+			break;
+		case R.id.entry_6:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_HOMELESS);
+			CURRENT_SCREEN = SCREEN_HOMELESS;
+			break;
+		case R.id.entry_7:
+			fragment = new FragmentCasesMap();
+			arguments.putInt("TYPE", SCREEN_ALERTS);
+			CURRENT_SCREEN = SCREEN_MAP;
+			break;
+		default:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_HOME);
+			currentTitle = "";
+			CURRENT_SCREEN = SCREEN_HOME;
+			break;
 		}
-		
+
 		fragment.setArguments(arguments);
 
 		FragmentManager fragmentManager = getSupportFragmentManager();
@@ -239,12 +278,12 @@ public class Home extends ActionBarActivity {
 		Intent detailPicsIntent = new Intent(this, Detail_1.class);
 		startActivity(detailPicsIntent);
 	}
-	
+
 	public void goToMsgs(View v) {
 		Intent detailMsgsIntent = new Intent(this, Detail_2.class);
 		startActivity(detailMsgsIntent);
 	}
-	
+
 	public void goToDetailsMap(View v) {
 		Intent detailMapIntent = new Intent(this, Detail_3.class);
 		startActivity(detailMapIntent);
