@@ -10,11 +10,14 @@ public class FoundReport extends Report{
 
 	public FoundReport(String idReport, int petType, String lastlocation,
 			String pathPicture, String comments, int agePet, String colorPet,
-			String actuallyLocation) {
-		super(idReport, petType, lastlocation, pathPicture, comments);
+			String actuallyLocation,boolean isAlert,int numComments, boolean isResolve,String userName) {
+		
+		super(idReport, petType, lastlocation, pathPicture, comments,isAlert,numComments,isResolve,userName);
+		
 		this.agePet = agePet;
 		this.colorPet = colorPet;
 		this.actuallyLocation = actuallyLocation;
+		super.typeReport=CAUSE_FOUND;
 	}
 	
 	public int getAgePet() {
