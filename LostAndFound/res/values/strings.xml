@@ -37,6 +37,7 @@
     <string name="reportPetReportTakePic_lbl">Toma Foto</string>
     <string name="reportPetReportSelectPic_lbl">Escoge Foto</string>
     <string name="publish">Publicar</string>
+    <string name="entry_title_home">Home</string>
     <string name="entry_title_1">Mostrar Alertas</string>
     <string name="entry_title_2">Mis reportes</string>
     <string name="entry_title_3">Extraviados</string>

@@ -24,6 +24,7 @@ public class Home extends ActionBarActivity {
 	private ActionBarDrawerToggle mDrawerToggle;
 
 	// Change the numbers to the actions name like btn_alerts
+	private TableRow btn_0;
 	private TableRow btn_1;
 	private TableRow btn_2;
 	private TableRow btn_3;
@@ -32,13 +33,14 @@ public class Home extends ActionBarActivity {
 	private TableRow btn_6;
 	private TableRow btn_7;
 
-	private final int SCREEN_ALERTS = 0;
-	private final int SCREEN_REPORTS = 1;
-	private final int SCREEN_LOST = 2;
-	private final int SCREEN_FOUND = 3;
-	private final int SCREEN_ABUSE = 4;
-	private final int SCREEN_HOMELESS = 5;
-	private final int SCREEN_MAP = 6;
+	private final int SCREEN_HOME=0;
+	private final int SCREEN_ALERTS = 1;
+	private final int SCREEN_REPORTS = 2;
+	private final int SCREEN_LOST = 3;
+	private final int SCREEN_FOUND = 4;
+	private final int SCREEN_ABUSE = 5;
+	private final int SCREEN_HOMELESS = 6;
+	private final int SCREEN_MAP = 7;
 
 	private int CURRENT_SCREEN = 0;
 	private String currentTitle;
@@ -89,6 +91,7 @@ public class Home extends ActionBarActivity {
 	}
 
 	private void initViews() {
+		btn_0 = (TableRow) findViewById(R.id.entry_Home);
 		btn_1 = (TableRow) findViewById(R.id.entry_1);
 		btn_2 = (TableRow) findViewById(R.id.entry_2);
 		btn_3 = (TableRow) findViewById(R.id.entry_3);
@@ -98,6 +101,7 @@ public class Home extends ActionBarActivity {
 		btn_7 = (TableRow) findViewById(R.id.entry_7);
 
 		MenuListener listener = new MenuListener();
+		btn_0.setOnClickListener(listener);
 		btn_1.setOnClickListener(listener);
 		btn_2.setOnClickListener(listener);
 		btn_3.setOnClickListener(listener);
@@ -145,48 +149,55 @@ public class Home extends ActionBarActivity {
 		Bundle arguments=new Bundle();
 
 		switch (id) {
-		case R.id.entry_1: 
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_ALERTS);
-			currentTitle = "";
-			CURRENT_SCREEN = SCREEN_ALERTS;
-			break;
-		case R.id.entry_2:
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_REPORTS);
-			CURRENT_SCREEN = SCREEN_REPORTS;
-			break;
-		case R.id.entry_3:
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_LOST);
-			CURRENT_SCREEN = SCREEN_LOST;
-			break;
-		case R.id.entry_4:
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_FOUND);
-			CURRENT_SCREEN = SCREEN_FOUND;
-			break;
-		case R.id.entry_5:
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_ABUSE);
-			CURRENT_SCREEN = SCREEN_ABUSE;
-			break;
-		case R.id.entry_6:
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_HOMELESS);
-			CURRENT_SCREEN = SCREEN_HOMELESS;
-			break;
-		case R.id.entry_7:
-			fragment = new FragmentCasesMap();
-			arguments.putInt("TYPE", SCREEN_ALERTS);
-			CURRENT_SCREEN = SCREEN_MAP;
-			break;
-		default:
-			fragment = new CasesListFragment();
-			arguments.putInt("TYPE", SCREEN_ALERTS);
-			currentTitle = "";
-			CURRENT_SCREEN = SCREEN_ALERTS;
-			break;
+			
+			case R.id.entry_Home: 
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_HOME);
+				currentTitle = "";
+				CURRENT_SCREEN = SCREEN_HOME;
+				break;
+			case R.id.entry_1: 
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_ALERTS);
+				currentTitle = "";
+				CURRENT_SCREEN = SCREEN_ALERTS;
+				break;
+			case R.id.entry_2:
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_REPORTS);
+				CURRENT_SCREEN = SCREEN_REPORTS;
+				break;
+			case R.id.entry_3:
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_LOST);
+				CURRENT_SCREEN = SCREEN_LOST;
+				break;
+			case R.id.entry_4:
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_FOUND);
+				CURRENT_SCREEN = SCREEN_FOUND;
+				break;
+			case R.id.entry_5:
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_ABUSE);
+				CURRENT_SCREEN = SCREEN_ABUSE;
+				break;
+			case R.id.entry_6:
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_HOMELESS);
+				CURRENT_SCREEN = SCREEN_HOMELESS;
+				break;
+			case R.id.entry_7:
+				fragment = new FragmentCasesMap();
+				arguments.putInt("TYPE", SCREEN_ALERTS);
+				CURRENT_SCREEN = SCREEN_MAP;
+				break;
+			default:
+				fragment = new CasesListFragment();
+				arguments.putInt("TYPE", SCREEN_HOME);
+				currentTitle = "";
+				CURRENT_SCREEN = SCREEN_HOME;
+				break;
 		}
 		
 		fragment.setArguments(arguments);
@@ -207,13 +218,13 @@ public class Home extends ActionBarActivity {
 
 	@Override
 	public void onBackPressed() {
-		if (CURRENT_SCREEN == SCREEN_ALERTS)
+		if (CURRENT_SCREEN == SCREEN_HOME)
 			finish();
 		else if (CURRENT_SCREEN == SCREEN_MAP) {
 			removeMap();
-			showScreen(R.id.entry_1);
+			showScreen(R.id.entry_Home);
 		} else
-			showScreen(R.id.entry_1);
+			showScreen(R.id.entry_Home);
 	}
 
 	private class MenuListener implements OnClickListener {
