@@ -113,7 +113,7 @@ public class ReportView {
 		else if(reportObject.getTypeReport()==Report.CAUSE_ACCIDENT)
 			tvResolve.setTextColor(Color.parseColor("#B71C4E"));
 		if(reportObject.isResolve())
-			tvResolve.setText(" -¡Resuelto!");
+			tvResolve.setText(" - ¡Resuelto!");
 		else
 			tvResolve.setText("");
 		

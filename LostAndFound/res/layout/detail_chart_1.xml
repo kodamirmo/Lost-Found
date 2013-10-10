@@ -26,7 +26,6 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
             android:maxHeight="215dp"
-            android:onClick="goToDetailPics"
             android:scaleType="centerInside"
             android:src="@drawable/finding_home" >
         </ImageView>
@@ -54,7 +53,7 @@
                 android:id="@+id/reportTypeLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="6dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="6dp"
                 android:fontFamily="open-sans"
@@ -184,7 +183,6 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="1dp"
                         android:contentDescription="@string/app_name"
-                        android:onClick="goToDetailsMap"
                         android:src="@drawable/alert_active" />
 
                     <TextView
@@ -239,7 +237,6 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="1dp"
                     android:contentDescription="@string/app_name"
-                    android:onClick="goToMsgs"
                     android:src="@drawable/msg" />
 
                 <TextView
