@@ -36,7 +36,7 @@
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/abuse_icon" />
 
-            <TextView
+            <TextView 
                 android:id="@+id/reportTypeLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -67,18 +67,22 @@ public class CasesListFragment extends Fragment{
 	
 	private void initScreenAlerts(){
 		
-		AbuseReport report=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ",null,
-				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, false,"Irving");
-		
-		AbuseReport report2=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","c",
-				"Este es un comentario acerca de la situacion", "sin comentario", true, 1234, false,"Emmanuel");
-		
-		AbuseReport report3=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","",
-				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, true,"Gonzalez");
-		
-		parentLayout.addView(new ReportView(report, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report2, inflater).getReportChart());
-		parentLayout.addView(new ReportView(report3, inflater).getReportChart());
+//		AbuseReport report=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ",null,
+//				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, false,"Irving");
+//		
+//		AbuseReport report2=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","c",
+//				"Este es un comentario acerca de la situacion", "sin comentario", true, 1234, false,"Emmanuel");
+//		
+//		AbuseReport report3=new AbuseReport("ABCCD",Report.TYPE_DOG, "  ","",
+//				"Este es un comentario acerca de la situacion", "sin comentario", false, 1234, true,"Gonzalez");
+//		
+//		parentLayout.addView(new ReportView(report, inflater).getReportChart());
+//		parentLayout.addView(new ReportView(report2, inflater).getReportChart());
+//		parentLayout.addView(new ReportView(report3, inflater).getReportChart());
+		addDetailChart();
+		addDetailChart2();
+		addDetailChart();
+		addDetailChart2();
 	}
 	
 	private void initScreenReports(){
@@ -102,14 +106,14 @@ public class CasesListFragment extends Fragment{
 	}
 	
 	
-//	private void addDetailChart(){
-//		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-//		View v=inflater.inflate(R.layout.detail_chart_1, null);
-//		parentLayout.addView(v);
-//	}
-//	
-//	private void addDetailChart2(){
-//		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-//		inflater.inflate(R.layout.detail_chart_2,parentLayout);
-//	}
+	private void addDetailChart(){
+		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		View v=inflater.inflate(R.layout.detail_chart_1, null);
+		parentLayout.addView(v);
+	}
+	
+	private void addDetailChart2(){
+		LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		inflater.inflate(R.layout.detail_chart_2,parentLayout);
+	}
 }
