@@ -173,15 +173,15 @@ public class ReportView {
 	private int getIcon(int type){
 		switch (type) {
 		case Report.CAUSE_ABUSE:
-			return R.drawable.menu_abuse_icon;
+			return R.drawable.abuse_icon;
 		case Report.CAUSE_ACCIDENT:
-			return R.drawable.menu_abuse_icon;
+			return R.drawable.abuse_icon;
 		case Report.CAUSE_FOUND:
-			return R.drawable.menu_found_icon;
+			return R.drawable.found_icon;
 		case Report.CAUSE_LOST:
-			return R.drawable.menu_missing_icon;
+			return R.drawable.missing_ico;
 		case Report.CAUSE_HOMELESS:
-			return R.drawable.menu_serchome_icon;
+			return R.drawable.home_ico;
 		default:
 			return 0;
 		}
