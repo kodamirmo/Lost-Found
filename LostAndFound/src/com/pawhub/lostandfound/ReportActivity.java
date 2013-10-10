@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -42,11 +44,12 @@ public class ReportActivity extends FragmentActivity {
 	// data for report types
 	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
 			"Busca Hogar" };
-	//data for age range
+	// data for age range
 	String[] ageRangeArray = { "0 - 3 meses", "3 - 6 meses", "6 - 9 meses",
-	"9 meses - 1 año", "1 - 4 años", "4 - 8 años", "8 - 12 años", "12 en adelante" };
-	//data for pet types
-	String[] petTypeArray = { "Perro", "Gato", "Otros" };
+			"9 meses - 1 año", "1 - 4 años", "4 - 8 años", "8 - 12 años",
+			"12 en adelante" };
+	// data for pet types
+	String[] petTypeArray = { "Perro", "Gato", "Otro" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,21 +64,23 @@ public class ReportActivity extends FragmentActivity {
 
 		petName = (EditText) findViewById(R.id.editTextpetName);
 		reportTel = (EditText) findViewById(R.id.editTextpetReportTel);
-		
+
 		petFeatures = (EditText) findViewById(R.id.editTextpetFeatures);
-		
+
 		reportMsg = (EditText) findViewById(R.id.editTextReportMsg);
-		
 
 		// adding adapter for types
-		reportType.setAdapter(new TypesAdapter(ReportActivity.this,R.layout.spinner_report_types, reportTypesArray));
-		
-		//adapter for age range	
-		ArrayAdapter<String> ageRangesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ageRangeArray);
+		reportType.setAdapter(new TypesAdapter(ReportActivity.this,
+				R.layout.spinner_report_types, reportTypesArray));
+
+		// adapter for age range
+		ArrayAdapter<String> ageRangesAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, ageRangeArray);
 		petAge.setAdapter(ageRangesAdapter);
-		
-		//adapter for pet types		
-		ArrayAdapter<String> petTypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, petTypeArray);
+
+		// adapter for pet types
+		ArrayAdapter<String> petTypesAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, petTypeArray);
 		petType.setAdapter(petTypesAdapter);
 
 		// Fancy Cover for Images
@@ -109,10 +114,54 @@ public class ReportActivity extends FragmentActivity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) { 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.report, menu);
-		return true;
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.action_add_report:
+			openReport();
+			return true;
+		case R.id.action_camera:
+			openCamera();
+			return true;
+		case R.id.action_alerts:
+			openAlerts();
+			return true;
+		case R.id.action_settings:
+			openSettings();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	private void openSettings() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void openAlerts() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void openCamera() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void openReport() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public class TypesAdapter extends ArrayAdapter<String> {
@@ -148,11 +197,12 @@ public class ReportActivity extends FragmentActivity {
 					getContext().getResources().getDrawable(
 							R.drawable.found_icon_blue),
 					getContext().getResources().getDrawable(
-							R.drawable.abuse_icon),
+							R.drawable.abuse_icon_blue),
 					getContext().getResources().getDrawable(
-							R.drawable.home_ico) };
+							R.drawable.home_icon_blue) };
 
-			label.setCompoundDrawablesWithIntrinsicBounds(arr_images[position], null, null, null);
+			label.setCompoundDrawablesWithIntrinsicBounds(arr_images[position],
+					null, null, null);
 
 			return row;
 		}
