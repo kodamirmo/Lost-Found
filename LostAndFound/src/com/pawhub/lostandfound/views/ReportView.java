@@ -26,12 +26,20 @@ public class ReportView {
 	private void generateChart_1(){
 		View v=inflater.inflate(R.layout.detail_chart_1, null);
 		generateChartGeneral(v);
+		
+		LinearLayout colorBackGound=(LinearLayout)v.findViewById(R.id.linearmain2);
+		colorBackGound.setBackgroundResource(getTransparentColorReport(reportObject.getTypeReport()));
+		
 		reportChart=v;
 	}
 	
 	private void generateChart_2(){
 		View v=inflater.inflate(R.layout.detail_chart_2, null);
 		generateChartGeneral(v);
+		
+		LinearLayout colorBackGound=(LinearLayout)v.findViewById(R.id.linearmain2);
+		colorBackGound.setBackgroundResource(getColorReport(reportObject.getTypeReport()));
+		
 		reportChart=v;
 	}
 	
@@ -106,25 +114,38 @@ public class ReportView {
 		tvUserShortMessage.setText(reportObject.getComments());
 		///////////////////////////////////////////////////////
 		
-		LinearLayout colorBackGound=(LinearLayout)v.findViewById(R.id.linearmain2);
-		colorBackGound.setBackgroundColor(getColorReport(reportObject.getTypeReport()));
-		colorBackGound.setBackgroundResource(R.drawable.detail_chart_transparent_bottom_yellow);
 		
-		
+	}
+	
+	private int getTransparentColorReport(int type){
+		switch (type) {
+		case Report.CAUSE_ABUSE:
+			return R.drawable.detail_chart_transparent_bottom_yellow;
+		case Report.CAUSE_ACCIDENT:
+			return R.drawable.detail_chart_transparent_bottom_pink;
+		case Report.CAUSE_FOUND:
+			return R.drawable.detail_chart_transparent_bottom_green;
+		case Report.CAUSE_LOST:
+			return R.drawable.detail_chart_transparent_bottom_magenta;
+		case Report.CAUSE_HOMELESS:
+			return R.drawable.detail_chart_transparent_bottom_blue;
+		default:
+			return 0;
+		}
 	}
 	
 	private int getColorReport(int type){
 		switch (type) {
 		case Report.CAUSE_ABUSE:
-			return Report.COLOR_ABUSE;
+			return R.drawable.detail_chart_yellow;
 		case Report.CAUSE_ACCIDENT:
-			return Report.COLOR_ACCIDENT;
+			return R.drawable.detail_chart_pink;
 		case Report.CAUSE_FOUND:
-			return Report.COLOR_FOUND;
+			return R.drawable.detail_chart_green;
 		case Report.CAUSE_LOST:
-			return Report.COLOR_LOST;
+			return R.drawable.detail_chart_magenta;
 		case Report.CAUSE_HOMELESS:
-			return Report.COLOR_HOMELESS;
+			return R.drawable.detail_chart_blue;
 		default:
 			return 0;
 		}

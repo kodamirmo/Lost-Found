@@ -5,7 +5,6 @@ import com.pawhub.lostandfound.transferobjects.Report;
 import com.pawhub.lostandfound.views.ReportView;
 
 import android.content.Context;
-import android.location.Address;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

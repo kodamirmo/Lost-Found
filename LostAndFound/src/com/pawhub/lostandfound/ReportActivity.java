@@ -68,7 +68,7 @@ public class ReportActivity extends FragmentActivity {
 		
 
 		// adding adapter for types
-		reportType.setAdapter(new TypesAdapter(ReportActivity.this, R.layout.spinner_report_types, reportTypesArray));
+		reportType.setAdapter(new TypesAdapter(ReportActivity.this,R.layout.spinner_report_types, reportTypesArray));
 		
 		//adapter for age range	
 		ArrayAdapter<String> ageRangesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ageRangeArray);
