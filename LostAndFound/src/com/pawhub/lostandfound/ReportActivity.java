@@ -1,6 +1,7 @@
 package com.pawhub.lostandfound;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,12 +9,10 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
@@ -108,61 +107,20 @@ public class ReportActivity extends FragmentActivity {
 
 		CameraUpdate cameraUpdate = CameraUpdateFactory
 				.newCameraPosition(camPos);
-
+ 
 		map.moveCamera(cameraUpdate);
 
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) { 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main_activity_actions, menu);
-		return super.onCreateOptionsMenu(menu);
-
+		// Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.edit_report_activity_actions, menu); 
+	    return super.onCreateOptionsMenu(menu);
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-
-		switch (item.getItemId()) {
-		case R.id.action_add_report:
-			openReport();
-			return true;
-		case R.id.action_camera:
-			openCamera();
-			return true;
-		case R.id.action_alerts:
-			openAlerts();
-			return true;
-		case R.id.action_settings:
-			openSettings();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-
-	}
-
-	private void openSettings() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void openAlerts() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void openCamera() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void openReport() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	public class TypesAdapter extends ArrayAdapter<String> {
 
@@ -206,6 +164,11 @@ public class ReportActivity extends FragmentActivity {
 
 			return row;
 		}
+	}
+	
+	public void goToReportActivity(View v){
+		Intent reportIntent = new Intent(this, Detail_1.class);
+		startActivity(reportIntent);
 	}
 
 }
