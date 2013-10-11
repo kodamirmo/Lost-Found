@@ -16,7 +16,7 @@
         yourapp:showAsAction="always"
         android:title="@string/reportPetReportTakePic_lbl"/>
 
-    <!-- Alerts, should appear as action button -->
+    <!-- Alerts, should appear as action button --> 
     <item
         android:id="@+id/action_alerts"
         android:icon="@drawable/bell"
