@@ -248,7 +248,6 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/btn_corner_round_light_gray"
                     android:contentDescription="@string/reportPetReportTakePic_lbl"
-                    android:onClick="goToReportActivity"
                     android:src="@drawable/cam_gray" />
 
                 <ImageButton

@@ -149,12 +149,12 @@ public class ReportActivity extends FragmentActivity {
 			TextView label = (TextView) row.findViewById(R.id.textSpinnerAdptr);
 			label.setText(reportTypesArray[position]);
 
-			Drawable arr_images[] = {
+			Drawable arr_images[] = { 
 					getContext().getResources().getDrawable(
 							R.drawable.missing_icon_blue),
 					getContext().getResources().getDrawable(
 							R.drawable.found_icon_blue),
-					getContext().getResources().getDrawable(
+					getContext().getResources().getDrawable( 
 							R.drawable.abuse_icon_blue),
 					getContext().getResources().getDrawable(
 							R.drawable.home_icon_blue) };
@@ -164,11 +164,6 @@ public class ReportActivity extends FragmentActivity {
 
 			return row;
 		}
-	}
-	
-	public void goToReportActivity(View v){
-		Intent reportIntent = new Intent(this, Detail_1.class);
-		startActivity(reportIntent);
 	}
 
 }
