@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
@@ -42,7 +43,10 @@ public class ReportActivity extends FragmentActivity {
 	private EditText reportMsg;
 	// data for report types
 	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
-			"Busca Hogar" };
+			"Busca Hogar", "Accidente" };
+	int arr_images[] = { R.drawable.missing_icon_blue,
+			R.drawable.found_icon_blue, R.drawable.abuse_icon_blue,
+			R.drawable.home_icon_blue, R.drawable.abuse_icon_blue };
 	// data for age range
 	String[] ageRangeArray = { "0 - 3 meses", "3 - 6 meses", "6 - 9 meses",
 			"9 meses - 1 año", "1 - 4 años", "4 - 8 años", "8 - 12 años",
@@ -107,20 +111,18 @@ public class ReportActivity extends FragmentActivity {
 
 		CameraUpdate cameraUpdate = CameraUpdateFactory
 				.newCameraPosition(camPos);
- 
+
 		map.moveCamera(cameraUpdate);
 
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) { 
+	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.edit_report_activity_actions, menu); 
-	    return super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.edit_report_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
-
-	
 
 	public class TypesAdapter extends ArrayAdapter<String> {
 
@@ -135,7 +137,7 @@ public class ReportActivity extends FragmentActivity {
 			return getCustomView(position, convertView, parent);
 		}
 
-		@Override
+		@Override 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return getCustomView(position, convertView, parent);
 		}
@@ -149,18 +151,8 @@ public class ReportActivity extends FragmentActivity {
 			TextView label = (TextView) row.findViewById(R.id.textSpinnerAdptr);
 			label.setText(reportTypesArray[position]);
 
-			Drawable arr_images[] = { 
-					getContext().getResources().getDrawable(
-							R.drawable.missing_icon_blue),
-					getContext().getResources().getDrawable(
-							R.drawable.found_icon_blue),
-					getContext().getResources().getDrawable( 
-							R.drawable.abuse_icon_blue),
-					getContext().getResources().getDrawable(
-							R.drawable.home_icon_blue) };
-
-			label.setCompoundDrawablesWithIntrinsicBounds(arr_images[position],
-					null, null, null);
+			ImageView icon = (ImageView) row.findViewById(R.id.imgSpinnerAdptr);
+			icon.setImageResource(arr_images[position]);
 
 			return row;
 		}

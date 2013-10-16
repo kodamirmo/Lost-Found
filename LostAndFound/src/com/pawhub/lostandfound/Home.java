@@ -274,19 +274,4 @@ public class Home extends ActionBarActivity {
 		}
 	}
 
-	public void goToDetailPics(View v) {
-		Intent detailPicsIntent = new Intent(this, Detail_1.class);
-		startActivity(detailPicsIntent);
-	}
-
-	public void goToMsgs(View v) {
-		Intent detailMsgsIntent = new Intent(this, Detail_2.class);
-		startActivity(detailMsgsIntent);
-	}
-
-	public void goToDetailsMap(View v) {
-		Intent detailMapIntent = new Intent(this, Detail_3.class);
-		startActivity(detailMapIntent);
-	}
-
 }
