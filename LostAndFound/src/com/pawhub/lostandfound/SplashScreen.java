@@ -1,5 +1,8 @@
 package com.pawhub.lostandfound;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import com.pawhub.lostandfound.constants.Constants;
 import com.pawhub.lostandfound.preferences.ConfigData;
 
@@ -7,10 +10,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
@@ -22,6 +31,8 @@ public class SplashScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		
+		printHash();
 		
 		TextView appTitle = (TextView) findViewById(R.id.splash_app_tittle);
 		
@@ -39,6 +50,11 @@ public class SplashScreen extends Activity {
 		
 		AsyncTaskSplash splash=new AsyncTaskSplash();
 		splash.execute();
+	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
 	}
 
 	private class AsyncTaskSplash extends AsyncTask<Void, Void, Void>{
@@ -71,6 +87,24 @@ public class SplashScreen extends Activity {
 			activity.finish();
 		}	
 		
+	}
+	
+	private void printHash() {
+		try {
+			PackageInfo info = getPackageManager().getPackageInfo(
+					getPackageName(),
+					PackageManager.GET_SIGNATURES);
+			for (Signature signature : info.signatures) {
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				Log.e("KeyHash:",
+						Base64.encodeToString(md.digest(), Base64.DEFAULT));
+			}
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -70,7 +70,6 @@
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/app_name"
-            android:onClick="onClickLogin"
             android:src="@drawable/login_btn" />
 
         <ImageView
