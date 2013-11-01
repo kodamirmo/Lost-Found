@@ -230,7 +230,7 @@ public class ReportView {
 		sharingIntent.setType("text/plain");
 
 		String shareBody = reportObject.getComments()
-				+ " - Pawhub Lost&Found Get the app at http://pawhub.me";
+				+ " - Pawhub Lost&Found Obtén la app en http://pawhub.me";
 
 		PackageManager pm = view.getContext().getPackageManager();
 		List<ResolveInfo> activityList = pm.queryIntentActivities(
@@ -243,11 +243,11 @@ public class ReportView {
 					android.content.Intent.ACTION_SEND);
 			targetedShareIntent.setType("text/plain");
 			targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-					"share");
+					"Compartir");
 			if (TextUtils.equals(packageName, "com.facebook.katana")
 					|| TextUtils.equals(packageName, "com.twitter.android")) {
 				targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-						"prueba");
+						shareBody);
 			} else {
 				targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
 						shareBody);
@@ -268,19 +268,26 @@ public class ReportView {
 
 	private void shareIntentImage(View view) {
 
+		String pic = System.currentTimeMillis()+ ".png";
 		String shareBody = reportObject.getComments()
-				+ " - Pawhub Lost&Found Get the app at http://pawhub.me";
+				+ " - Pawhub Lost&Found Obtén la app en http://pawhub.me";
 
 		Bitmap icon = BitmapFactory.decodeResource(inflater.getContext()
 				.getResources(), R.drawable.finding_home);
 		FileOutputStream fo;
-		
+		 
 		Intent share = new Intent(Intent.ACTION_SEND);
 		share.setType("image/png");
 		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 		icon.compress(Bitmap.CompressFormat.PNG, 100, bytes);
+		File temp = new File (Environment.getExternalStorageDirectory (),
+                File.separator + "Pawhub");
+		if (!temp.exists ())
+            temp.mkdirs ();
+		
 		File f = new File(Environment.getExternalStorageDirectory()
-				+ File.separator + "temporary_file.png");
+				+ File.separator + "Pawhub" + File.separator + pic);
+		 
 		try {
 			f.createNewFile();
 			fo = new FileOutputStream(f);
@@ -291,7 +298,7 @@ public class ReportView {
 		share.putExtra(Intent.EXTRA_TEXT,
 				shareBody);
 		share.putExtra(Intent.EXTRA_STREAM,
-				Uri.parse("file:///sdcard/temporary_file.png"));
+				Uri.parse("file:///sdcard/Pawhub/"+pic));
 		inflater.getContext().startActivity(
 				Intent.createChooser(share, "Compartir Imagen"));
 	}

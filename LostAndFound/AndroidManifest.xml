@@ -55,7 +55,7 @@
             android:name="com.pawhub.lostandfound.Detail_1"
             android:icon="@drawable/app_name2"
             android:label="@string/title_activity_datail_1" >
-        </activity>
+        </activity> 
         <activity
             android:name="com.pawhub.lostandfound.ReportActivity"
             android:icon="@drawable/app_name2"

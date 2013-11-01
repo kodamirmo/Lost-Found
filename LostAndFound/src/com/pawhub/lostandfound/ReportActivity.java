@@ -2,17 +2,20 @@ package com.pawhub.lostandfound;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,6 +37,9 @@ public class ReportActivity extends FragmentActivity {
 
 	private FancyCoverFlow fancyCoverFlow;
 
+	private static int TAKE_PICTURE = 1;
+	private static int SELECT_PICTURE = 0;
+
 	private Spinner reportType;
 	private Spinner petAge;
 	private Spinner petType;
@@ -41,6 +47,8 @@ public class ReportActivity extends FragmentActivity {
 	private EditText reportTel;
 	private EditText petFeatures;
 	private EditText reportMsg;
+	private ImageButton takePic;
+	private ImageButton choosePic;
 	// data for report types
 	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
 			"Busca Hogar", "Accidente" };
@@ -86,6 +94,34 @@ public class ReportActivity extends FragmentActivity {
 				android.R.layout.simple_spinner_item, petTypeArray);
 		petType.setAdapter(petTypesAdapter);
 
+		// take pic intent
+
+		takePic = (ImageButton) findViewById(R.id.btnTakePhotoReport);
+		takePic.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent cameraIntent = new Intent(
+						MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(cameraIntent, TAKE_PICTURE);
+			}
+		});
+
+		// choose pic intent
+
+		choosePic = (ImageButton) findViewById(R.id.btnSelectPhotoReport);
+		choosePic.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				Intent galeryIntent = new Intent(
+						Intent.ACTION_PICK,
+						android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+				startActivityForResult(galeryIntent, SELECT_PICTURE);
+			}
+		});
+
 		// Fancy Cover for Images
 
 		this.fancyCoverFlow = (FancyCoverFlow) this
@@ -99,8 +135,6 @@ public class ReportActivity extends FragmentActivity {
 		this.fancyCoverFlow.setScaleDownGravity(0.2f);
 		this.fancyCoverFlow
 				.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
-
-		setTitleColor(Color.RED);
 
 		map = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.reportMap)).getMap();
@@ -117,11 +151,70 @@ public class ReportActivity extends FragmentActivity {
 	}
 
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		/**
+		 * Se revisa si la imagen viene de la c‡mara (TAKE_PICTURE) o de la
+		 * galer’a (SELECT_PICTURE)
+		 */
+		if (requestCode == TAKE_PICTURE) {
+			if (data != null) {
+				if (data.hasExtra("data")) {
+					Log.i("prueba", "take");
+				}
+			}
+
+		} else if (requestCode == SELECT_PICTURE) {
+			Log.i("prueba", "select");
+		}
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.edit_report_activity_actions, menu);
 		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_share:
+			shareIntent();
+			return true;
+		case R.id.action_publish:
+			openPublish();
+			return true;
+		case R.id.action_settings:
+			openSettings();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	private void openSettings() {
+		
+		
+	}
+
+	private void openPublish() {
+		
+		Intent detailsIntent =new Intent(this,Detail_2.class);
+        startActivity(detailsIntent);
+		
+	}
+
+	private void shareIntent() {
+		
+		Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        sharingIntent.setType("text/html");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Texto a compartir");        
+        startActivity(Intent.createChooser(sharingIntent,"Compartir con"));
+		
 	}
 
 	public class TypesAdapter extends ArrayAdapter<String> {
@@ -137,7 +230,7 @@ public class ReportActivity extends FragmentActivity {
 			return getCustomView(position, convertView, parent);
 		}
 
-		@Override 
+		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return getCustomView(position, convertView, parent);
 		}

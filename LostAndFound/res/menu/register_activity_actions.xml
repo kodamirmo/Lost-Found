@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Publish, should appear as action button -->
+    <item
+        android:id="@+id/action_publish"
+        android:icon="@drawable/checked"
+        android:title="@string/publish" 
+        android:showAsAction="always"/>
+
+</menu>

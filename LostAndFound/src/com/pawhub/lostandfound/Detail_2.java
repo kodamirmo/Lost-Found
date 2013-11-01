@@ -3,6 +3,7 @@ package com.pawhub.lostandfound;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuInflater;
 
 public class Detail_2 extends Activity {
 
@@ -14,8 +15,10 @@ public class Detail_2 extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.detail_2, menu);
+		// Inflate the menu items for use in the action bar
+				MenuInflater inflater = getMenuInflater();
+				inflater.inflate(R.menu.report_details_activity_actions, menu);
+				
 		return true;
 	}
 
