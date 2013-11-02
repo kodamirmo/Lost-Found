@@ -99,7 +99,7 @@
                     android:id="@+id/linearTypePostDetailP"
                     android:layout_width="match_parent"
                     android:layout_height="31dp"
-                    android:background="#FFD400"
+                    android:background="@drawable/detail_chart_blue"
                     android:orientation="horizontal" >
 
                     <ImageView
