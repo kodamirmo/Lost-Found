@@ -33,6 +33,7 @@ public class Home extends ActionBarActivity {
 	private TableRow btn_5;
 	private TableRow btn_6;
 	private TableRow btn_7;
+	private TableRow btn_8;
 
 	private final int SCREEN_HOME = 0;
 	private final int SCREEN_ALERTS = 1;
@@ -41,6 +42,7 @@ public class Home extends ActionBarActivity {
 	private final int SCREEN_FOUND = 4;
 	private final int SCREEN_ABUSE = 5;
 	private final int SCREEN_HOMELESS = 6;
+	private final int SCREEN_ACCIDENT = 8;
 	private final int SCREEN_MAP = 7;
 
 	private int CURRENT_SCREEN = 0;
@@ -100,6 +102,7 @@ public class Home extends ActionBarActivity {
 		btn_5 = (TableRow) findViewById(R.id.entry_5);
 		btn_6 = (TableRow) findViewById(R.id.entry_6);
 		btn_7 = (TableRow) findViewById(R.id.entry_7);
+		btn_8 = (TableRow) findViewById(R.id.entry_8);
 
 		MenuListener listener = new MenuListener();
 		btn_0.setOnClickListener(listener);
@@ -110,6 +113,7 @@ public class Home extends ActionBarActivity {
 		btn_5.setOnClickListener(listener);
 		btn_6.setOnClickListener(listener);
 		btn_7.setOnClickListener(listener);
+		btn_8.setOnClickListener(listener);
 	}
 
 	@Override
@@ -230,6 +234,11 @@ public class Home extends ActionBarActivity {
 			fragment = new FragmentCasesMap();
 			arguments.putInt("TYPE", SCREEN_ALERTS);
 			CURRENT_SCREEN = SCREEN_MAP;
+			break;
+		case R.id.entry_8:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_ACCIDENT);
+			CURRENT_SCREEN = SCREEN_ACCIDENT;
 			break;
 		default:
 			fragment = new CasesListFragment();

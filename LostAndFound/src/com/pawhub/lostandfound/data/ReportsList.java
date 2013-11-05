@@ -61,6 +61,10 @@ public class ReportsList {
 		return getReports(Report.CAUSE_ABUSE);
 	}
 	
+	public ArrayList<View> getAccidentReports(){
+		return getReports(Report.CAUSE_ACCIDENT); 
+	}
+	
 	private ArrayList<View> getReports(int type){
 		ArrayList<View> auxList=new ArrayList<View>();
 		

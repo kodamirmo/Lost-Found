@@ -225,12 +225,14 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="2.95"
+                android:gravity="center"
                 android:orientation="horizontal" >
 
                 <at.technikum.mti.fancycoverflow.FancyCoverFlow
                     android:id="@+id/fancyCoverFlow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
             </LinearLayout>
 
             <LinearLayout

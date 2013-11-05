@@ -98,7 +98,7 @@
                 <LinearLayout
                     android:id="@+id/linearTypePostDetailP"
                     android:layout_width="match_parent"
-                    android:layout_height="31dp"
+                    android:layout_height="35dp"
                     android:background="@drawable/detail_chart_blue"
                     android:orientation="horizontal" >
 
@@ -126,12 +126,12 @@
 
                 <ImageView
                     android:id="@+id/imageArrowDownDetailP"
-                    android:layout_width="15dp"
-                    android:layout_height="8dp"
+                    android:layout_width="25dp"
+                    android:layout_height="18dp"
                     android:layout_alignRight="@+id/linearTypePostDetailP"
                     android:layout_alignTop="@+id/linearTypePostDetailP"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="6dp"
                     android:contentDescription="@string/report"
                     android:src="@drawable/arrow_down" />
             </RelativeLayout>

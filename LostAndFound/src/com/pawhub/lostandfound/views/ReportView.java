@@ -196,7 +196,7 @@ public class ReportView {
 		case Report.CAUSE_FOUND:
 			return "Encontrado";
 		case Report.CAUSE_LOST:
-			return "Perdido";
+			return "Extraviado";
 		case Report.CAUSE_HOMELESS:
 			return "Busca hogar";
 		default:
