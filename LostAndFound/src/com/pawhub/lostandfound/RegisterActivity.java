@@ -148,6 +148,10 @@ public class RegisterActivity extends Activity {
 						Bitmap photo = (Bitmap) data.getExtras().get("data");
 
 						try {
+							File temp = new File (Environment.getExternalStorageDirectory (),
+					                File.separator + "Pawhub");
+							if (!temp.exists ())
+					            temp.mkdirs ();
 							OutputStream stream = new FileOutputStream(
 									Environment.getExternalStorageDirectory()
 											+ File.separator + "Pawhub"
@@ -224,7 +228,7 @@ public class RegisterActivity extends Activity {
 				ExifInterface.ORIENTATION_NORMAL);
 		Toast toast1 = Toast.makeText(getApplicationContext(),
 				"" + orientation, Toast.LENGTH_SHORT);
-		toast1.show();
+		//toast1.show();
 
 		setphoto = BitmapFactory.decodeFile(profile_Path, options);
 

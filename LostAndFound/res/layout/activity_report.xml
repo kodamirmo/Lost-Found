@@ -222,7 +222,7 @@
             <LinearLayout
                 android:id="@+id/hLinearScrollViewReport"
                 android:layout_width="wrap_content"
-                android:layout_height="85dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="2.95"
                 android:gravity="center"
@@ -239,7 +239,7 @@
                 android:id="@+id/linearreport3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="35dp"
                 android:layout_weight="0.05"
                 android:orientation="vertical" >
 
@@ -261,6 +261,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/btn_corner_round_light_gray"
                     android:contentDescription="@string/reportPetReportSelectPic_lbl"
                     android:src="@drawable/gallery" />

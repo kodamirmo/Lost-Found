@@ -171,6 +171,10 @@ public class ReportActivity extends FragmentActivity {
 						Bitmap photo = (Bitmap) data.getExtras().get("data");
 						
 						try {
+							File temp = new File (Environment.getExternalStorageDirectory (),
+					                File.separator + "Pawhub");
+							if (!temp.exists ())
+					            temp.mkdirs ();
 							OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory()+ File.separator+"Pawhub"+ File.separator+pic);
 							photo.compress(CompressFormat.JPEG, 100, stream);
 							stream.flush();
@@ -200,6 +204,7 @@ public class ReportActivity extends FragmentActivity {
 						this.fancyCoverFlow.setScaleDownGravity(0.2f);
 						this.fancyCoverFlow
 								.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
+						
 
 					} else {
 						toast2.show();
@@ -213,6 +218,7 @@ public class ReportActivity extends FragmentActivity {
 					this.imageFromGallery(resultCode, data, 200, 200);
 					fancyPics.add(setphoto);
 					// Fancy Cover for Images
+					Log.i("array", ""+fancyPics.size());
 
 					this.fancyCoverFlow = (FancyCoverFlow) this
 							.findViewById(R.id.fancyCoverFlow);
@@ -271,7 +277,7 @@ public class ReportActivity extends FragmentActivity {
 					ExifInterface.ORIENTATION_NORMAL);
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					"" + orientation, Toast.LENGTH_SHORT);
-			toast1.show();
+			//toast1.show();
 
 			setphoto = BitmapFactory.decodeFile(profile_Path, options);
 

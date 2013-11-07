@@ -131,11 +131,11 @@ public class Home extends ActionBarActivity {
 			return true;
 		} else {
 			switch (item.getItemId()) {
-			case R.id.action_add_report:
-				openReport();
-				return true;
 			case R.id.action_camera:
 				openCamera();
+				return true;
+			case R.id.action_add_report:
+				openReport();
 				return true;
 			case R.id.action_alerts:
 				openAlerts();

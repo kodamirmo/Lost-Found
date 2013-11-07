@@ -74,8 +74,7 @@
             android:name="com.pawhub.lostandfound.RegisterActivity"
             android:icon="@drawable/app_name2"
             android:label="@string/title_activity_register"
-            android:parentActivityName="com.pawhub.lostandfound.LoginScreen"
-            android:screenOrientation="portrait" >
+            android:parentActivityName="com.pawhub.lostandfound.LoginScreen" >
         </activity>
 
         <meta-data

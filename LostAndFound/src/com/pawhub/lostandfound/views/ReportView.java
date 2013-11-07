@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -17,9 +19,12 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,10 +38,15 @@ public class ReportView {
 	private LayoutInflater inflater;
 
 	private View reportChart;
+	
+	int rotation;
 
 	public ReportView(Report reportObject, LayoutInflater inflater) {
 		this.reportObject = reportObject;
 		this.inflater = inflater;
+		//determines the orientation of the screen
+		rotation = inflater.getContext().getResources().getConfiguration().orientation;
+
 	}
 
 	private void generateChart_1() {
@@ -154,20 +164,40 @@ public class ReportView {
 	}
 
 	private int getTransparentColorReport(int type) {
-		switch (type) {
-		case Report.CAUSE_ABUSE:
-			return R.drawable.detail_chart_transparent_bottom_yellow;
-		case Report.CAUSE_ACCIDENT:
-			return R.drawable.detail_chart_transparent_bottom_pink;
-		case Report.CAUSE_FOUND:
-			return R.drawable.detail_chart_transparent_bottom_green;
-		case Report.CAUSE_LOST:
-			return R.drawable.detail_chart_transparent_bottom_magenta;
-		case Report.CAUSE_HOMELESS:
-			return R.drawable.detail_chart_transparent_bottom_blue;
-		default:
-			return 0;
+		
+		//if the device is landscape the drawable changes
+		if(rotation != Configuration.ORIENTATION_LANDSCAPE){
+			switch (type) {
+			case Report.CAUSE_ABUSE:
+				return R.drawable.detail_chart_transparent_bottom_yellow;
+			case Report.CAUSE_ACCIDENT:
+				return R.drawable.detail_chart_transparent_bottom_pink;
+			case Report.CAUSE_FOUND:
+				return R.drawable.detail_chart_transparent_bottom_green;
+			case Report.CAUSE_LOST:
+				return R.drawable.detail_chart_transparent_bottom_magenta;
+			case Report.CAUSE_HOMELESS:
+				return R.drawable.detail_chart_transparent_bottom_blue;
+			default:
+				return 0;
+			}
+		}else{
+			switch (type) {
+			case Report.CAUSE_ABUSE:
+				return R.drawable.detail_chart_yellow;
+			case Report.CAUSE_ACCIDENT:
+				return R.drawable.detail_chart_pink;
+			case Report.CAUSE_FOUND:
+				return R.drawable.detail_chart_green;
+			case Report.CAUSE_LOST:
+				return R.drawable.detail_chart_magenta;
+			case Report.CAUSE_HOMELESS:
+				return R.drawable.detail_chart_blue;
+			default:
+				return 0;
+			}
 		}
+		
 	}
 
 	private int getColorReport(int type) {
