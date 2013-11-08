@@ -22,7 +22,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,6 +53,7 @@ public class RegisterActivity extends Activity {
 	private static int TAKE_PICTURE = 1;
 	private static int SELECT_PICTURE = 0;
 	private Bitmap setphoto;
+	private Bitmap bmpBowRotated;
 
 	// data for spinner for sex
 	String[] userSex = { "Mujer", "Hombre" };
@@ -59,6 +62,8 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		
+		Log.i("dimensiones", ""+ R.string.screen_type);
 
 		// set adapter for spinner sex
 		spinnerUserSex = (Spinner) findViewById(R.id.spinnerUserSex);
@@ -148,10 +153,11 @@ public class RegisterActivity extends Activity {
 						Bitmap photo = (Bitmap) data.getExtras().get("data");
 
 						try {
-							File temp = new File (Environment.getExternalStorageDirectory (),
-					                File.separator + "Pawhub");
-							if (!temp.exists ())
-					            temp.mkdirs ();
+							File temp = new File(
+									Environment.getExternalStorageDirectory(),
+									File.separator + "Pawhub");
+							if (!temp.exists())
+								temp.mkdirs();
 							OutputStream stream = new FileOutputStream(
 									Environment.getExternalStorageDirectory()
 											+ File.separator + "Pawhub"
@@ -226,12 +232,30 @@ public class RegisterActivity extends Activity {
 		ExifInterface ei = new ExifInterface(profile_Path);
 		int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
 				ExifInterface.ORIENTATION_NORMAL);
-		Toast toast1 = Toast.makeText(getApplicationContext(),
-				"" + orientation, Toast.LENGTH_SHORT);
-		//toast1.show();
 
 		setphoto = BitmapFactory.decodeFile(profile_Path, options);
 
+		switch (orientation) {
+		case ExifInterface.ORIENTATION_ROTATE_90:
+			rotateImage(setphoto, 90);
+			break;
+		case ExifInterface.ORIENTATION_ROTATE_180:
+			rotateImage(setphoto, 180);
+			break;
+		case ExifInterface.ORIENTATION_ROTATE_270:
+			rotateImage(setphoto, 270);
+			break;
+		}
+
+	}
+
+	private void rotateImage(Bitmap setphoto2, int i) {
+		// TODO Auto-generated method stub
+		Matrix matrix = new Matrix();
+		matrix.setRotate(i);
+		bmpBowRotated = Bitmap.createBitmap(setphoto2, 0, 0,
+				setphoto2.getWidth(), setphoto2.getHeight(), matrix, false);
+		setphoto = bmpBowRotated;
 	}
 
 	public static int calculateInSampleSize(BitmapFactory.Options options,

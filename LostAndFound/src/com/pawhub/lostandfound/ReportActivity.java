@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -57,6 +58,7 @@ public class ReportActivity extends FragmentActivity {
 	private static int TAKE_PICTURE = 1;
 	private static int SELECT_PICTURE = 0;
 	private Bitmap setphoto;
+	private Bitmap bmpBowRotated;
 
 	private Spinner reportType;
 	private Spinner petAge;
@@ -275,12 +277,35 @@ public class ReportActivity extends FragmentActivity {
 			ExifInterface ei = new ExifInterface(profile_Path);
 			int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
 					ExifInterface.ORIENTATION_NORMAL);
+			
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					"" + orientation, Toast.LENGTH_SHORT);
-			//toast1.show();
+			toast1.show();
+
 
 			setphoto = BitmapFactory.decodeFile(profile_Path, options);
 
+			switch (orientation) {
+			case ExifInterface.ORIENTATION_ROTATE_90:
+				rotateImage(setphoto, 90);
+				break;
+			case ExifInterface.ORIENTATION_ROTATE_180:
+				rotateImage(setphoto, 180);
+				break;
+			case ExifInterface.ORIENTATION_ROTATE_270:
+				rotateImage(setphoto, 270);
+				break;
+			}
+
+		}
+
+		private void rotateImage(Bitmap setphoto2, int i) {
+			// TODO Auto-generated method stub
+			Matrix matrix = new Matrix();
+			matrix.setRotate(i);
+			bmpBowRotated = Bitmap.createBitmap(setphoto2, 0, 0,
+					setphoto2.getWidth(), setphoto2.getHeight(), matrix, false);
+			setphoto = bmpBowRotated;
 		}
 
 		public static int calculateInSampleSize(BitmapFactory.Options options,

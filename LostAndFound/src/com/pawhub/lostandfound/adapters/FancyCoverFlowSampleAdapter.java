@@ -69,7 +69,7 @@ public class FancyCoverFlowSampleAdapter extends FancyCoverFlowAdapter {
 			imageView = new ImageView(viewGroup.getContext());
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			imageView
-					.setLayoutParams(new FancyCoverFlow.LayoutParams(200, 200));
+					.setLayoutParams(new FancyCoverFlow.LayoutParams(300, 200));
 
 		}
 
