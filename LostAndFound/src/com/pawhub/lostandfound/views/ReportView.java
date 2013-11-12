@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Parcelable;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -38,6 +39,7 @@ public class ReportView {
 	private LayoutInflater inflater;
 
 	private View reportChart;
+	private Vibrator vibe;
 	
 	int rotation;
 
@@ -46,7 +48,7 @@ public class ReportView {
 		this.inflater = inflater;
 		//determines the orientation of the screen
 		rotation = inflater.getContext().getResources().getConfiguration().orientation;
-
+		vibe = (Vibrator) inflater.getContext().getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	private void generateChart_1() {
@@ -91,6 +93,7 @@ public class ReportView {
 
 			@Override
 			public void onClick(View v) {
+				vibe.vibrate(80);//80 represents the milliseconds
 				reportObject.changeAlert();
 				if (reportObject.isAlert())
 					imageViewAlert.setImageResource(R.drawable.alert_active);
@@ -106,9 +109,11 @@ public class ReportView {
 				.findViewById(R.id.layoutShare);
 
 		layoutShare.setOnClickListener(new OnClickListener() {
+			
 
 			@Override
 			public void onClick(View v) {
+				vibe.vibrate(80);//80 represents the milliseconds
 				if (reportObject.getHasPicture()) {
 					shareIntentImage(v);
 				} else {

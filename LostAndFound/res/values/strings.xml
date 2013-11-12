@@ -14,7 +14,7 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="report_home">Busca Hogar</string>
-    <string name="report_resolve">- ¡Resuelto!</string>
+    <string name="report_resolve">¡Resuelto!</string>
     <string name="userName">Asukita Pam</string>
     <string name="userMsg">Acabo de ver un perrito abandonado cerca de la estación de Xochimilco&#8230;</string>
     <string name="postTime">hace 2 horas</string>
@@ -33,7 +33,7 @@
     <string name="reportPetAge_lbl">Edad</string>
     <string name="reportPetType_lbl">Tipo</string>
     <string name="reportPetReportTel_lbl">Teléfono</string>
-    <string name="reportPetFeatures_lbl">Rasgos</string>
+    <string name="reportPetFeatures_lbl">Características</string>
     <string name="reportPetReportMsg_lbl">Escribe tu mensaje</string>
     <string name="reportPetReportTakePic_lbl">Toma Foto</string>
     <string name="reportPetReportSelectPic_lbl">Escoge Foto</string>
@@ -73,5 +73,8 @@
     <string name="lblRegisterUserRePass">Confirma tu Password</string>
     <string name="lblRegisterUserPic">Foto</string>
     <string name="registerTerms">Al continuar acepto los <a href="http://pawhub.me/aviso-privacidad.html"> Términos de Uso</a></string>
+    <string name="title_activity_list_reports"></string>
+    <string name="reportListDateLbl">Fecha </string>
+    <string name="cancel">Cancelar</string>
 
 </resources>

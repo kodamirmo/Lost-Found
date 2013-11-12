@@ -359,7 +359,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittexts_borders_gray"
-                        android:ems="15"
+                        android:ems="13"
                         android:fontFamily="open-sans"
                         android:gravity="top"
                         android:inputType="textMultiLine"

@@ -63,7 +63,7 @@ public class RegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		
-		Log.i("dimensiones", ""+ R.string.screen_type);
+		//Log.i("dimensiones", ""+ R.string.screen_type);
 
 		// set adapter for spinner sex
 		spinnerUserSex = (Spinner) findViewById(R.id.spinnerUserSex);

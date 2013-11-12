@@ -280,7 +280,7 @@ public class ReportActivity extends FragmentActivity {
 			
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					"" + orientation, Toast.LENGTH_SHORT);
-			toast1.show();
+			//toast1.show();
 
 
 			setphoto = BitmapFactory.decodeFile(profile_Path, options);
@@ -365,7 +365,7 @@ public class ReportActivity extends FragmentActivity {
 
 	private void openPublish() {
 		
-		Intent detailsIntent =new Intent(this,Detail_2.class);
+		Intent detailsIntent =new Intent(this,Detail_1.class);
         startActivity(detailsIntent);
 		
 	}
