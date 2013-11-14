@@ -24,7 +24,7 @@ public class ListReportsActivity extends Activity {
 			R.drawable.found_icon, R.drawable.abuse_icon,
 			R.drawable.home_ico, R.drawable.found_icon };
 
-	@Override
+	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_reports);
@@ -37,7 +37,6 @@ public class ListReportsActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.register_activity_actions, menu);

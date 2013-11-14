@@ -66,10 +66,13 @@ public class FancyCoverFlowSampleAdapter extends FancyCoverFlowAdapter {
 		if (reuseableView != null) {
 			imageView = (ImageView) reuseableView;
 		} else {
+			Bitmap image = this.getItem(i);			
 			imageView = new ImageView(viewGroup.getContext());
-			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-			imageView
-					.setLayoutParams(new FancyCoverFlow.LayoutParams(300, 200));
+			imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+			if(image.getWidth() > image.getHeight())
+				imageView.setLayoutParams(new FancyCoverFlow.LayoutParams(320, 220));
+			else
+				imageView.setLayoutParams(new FancyCoverFlow.LayoutParams(220, 320));
 
 		}
 

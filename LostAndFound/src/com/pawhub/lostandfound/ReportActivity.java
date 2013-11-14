@@ -191,7 +191,7 @@ public class ReportActivity extends FragmentActivity {
 							toast2.show();
 						}
 		                
-						photo = Bitmap.createBitmap(photo);
+						photo = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(), photo.getHeight());
 						fancyPics.add(photo);
 						// Fancy Cover for Images
 
@@ -277,11 +277,6 @@ public class ReportActivity extends FragmentActivity {
 			ExifInterface ei = new ExifInterface(profile_Path);
 			int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
 					ExifInterface.ORIENTATION_NORMAL);
-			
-			Toast toast1 = Toast.makeText(getApplicationContext(),
-					"" + orientation, Toast.LENGTH_SHORT);
-			//toast1.show();
-
 
 			setphoto = BitmapFactory.decodeFile(profile_Path, options);
 

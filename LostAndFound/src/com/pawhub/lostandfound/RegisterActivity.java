@@ -177,6 +177,7 @@ public class RegisterActivity extends Activity {
 
 						photo = Bitmap.createBitmap(photo);
 						imgViewUserPic.setImageBitmap(photo);
+						imgViewUserPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 					} else {
 						toast2.show();

@@ -76,5 +76,6 @@
     <string name="title_activity_list_reports"></string>
     <string name="reportListDateLbl">Fecha </string>
     <string name="cancel">Cancelar</string>
+    <string name="similary">Estos reportes son similares al tuyo:</string>
 
 </resources>
