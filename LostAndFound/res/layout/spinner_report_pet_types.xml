@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/reportPetType_lbl"
-            android:src="@drawable/doc_icon" />
+            android:src="@drawable/dog_icon" />
 
         <TextView
             android:id="@+id/textPetTypeSpinnerAdptr"

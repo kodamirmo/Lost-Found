@@ -218,6 +218,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/lblRegisterUserPic"
                 android:scaleType="fitCenter"
+                android:baselineAlignBottom="true"
                 android:src="@drawable/unknown_user" />
 
             <LinearLayout

@@ -23,6 +23,10 @@ public class ListReportsActivity extends Activity {
 	int arr_images[] = { R.drawable.missing_ico,
 			R.drawable.found_icon, R.drawable.abuse_icon,
 			R.drawable.home_ico, R.drawable.found_icon };
+	
+	int arr_imagesType[] = { R.drawable.dog_icon,
+			R.drawable.cat_icon, R.drawable.dog_icon,
+			R.drawable.cat_icon, R.drawable.dog_icon };
 
 	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,10 @@ public class ListReportsActivity extends Activity {
 
 			ImageView icon = (ImageView) row.findViewById(R.id.listReportImgsType);
 			icon.setImageResource(arr_images[position]); 
+			
+			ImageView iconType = (ImageView) row.findViewById(R.id.listReportPetType);
+			iconType.setImageResource(arr_imagesType[position]); 
+			
 
 			return row;
 		}

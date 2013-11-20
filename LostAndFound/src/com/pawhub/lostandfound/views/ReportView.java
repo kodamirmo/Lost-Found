@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,16 +17,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.os.Vibrator;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,16 +38,19 @@ public class ReportView {
 	private LayoutInflater inflater;
 
 	private View reportChart;
+	private View parentV;
 	private Vibrator vibe;
-	
+	private ProgressDialog pd;
+
 	int rotation;
 
 	public ReportView(Report reportObject, LayoutInflater inflater) {
 		this.reportObject = reportObject;
 		this.inflater = inflater;
-		//determines the orientation of the screen
+		// determines the orientation of the screen
 		rotation = inflater.getContext().getResources().getConfiguration().orientation;
-		vibe = (Vibrator) inflater.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+		vibe = (Vibrator) inflater.getContext().getSystemService(
+				Context.VIBRATOR_SERVICE);
 	}
 
 	private void generateChart_1() {
@@ -93,7 +95,7 @@ public class ReportView {
 
 			@Override
 			public void onClick(View v) {
-				vibe.vibrate(80);//80 represents the milliseconds
+				vibe.vibrate(80);// 80 represents the milliseconds
 				reportObject.changeAlert();
 				if (reportObject.isAlert())
 					imageViewAlert.setImageResource(R.drawable.alert_active);
@@ -109,16 +111,41 @@ public class ReportView {
 				.findViewById(R.id.layoutShare);
 
 		layoutShare.setOnClickListener(new OnClickListener() {
-			
 
 			@Override
 			public void onClick(View v) {
-				vibe.vibrate(80);//80 represents the milliseconds
-				if (reportObject.getHasPicture()) {
-					shareIntentImage(v);
-				} else {
-					shareIntentText(v);
-				}
+				parentV = v;
+				v.setEnabled(false);
+				vibe.vibrate(80);// 80 represents the milliseconds
+				AsyncTask<Void, View, Void> task = new AsyncTask<Void, View, Void>() {
+					@Override
+					protected void onPreExecute() {
+						pd = new ProgressDialog(inflater.getContext());
+						pd.setTitle("Procesando...");
+						pd.setMessage("Espera por favor");
+						pd.setCancelable(false);
+						pd.setIndeterminate(true);
+						pd.show();
+					}
+
+					@Override
+					protected Void doInBackground(Void... params) {
+						if (reportObject.getHasPicture()) {
+							shareIntentImage(parentV);
+						} else {
+							shareIntentText(parentV);
+						}
+						return null;
+					}
+
+					@Override
+					protected void onPostExecute(Void result) {
+						if (pd != null) {
+							pd.dismiss();
+						}
+					}
+				};
+				task.execute((Void[]) null);
 			}
 		});
 
@@ -169,9 +196,9 @@ public class ReportView {
 	}
 
 	private int getTransparentColorReport(int type) {
-		
-		//if the device is landscape the drawable changes
-		if(rotation != Configuration.ORIENTATION_LANDSCAPE){
+
+		// if the device is landscape the drawable changes
+		if (rotation != Configuration.ORIENTATION_LANDSCAPE) {
 			switch (type) {
 			case Report.CAUSE_ABUSE:
 				return R.drawable.detail_chart_transparent_bottom_yellow;
@@ -186,7 +213,7 @@ public class ReportView {
 			default:
 				return 0;
 			}
-		}else{
+		} else {
 			switch (type) {
 			case Report.CAUSE_ABUSE:
 				return R.drawable.detail_chart_yellow;
@@ -202,7 +229,7 @@ public class ReportView {
 				return 0;
 			}
 		}
-		
+
 	}
 
 	private int getColorReport(int type) {
@@ -244,7 +271,7 @@ public class ReportView {
 		case Report.CAUSE_ABUSE:
 			return R.drawable.abuse_icon;
 		case Report.CAUSE_ACCIDENT:
-			return R.drawable.abuse_icon;
+			return R.drawable.acci_icon;
 		case Report.CAUSE_FOUND:
 			return R.drawable.found_icon;
 		case Report.CAUSE_LOST:
@@ -303,26 +330,26 @@ public class ReportView {
 
 	private void shareIntentImage(View view) {
 
-		String pic = System.currentTimeMillis()+ ".png";
+		String pic = System.currentTimeMillis() + ".png";
 		String shareBody = reportObject.getComments()
 				+ " - Pawhub Lost&Found Obtén la app en http://pawhub.me";
 
 		Bitmap icon = BitmapFactory.decodeResource(inflater.getContext()
 				.getResources(), R.drawable.finding_home);
 		FileOutputStream fo;
-		 
+
 		Intent share = new Intent(Intent.ACTION_SEND);
 		share.setType("image/png");
 		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 		icon.compress(Bitmap.CompressFormat.PNG, 100, bytes);
-		File temp = new File (Environment.getExternalStorageDirectory (),
-                File.separator + "Pawhub");
-		if (!temp.exists ())
-            temp.mkdirs ();
-		
+		File temp = new File(Environment.getExternalStorageDirectory(),
+				File.separator + "Pawhub");
+		if (!temp.exists())
+			temp.mkdirs();
+
 		File f = new File(Environment.getExternalStorageDirectory()
 				+ File.separator + "Pawhub" + File.separator + pic);
-		 
+
 		try {
 			f.createNewFile();
 			fo = new FileOutputStream(f);
@@ -330,10 +357,9 @@ public class ReportView {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		share.putExtra(Intent.EXTRA_TEXT,
-				shareBody);
+		share.putExtra(Intent.EXTRA_TEXT, shareBody);
 		share.putExtra(Intent.EXTRA_STREAM,
-				Uri.parse("file:///sdcard/Pawhub/"+pic));
+				Uri.parse("file:///sdcard/Pawhub/" + pic));
 		inflater.getContext().startActivity(
 				Intent.createChooser(share, "Compartir Imagen"));
 	}

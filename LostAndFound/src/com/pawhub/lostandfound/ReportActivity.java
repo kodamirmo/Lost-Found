@@ -82,7 +82,7 @@ public class ReportActivity extends FragmentActivity {
 			"12 en adelante" };
 	// data for pet types
 	String[] petTypeArray = { "Perro", "Gato", "Otro" };	
-	int arr_petType_images[] = { R.drawable.doc_icon, R.drawable.cat_icon, R.drawable.doc_icon };
+	int arr_petType_images[] = { R.drawable.dog_icon, R.drawable.cat_icon, R.drawable.doc_icon };
 	
 	//array list for images
 	ArrayList<Bitmap> fancyPics = new ArrayList<Bitmap>();
@@ -178,6 +178,7 @@ public class ReportActivity extends FragmentActivity {
 							if (!temp.exists ())
 					            temp.mkdirs ();
 							OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory()+ File.separator+"Pawhub"+ File.separator+pic);
+							photo.prepareToDraw();
 							photo.compress(CompressFormat.JPEG, 100, stream);
 							stream.flush();
 							stream.close();
