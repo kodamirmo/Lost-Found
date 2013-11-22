@@ -13,7 +13,6 @@
         android:paddingBottom="30dp" >
 
         <LinearLayout
-            android:id="@+id/lineardetailM1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -21,13 +20,12 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/lineardetailM2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:id="@+id/imageUserdetailM"
+                    android:id="@+id/imageUserDetail2"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
                     android:layout_marginLeft="6dp"
@@ -36,19 +34,19 @@
                     android:src="@drawable/user" />
 
                 <RelativeLayout
-                    android:id="@+id/relativedetailM1"
+                    android:id="@+id/relativeDetail2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/lineardetailM3"
+                        android:id="@+id/linearDetail2"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/textActivityUserNamedetailM"
+                            android:id="@+id/textActivityUserNameDetail2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -60,7 +58,7 @@
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/userMsgLarge"
+                            android:id="@+id/userMsgLargeDetail2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -79,11 +77,11 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textActivityTimedetailM"
+                        android:id="@+id/textActivityTimeDetail2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignRight="@+id/lineardetailM3"
-                        android:layout_alignTop="@+id/lineardetailM3"
+                        android:layout_alignRight="@+id/linearDetail2"
+                        android:layout_alignTop="@+id/linearDetail2"
                         android:layout_marginRight="9dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="open-sans"
@@ -99,14 +97,14 @@
                 android:layout_marginTop="15dp" >
 
                 <LinearLayout
-                    android:id="@+id/linearTypePostDetailP"
+                    android:id="@+id/linearTypePostDetail2"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:background="@drawable/detail_chart_blue"
+                    android:background="@drawable/detail_chart_green"
                     android:orientation="horizontal" >
 
                     <ImageView
-                        android:id="@+id/imageTypePostHome"
+                        android:id="@+id/imageTypePostHomeDetail2"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginLeft="4dp"
@@ -115,7 +113,7 @@
                         android:src="@drawable/home_ico" />
 
                     <TextView
-                        android:id="@+id/textActivityTypePostHomeDetailP1"
+                        android:id="@+id/textActivityTypePostHomeDetail2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
@@ -129,11 +127,11 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageArrowDownDetailP"
+                    android:id="@+id/imageArrowDownDetail2"
                     android:layout_width="25dp"
                     android:layout_height="18dp"
-                    android:layout_alignRight="@+id/linearTypePostDetailP"
-                    android:layout_alignTop="@+id/linearTypePostDetailP"
+                    android:layout_alignRight="@+id/linearTypePostDetail2"
+                    android:layout_alignTop="@+id/linearTypePostDetail2"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="6dp"
                     android:contentDescription="@string/report"

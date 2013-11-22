@@ -22,7 +22,7 @@ public class ListReportsActivity extends Activity {
 	
 	int arr_images[] = { R.drawable.missing_ico,
 			R.drawable.found_icon, R.drawable.abuse_icon,
-			R.drawable.home_ico, R.drawable.found_icon };
+			R.drawable.home_ico, R.drawable.acci_icon };
 	
 	int arr_imagesType[] = { R.drawable.dog_icon,
 			R.drawable.cat_icon, R.drawable.dog_icon,

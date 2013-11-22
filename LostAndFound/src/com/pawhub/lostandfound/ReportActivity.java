@@ -356,12 +356,11 @@ public class ReportActivity extends FragmentActivity {
 
 	private void openSettings() {
 		
-		
 	}
 
 	private void openPublish() {
 		
-		Intent detailsIntent =new Intent(this,Detail_1.class);
+		Intent detailsIntent =new Intent(this,DetailsActivity.class);
         startActivity(detailsIntent);
 		
 	}

@@ -83,7 +83,6 @@ public class Detail_3 extends FragmentActivity {
 	}
 
 	private void makeAlert() {
-
 		
 	}
 
