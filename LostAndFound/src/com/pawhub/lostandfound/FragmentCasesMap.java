@@ -1,5 +1,6 @@
 package com.pawhub.lostandfound;
 
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -9,6 +10,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,16 +23,18 @@ public class FragmentCasesMap extends Fragment{
 	private GoogleMap map;
 	private SupportMapFragment fragmentoDeMapa;
 	private Fragment fragment;
+	private Context context;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+		context = inflater.getContext();
         return inflater.inflate(R.layout.fragment_map_causes, container, false);
     }
 	
 	@Override
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
-
+        
         if(map==null)
         	initMap();
 
