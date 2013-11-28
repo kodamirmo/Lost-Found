@@ -306,11 +306,14 @@ public class ReportView {
 			targetedShareIntent.setType("text/plain");
 			targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 					"Compartir");
-			if (TextUtils.equals(packageName, "com.facebook.katana")
-					|| TextUtils.equals(packageName, "com.twitter.android")) {
+			if (TextUtils.equals(packageName, "com.twitter.android")) {
 				targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
 						shareBody);
-			} else {
+			} else if(TextUtils.equals(packageName, "com.facebook.katana")){
+				targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+						"http://www.pawhub.me/LF/detail_chart2.html");
+			}
+				else {
 				targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
 						shareBody);
 			}

@@ -2,6 +2,8 @@ package com.pawhub.lostandfound;
 
 import java.util.Locale;
 
+import com.google.android.gms.maps.SupportMapFragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +30,7 @@ public class DetailsActivity extends FragmentActivity {
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
+	Fragment mapFragment;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -37,6 +41,9 @@ public class DetailsActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
+
+		mapFragment = getSupportFragmentManager().findFragmentByTag(
+				"detailReportMap");
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -166,23 +173,40 @@ public class DetailsActivity extends FragmentActivity {
 				Bundle savedInstanceState) {
 			sec = getArguments().getInt(ARG_SECTION_NUMBER);
 
-			switch (sec) {
-			case 1:
-				rootView = inflater.inflate(R.layout.activity_detail_1,
-						container, false);
-				return rootView;
-			case 2:
-				rootView = inflater.inflate(R.layout.activity_detail_2,
-						container, false);
-				return rootView;
-			case 3:
-				rootView = inflater.inflate(R.layout.activity_detail_3,
-						container, false);
-				return rootView;
+			try {
+				switch (sec) {
+				case 1:
+					rootView = inflater.inflate(R.layout.activity_detail_1,
+							container, false);
+					return rootView;
+				case 2:
+					rootView = inflater.inflate(R.layout.activity_detail_2,
+							container, false);
+					return rootView;
+				case 3:
+					rootView = inflater.inflate(R.layout.activity_detail_3,
+							container, false);
+					return rootView;
+				}
+			} catch (InflateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			return null;
 
 		}
+		
+		@Override
+		public void onDestroyView() {
+			super.onDestroyView();
+			SupportMapFragment f = (SupportMapFragment) getFragmentManager().findFragmentById(
+					R.id.detailReportMap);
+			if (f != null)
+				getFragmentManager().beginTransaction().remove(f).commit();
+		}
+		
 	}
+	
+	
 
 }

@@ -94,9 +94,6 @@ public class ReportActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
 
-		Log.i("map",
-				"" + GooglePlayServicesUtil.isGooglePlayServicesAvailable(this));
-
 		// calling layout elements
 
 		reportType = (Spinner) findViewById(R.id.spinnerReportType);
@@ -162,7 +159,7 @@ public class ReportActivity extends FragmentActivity {
 		map = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.reportMap)).getMap();
 
-		LatLng coordenada = new LatLng(19.4326018, -99.1332049);
+		LatLng coordenada=new LatLng(19.4326018,-99.1332049);
 		CameraPosition camPos = new CameraPosition.Builder().target(coordenada)
 				.zoom(12).build();
 
