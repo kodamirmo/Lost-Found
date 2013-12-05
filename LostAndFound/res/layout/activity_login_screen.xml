@@ -19,7 +19,7 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/splash_logo" />
 
@@ -47,7 +47,7 @@
         <EditText
             android:id="@+id/editTextNombre"
             android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/corner_and_border_white_editext"
             android:ems="10"
@@ -60,7 +60,7 @@
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:layout_marginTop="-2dp"
             android:background="@drawable/corner_and_border_white_editext"
             android:ems="10"
@@ -73,8 +73,8 @@
 
         <ImageButton
             android:id="@+id/loginBtn"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_width="225dp"
+            android:layout_height="34dp"
             android:layout_marginTop="10dp"
             android:background="#B71C4E"
             android:contentDescription="@string/app_name"
@@ -82,17 +82,26 @@
 
         <ImageView
             android:id="@+id/login_or"
-            android:layout_width="250dp"
+            android:layout_width="221dp"
             android:layout_height="10dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/or_line" />
 
         <ImageButton
+            android:id="@+id/loginGuestBtn"
+            android:layout_width="225dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="10dp"
+            android:background="#B71C4E"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/guest" />
+
+        <ImageButton
             android:id="@+id/loginFbBtn"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_width="225dp"
+            android:layout_height="34dp"
             android:layout_marginTop="10dp"
             android:background="#B71C4E"
             android:contentDescription="@string/app_name"
@@ -100,8 +109,8 @@
 
         <ImageButton
             android:id="@+id/loginTwBtn"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_width="225dp"
+            android:layout_height="35dp"
             android:layout_marginTop="10dp"
             android:background="#B71C4E"
             android:contentDescription="@string/app_name"
@@ -116,25 +125,27 @@
             android:orientation="horizontal"
             android:weightSum="2" >
 
-            <TextView
+            <Button
                 android:id="@+id/register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
+                android:background="#00000000"
                 android:fontFamily="open-sans"
                 android:text="@string/app_registrer"
                 android:textColor="#FCE8ED"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00000000"
                 android:fontFamily="open-sans"
                 android:text="@string/app_newpass"
                 android:textColor="#FCE8ED"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 

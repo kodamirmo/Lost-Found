@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,12 +24,14 @@ public class Home extends ActionBarActivity {
 
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
+	
+	private static int TAKE_PICTURE = 1;
 
 	// Change the numbers to the actions name like btn_alerts
 	private TableRow btn_0;
 	private TableRow btn_1;
 	private TableRow btn_2;
-	private TableRow btn_3;	
+	private TableRow btn_3;
 	private TableRow btn_4;
 	private TableRow btn_5;
 	private TableRow btn_6;
@@ -151,22 +154,22 @@ public class Home extends ActionBarActivity {
 	}
 
 	private void openSettings() {
-		
+
 	}
 
 	private void openAlerts() {
-		
-		
+
 	}
 
 	private void openCamera() {
-		
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(cameraIntent, TAKE_PICTURE);
 	}
 
 	private void openReport() {
 		Intent openRepo = new Intent(this, ReportActivity.class);
 		startActivity(openRepo);
-		
+
 	}
 
 	@Override

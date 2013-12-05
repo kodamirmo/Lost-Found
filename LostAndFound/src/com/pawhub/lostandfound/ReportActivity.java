@@ -144,7 +144,7 @@ public class ReportActivity extends FragmentActivity {
 				startActivityForResult(galeryIntent, SELECT_PICTURE);
 			}
 		});
-		//SERVICE DISABLE if device not have google play services
+		// SERVICE DISABLE if device not have google play services
 		if ((map == null)
 				&& (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == SERVICE_DISABLED))
 			try {
@@ -159,7 +159,8 @@ public class ReportActivity extends FragmentActivity {
 		map = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.reportMap)).getMap();
 
-		LatLng coordenada=new LatLng(19.4326018,-99.1332049);
+		LatLng coordenada = new LatLng(19.4326018, -99.1332049);
+
 		CameraPosition camPos = new CameraPosition.Builder().target(coordenada)
 				.zoom(12).build();
 
