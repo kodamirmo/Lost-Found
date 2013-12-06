@@ -94,6 +94,10 @@ public class ReportActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
 
+		// calling Bitmap from Home
+		Intent mIntent = getIntent();
+		Bitmap bitmap = (Bitmap) mIntent.getParcelableExtra("BitmapImage");
+
 		// calling layout elements
 
 		reportType = (Spinner) findViewById(R.id.spinnerReportType);
@@ -116,6 +120,12 @@ public class ReportActivity extends FragmentActivity {
 		// adapter for pet types
 		petType.setAdapter(new PetTypesAdapter(ReportActivity.this,
 				R.layout.spinner_report_types, petTypeArray));
+
+		// adding Bitmap from home
+		if (bitmap != null) {
+			fancyPics.add(bitmap);
+			createFancy();
+		}
 
 		// take pic intent
 
@@ -216,19 +226,7 @@ public class ReportActivity extends FragmentActivity {
 						fancyPics.add(photo);
 						// Fancy Cover for Images
 
-						this.fancyCoverFlow = (FancyCoverFlow) this
-								.findViewById(R.id.fancyCoverFlow);
-
-						this.fancyCoverFlow
-								.setAdapter(new FancyCoverFlowSampleAdapter(
-										fancyPics));
-						this.fancyCoverFlow.setUnselectedAlpha(1.0f);
-						this.fancyCoverFlow.setUnselectedSaturation(0.0f);
-						this.fancyCoverFlow.setUnselectedScale(0.5f);
-						this.fancyCoverFlow.setMaxRotation(0);
-						this.fancyCoverFlow.setScaleDownGravity(0.2f);
-						this.fancyCoverFlow
-								.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
+						createFancy();
 
 					} else {
 						toast2.show();
@@ -244,19 +242,7 @@ public class ReportActivity extends FragmentActivity {
 					// Fancy Cover for Images
 					Log.i("array", "" + fancyPics.size());
 
-					this.fancyCoverFlow = (FancyCoverFlow) this
-							.findViewById(R.id.fancyCoverFlow);
-
-					this.fancyCoverFlow
-							.setAdapter(new FancyCoverFlowSampleAdapter(
-									fancyPics));
-					this.fancyCoverFlow.setUnselectedAlpha(1.0f);
-					this.fancyCoverFlow.setUnselectedSaturation(0.0f);
-					this.fancyCoverFlow.setUnselectedScale(0.5f);
-					this.fancyCoverFlow.setMaxRotation(0);
-					this.fancyCoverFlow.setScaleDownGravity(0.2f);
-					this.fancyCoverFlow
-							.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
+					createFancy();
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -466,6 +452,22 @@ public class ReportActivity extends FragmentActivity {
 
 			return row;
 		}
+	}
+
+	private void createFancy() {
+		this.fancyCoverFlow = (FancyCoverFlow) this
+				.findViewById(R.id.fancyCoverFlow);
+
+		this.fancyCoverFlow.setAdapter(new FancyCoverFlowSampleAdapter(
+				fancyPics));
+		this.fancyCoverFlow.setUnselectedAlpha(1.0f);
+		this.fancyCoverFlow.setUnselectedSaturation(0.0f);
+		this.fancyCoverFlow.setUnselectedScale(0.5f);
+		this.fancyCoverFlow.setMaxRotation(0);
+		this.fancyCoverFlow.setScaleDownGravity(0.2f);
+		this.fancyCoverFlow
+				.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
+
 	}
 
 }

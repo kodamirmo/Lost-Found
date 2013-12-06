@@ -1,10 +1,21 @@
 package com.pawhub.lostandfound;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
+
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -13,12 +24,15 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableRow;
+import android.widget.Toast;
+import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 
 public class Home extends ActionBarActivity {
 
@@ -158,7 +172,7 @@ public class Home extends ActionBarActivity {
 	}
 
 	private void openAlerts() {
-
+ 
 	}
 
 	private void openCamera() {
@@ -168,8 +182,7 @@ public class Home extends ActionBarActivity {
 
 	private void openReport() {
 		Intent openRepo = new Intent(this, ReportActivity.class);
-		startActivity(openRepo);
-
+        startActivity(openRepo);
 	}
 
 	@Override
@@ -283,6 +296,62 @@ public class Home extends ActionBarActivity {
 		public void onClick(View v) {
 			int id = v.getId();
 			showScreen(id);
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		// Review if the image come from the camera or the gallery
+		Toast toast2 = Toast.makeText(getApplicationContext(),
+				"Ocurrió un error", Toast.LENGTH_SHORT);
+
+		if (resultCode == RESULT_OK) {
+
+			// If comes from camera
+			if (requestCode == TAKE_PICTURE) {
+				if (data != null) {
+					if (data.hasExtra("data")) {
+						String pic = System.currentTimeMillis() + ".jpg";
+						Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+						try {
+							File temp = new File(
+									Environment.getExternalStorageDirectory(),
+									File.separator + "Pawhub");
+							if (!temp.exists())
+								temp.mkdirs();
+							OutputStream stream = new FileOutputStream(
+									Environment.getExternalStorageDirectory()
+											+ File.separator + "Pawhub"
+											+ File.separator + pic);
+							photo.prepareToDraw();
+							photo.compress(CompressFormat.JPEG, 100, stream);
+							stream.flush();
+							stream.close();
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							toast2.show();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							toast2.show();
+						}
+						
+						Intent openRepo = new Intent(this, ReportActivity.class);
+						openRepo.putExtra("BitmapImage", photo);
+		                startActivity(openRepo);
+
+						
+
+					} else {
+						toast2.show();
+					}
+				}
+
+			} 
+
 		}
 	}
 

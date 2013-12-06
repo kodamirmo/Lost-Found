@@ -21,7 +21,7 @@ public class LoginScreen extends Activity implements OnClickListener{
         
         private ImageButton btnLogin;
         private ImageButton btnLoginFacebook;
-        private TextView register;
+        private Button btnRegister;
         
         private UiLifecycleHelper uiHelper;
         private Session.StatusCallback callback = new Session.StatusCallback() {
@@ -94,11 +94,11 @@ public class LoginScreen extends Activity implements OnClickListener{
                 
                 btnLoginFacebook=(ImageButton)findViewById(R.id.loginFbBtn);
                 btnLogin=(ImageButton)findViewById(R.id.loginBtn);
-                register = (TextView) findViewById(R.id.register);
+                btnRegister = (Button) findViewById(R.id.register);
                 
                 btnLogin.setOnClickListener(this);
                 btnLoginFacebook.setOnClickListener(this);
-                register.setOnClickListener(this);
+                btnRegister.setOnClickListener(this);
         }
 
         @Override
@@ -130,7 +130,7 @@ public class LoginScreen extends Activity implements OnClickListener{
                 	initFacebookSession();
                 else if(v==btnLogin)
                     simpleLogin();
-                else if(v==register)
+                else if(v==btnRegister)
                 	registerUser();
                 
         }
