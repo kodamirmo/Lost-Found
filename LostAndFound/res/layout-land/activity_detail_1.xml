@@ -98,7 +98,7 @@
                 <LinearLayout
                     android:id="@+id/linearTypePostDetailP"
                     android:layout_width="match_parent"
-                    android:layout_height="31dp"
+                    android:layout_height="35dp"
                     android:background="#FFD400"
                     android:orientation="horizontal" >
 
@@ -125,25 +125,13 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageShareDetailP"
-                    android:layout_width="90dp"
-                    android:layout_height="27dp"
-                    android:layout_alignRight="@+id/linearTypePostDetailP"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_toStartOf="@+id/linearTypePostDetailP"
-                    android:contentDescription="@string/report"
-                    android:onClick="goToReportActivity"
-                    android:src="@drawable/btn_share_blue" />
-
-                <ImageView
                     android:id="@+id/imageArrowDownDetailP"
-                    android:layout_width="15dp"
-                    android:layout_height="8dp"
+                    android:layout_width="25dp"
+                    android:layout_height="18dp"
                     android:layout_alignRight="@+id/linearTypePostDetailP"
                     android:layout_alignTop="@+id/linearTypePostDetailP"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="6dp"
                     android:contentDescription="@string/report"
                     android:src="@drawable/arrow_down" />
             </RelativeLayout>

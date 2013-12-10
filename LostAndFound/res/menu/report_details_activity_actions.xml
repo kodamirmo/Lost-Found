@@ -16,7 +16,7 @@
     <!-- Resolve, should appear as action button -->
     <item
         android:id="@+id/action_resolve"
-        android:icon="@drawable/checked_gray"
+        android:icon="@drawable/checked"
         android:title="@string/report_resolve"
         android:showAsAction="always"/>
 

@@ -96,10 +96,10 @@
                 android:layout_marginTop="15dp" >
 
                 <LinearLayout
-                    android:id="@+id/linearTypePostDetailP"
+                    android:id="@+id/linearTypePostDetail3"
                     android:layout_width="match_parent"
-                    android:layout_height="31dp"
-                    android:background="#FFD400"
+                    android:layout_height="35dp"
+                    android:background="@drawable/detail_chart_blue"
                     android:orientation="horizontal" >
 
                     <ImageView
@@ -125,31 +125,20 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageShareDetailP"
-                    android:layout_width="90dp"
-                    android:layout_height="27dp"
-                    android:layout_alignRight="@+id/linearTypePostDetailP"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_toStartOf="@+id/linearTypePostDetailP"
-                    android:contentDescription="@string/report"
-                    android:src="@drawable/btn_share_blue" />
-
-                <ImageView
                     android:id="@+id/imageArrowDownDetailP"
-                    android:layout_width="15dp"
-                    android:layout_height="8dp"
-                    android:layout_alignRight="@+id/linearTypePostDetailP"
-                    android:layout_alignTop="@+id/linearTypePostDetailP"
+                    android:layout_width="25dp"
+                    android:layout_height="18dp"
+                    android:layout_alignRight="@+id/linearTypePostDetail3"
+                    android:layout_alignTop="@+id/linearTypePostDetail3"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="6dp"
                     android:contentDescription="@string/report"
                     android:src="@drawable/arrow_down" />
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:background="#E0E0E0"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
@@ -161,14 +150,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_weight="0.33"
-                    android:minHeight="200dp"
                     android:orientation="vertical" >
 
                     <TextView
                         android:layout_width="255dp"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/doc_icon"
-                        android:drawablePadding="10dp"
+                        android:drawableLeft="@drawable/dog_icon"
+                        android:drawablePadding="4dp"
                         android:text="@string/dog_label"
                         android:textColor="#656565"
                         android:textSize="14sp" />

@@ -24,6 +24,7 @@ public class CasesListFragment extends Fragment{
 	private final int SCREEN_FOUND = 4;
 	private final int SCREEN_ABUSE = 5;
 	private final int SCREEN_HOMELESS = 6;
+	private final int SCREEN_ACCIDENT = 8;
 	
 	private LinearLayout parentLayout;
 	private LayoutInflater inflater;
@@ -73,10 +74,14 @@ public class CasesListFragment extends Fragment{
 			case SCREEN_HOMELESS:
 				initScreenHomeless();
 				break;		
+			case SCREEN_ACCIDENT:
+				initScreenAccident();
+				break;
 		}
 	}
 	
 	
+
 	private void initScreenHome(){
 		ArrayList<View> auxList=reportList.getAllReports();
 		Iterator<View> iterator=auxList.iterator();
@@ -138,6 +143,16 @@ public class CasesListFragment extends Fragment{
 		while(iterator.hasNext()){
 			parentLayout.addView(iterator.next());
 		}	
+	}
+	
+	private void initScreenAccident() {
+		ArrayList<View> auxList=reportList.getAccidentReports();
+		Iterator<View> iterator=auxList.iterator();
+		
+		while(iterator.hasNext()){
+			parentLayout.addView(iterator.next());
+		}
+		
 	}
 	
 }

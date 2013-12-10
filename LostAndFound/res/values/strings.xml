@@ -14,7 +14,7 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="report_home">Busca Hogar</string>
-    <string name="report_resolve">- ¡Resuelto!</string>
+    <string name="report_resolve">¡Resuelto!</string>
     <string name="userName">Asukita Pam</string>
     <string name="userMsg">Acabo de ver un perrito abandonado cerca de la estación de Xochimilco&#8230;</string>
     <string name="postTime">hace 2 horas</string>
@@ -33,7 +33,7 @@
     <string name="reportPetAge_lbl">Edad</string>
     <string name="reportPetType_lbl">Tipo</string>
     <string name="reportPetReportTel_lbl">Teléfono</string>
-    <string name="reportPetFeatures_lbl">Rasgos</string>
+    <string name="reportPetFeatures_lbl">Características</string>
     <string name="reportPetReportMsg_lbl">Escribe tu mensaje</string>
     <string name="reportPetReportTakePic_lbl">Toma Foto</string>
     <string name="reportPetReportSelectPic_lbl">Escoge Foto</string>
@@ -44,8 +44,9 @@
     <string name="entry_title_3">Extraviados</string>
     <string name="entry_title_4">Encontrados</string>
     <string name="entry_title_5">Maltrato</string>
-    <string name="entry_title_6">Busca hogar</string>
+    <string name="entry_title_6">Busca hogar</string> 
     <string name="entry_title_7">Reportes en mapa</string>
+    <string name="entry_title_8">Accidente</string>
     <string name="title_activity_detail_2"></string>
     <string name="dog_label">Perro</string>
     <string name="reportDate_title">Fecha de reporte</string>
@@ -60,5 +61,27 @@
     <string name="title_activity_detail_3"></string>
     <string name="report_abuse">Reporte de Maltrato</string>
     <string name="userMsg2">Mi vecina tiene 3 gatos encerrados y desde afuera puedo ver que están flacos&#8230;</string>
+    <string name="title_activity_register"></string>
+    <string name="lblRegister">Crea tu cuenta</string>
+    <string name="lblRegisterUserName">Usuario</string>
+    <string name="lblRegisterUserMail">Email</string>
+    <string name="lblRegisterUserCountry">País</string>
+    <string name="lblRegisterUserCity">Ciudad</string>
+    <string name="lblRegisterUserSex">Género</string>
+    <string name="lblRegisterUserBirthday">Cumpleaños</string>
+    <string name="lblRegisterUserPass">Password</string>
+    <string name="lblRegisterUserRePass">Confirma tu Password</string>
+    <string name="lblRegisterUserPic">Foto</string>
+    <string name="registerTerms">Al continuar acepto los <a href="http://pawhub.me/aviso-privacidad.html"> Términos de Uso</a></string>
+    <string name="title_activity_list_reports"></string>
+    <string name="reportListDateLbl">Fecha </string>
+    <string name="cancel">Cancelar</string>
+    <string name="similary">Estos reportes son similares al tuyo:</string>
+    <string name="title_activity_details"></string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Imágenes</string>
+    <string name="title_section2">Mensajes</string>
+    <string name="title_section3">Mapa</string>
+    
 
 </resources>

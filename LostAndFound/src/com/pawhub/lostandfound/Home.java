@@ -1,10 +1,22 @@
 package com.pawhub.lostandfound;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
+
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,17 +24,22 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableRow;
+import android.widget.Toast;
+import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 
 public class Home extends ActionBarActivity {
 
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
+	
+	private static int TAKE_PICTURE = 1;
 
 	// Change the numbers to the actions name like btn_alerts
 	private TableRow btn_0;
@@ -33,6 +50,7 @@ public class Home extends ActionBarActivity {
 	private TableRow btn_5;
 	private TableRow btn_6;
 	private TableRow btn_7;
+	private TableRow btn_8;
 
 	private final int SCREEN_HOME = 0;
 	private final int SCREEN_ALERTS = 1;
@@ -41,6 +59,7 @@ public class Home extends ActionBarActivity {
 	private final int SCREEN_FOUND = 4;
 	private final int SCREEN_ABUSE = 5;
 	private final int SCREEN_HOMELESS = 6;
+	private final int SCREEN_ACCIDENT = 8;
 	private final int SCREEN_MAP = 7;
 
 	private int CURRENT_SCREEN = 0;
@@ -100,6 +119,7 @@ public class Home extends ActionBarActivity {
 		btn_5 = (TableRow) findViewById(R.id.entry_5);
 		btn_6 = (TableRow) findViewById(R.id.entry_6);
 		btn_7 = (TableRow) findViewById(R.id.entry_7);
+		btn_8 = (TableRow) findViewById(R.id.entry_8);
 
 		MenuListener listener = new MenuListener();
 		btn_0.setOnClickListener(listener);
@@ -110,6 +130,7 @@ public class Home extends ActionBarActivity {
 		btn_5.setOnClickListener(listener);
 		btn_6.setOnClickListener(listener);
 		btn_7.setOnClickListener(listener);
+		btn_8.setOnClickListener(listener);
 	}
 
 	@Override
@@ -127,11 +148,11 @@ public class Home extends ActionBarActivity {
 			return true;
 		} else {
 			switch (item.getItemId()) {
-			case R.id.action_add_report:
-				openReport();
-				return true;
 			case R.id.action_camera:
 				openCamera();
+				return true;
+			case R.id.action_add_report:
+				openReport();
 				return true;
 			case R.id.action_alerts:
 				openAlerts();
@@ -147,22 +168,21 @@ public class Home extends ActionBarActivity {
 	}
 
 	private void openSettings() {
-		
+
 	}
 
 	private void openAlerts() {
-		
-		
+ 
 	}
 
 	private void openCamera() {
-		
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(cameraIntent, TAKE_PICTURE);
 	}
 
 	private void openReport() {
 		Intent openRepo = new Intent(this, ReportActivity.class);
-		startActivity(openRepo);
-		
+        startActivity(openRepo);
 	}
 
 	@Override
@@ -231,6 +251,11 @@ public class Home extends ActionBarActivity {
 			arguments.putInt("TYPE", SCREEN_ALERTS);
 			CURRENT_SCREEN = SCREEN_MAP;
 			break;
+		case R.id.entry_8:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_ACCIDENT);
+			CURRENT_SCREEN = SCREEN_ACCIDENT;
+			break;
 		default:
 			fragment = new CasesListFragment();
 			arguments.putInt("TYPE", SCREEN_HOME);
@@ -273,20 +298,61 @@ public class Home extends ActionBarActivity {
 			showScreen(id);
 		}
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-	public void goToDetailPics(View v) {
-		Intent detailPicsIntent = new Intent(this, Detail_1.class);
-		startActivity(detailPicsIntent);
-	}
+		// Review if the image come from the camera or the gallery
+		Toast toast2 = Toast.makeText(getApplicationContext(),
+				"Ocurrió un error", Toast.LENGTH_SHORT);
 
-	public void goToMsgs(View v) {
-		Intent detailMsgsIntent = new Intent(this, Detail_2.class);
-		startActivity(detailMsgsIntent);
-	}
+		if (resultCode == RESULT_OK) {
 
-	public void goToDetailsMap(View v) {
-		Intent detailMapIntent = new Intent(this, Detail_3.class);
-		startActivity(detailMapIntent);
+			// If comes from camera
+			if (requestCode == TAKE_PICTURE) {
+				if (data != null) {
+					if (data.hasExtra("data")) {
+						String pic = System.currentTimeMillis() + ".jpg";
+						Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+						try {
+							File temp = new File(
+									Environment.getExternalStorageDirectory(),
+									File.separator + "Pawhub");
+							if (!temp.exists())
+								temp.mkdirs();
+							OutputStream stream = new FileOutputStream(
+									Environment.getExternalStorageDirectory()
+											+ File.separator + "Pawhub"
+											+ File.separator + pic);
+							photo.prepareToDraw();
+							photo.compress(CompressFormat.JPEG, 100, stream);
+							stream.flush();
+							stream.close();
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							toast2.show();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							toast2.show();
+						}
+						
+						Intent openRepo = new Intent(this, ReportActivity.class);
+						openRepo.putExtra("BitmapImage", photo);
+		                startActivity(openRepo);
+
+						
+
+					} else {
+						toast2.show();
+					}
+				}
+
+			} 
+
+		}
 	}
 
 }
