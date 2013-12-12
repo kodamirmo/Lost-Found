@@ -11,9 +11,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.Bitmap.CompressFormat;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,8 +29,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,8 +46,11 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
 
 public class ReportActivity extends FragmentActivity {
@@ -58,6 +64,7 @@ public class ReportActivity extends FragmentActivity {
 	private static int TAKE_PICTURE = 1;
 	private static int SELECT_PICTURE = 0;
 	private static int SERVICE_DISABLED = 3;
+	
 	private Bitmap setphoto;
 	private Bitmap bmpBowRotated;
 
@@ -70,6 +77,13 @@ public class ReportActivity extends FragmentActivity {
 	private EditText reportMsg;
 	private ImageButton takePic;
 	private ImageButton choosePic;
+
+	private LocationManager locationManager;
+	private LocationListener locationListener;
+	private LatLng coordenada;
+	private Location location;
+
+	static Marker marker;
 
 	// data for report types
 	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
@@ -156,7 +170,7 @@ public class ReportActivity extends FragmentActivity {
 		});
 		// SERVICE DISABLE if device not have google play services
 		if ((map == null)
-				&& (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == SERVICE_DISABLED))
+				&& (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != SERVICE_DISABLED))
 			try {
 				initMap();
 			} catch (GooglePlayServicesNotAvailableException e) {
@@ -166,24 +180,90 @@ public class ReportActivity extends FragmentActivity {
 	}
 
 	private void initMap() throws GooglePlayServicesNotAvailableException {
-		map = ((SupportMapFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.reportMap)).getMap();
+		// Obtenemos una referencia al LocationManager
+		locationManager = (LocationManager) this
+				.getSystemService(Context.LOCATION_SERVICE);
 
-		LatLng coordenada = new LatLng(19.4326018, -99.1332049);
+		// Obtenemos la última posición conocida
+		location = locationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+		// Mostramos la última posición conocida
+		muestraPosicion(location);
+
+		// Nos registramos para recibir actualizaciones de la posición
+		locationListener = new LocationListener() {
+			public void onLocationChanged(Location location) {
+				muestraPosicion(location);
+			}
+
+			public void onProviderDisabled(String provider) {
+				Toast toast2 = Toast.makeText(getApplicationContext(),
+						"Es necesario tener el GPS habilitado",
+						Toast.LENGTH_SHORT);
+				toast2.show();
+				Intent intent = new Intent(
+						android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+				startActivity(intent);
+			}
+
+			public void onProviderEnabled(String provider) {
+				Log.i("Provider Status: ", "Provider ON");
+				Toast toast1 = Toast.makeText(getApplicationContext(),
+						"Espera a que se actualize tu ubicación",
+						Toast.LENGTH_SHORT);
+				toast1.show();
+			}
+
+			public void onStatusChanged(String provider, int status,
+					Bundle extras) {
+				Log.i("LocAndroid", "Provider Status: " + status);
+
+			}
+		};
+
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				15000, 0, locationListener);
+	}
+
+	public void muestraPosicion(Location loc) {
+
+		if(map ==null){
+			map = ((SupportMapFragment) getSupportFragmentManager()
+					.findFragmentById(R.id.reportMap)).getMap();
+		}
+		
+
+		if (loc != null) {
+			coordenada = new LatLng(loc.getLatitude(), loc.getLongitude());
+			if (marker != null) {
+				marker.remove();
+			}
+			addMarker();
+		} else {
+			Toast toast2 = Toast.makeText(getApplicationContext(),
+					"Ocurrió un error al intentar obtener tu ubicación",
+					Toast.LENGTH_SHORT);
+			toast2.show();
+			coordenada = new LatLng(19.4326018, -99.1332049);
+		}
 
 		CameraPosition camPos = new CameraPosition.Builder().target(coordenada)
-				.zoom(12).build();
+				.zoom(15).build();
 
 		CameraUpdate cameraUpdate = CameraUpdateFactory
 				.newCameraPosition(camPos);
-
 		map.moveCamera(cameraUpdate);
+	}
 
+	public void addMarker() {
+		marker = map.addMarker(new MarkerOptions().position(coordenada).icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.pointer)));
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+		Log.i("entró", requestCode + "r" + resultCode + "ok" + RESULT_OK);
 		// Review if the image come from the camera or the gallery
 		Toast toast2 = Toast.makeText(getApplicationContext(),
 				"Ocurrió un error", Toast.LENGTH_SHORT);
@@ -253,6 +333,7 @@ public class ReportActivity extends FragmentActivity {
 			}
 
 		}
+
 	}
 
 	// Takes the image chosen and resizes to show it in image view
@@ -363,7 +444,8 @@ public class ReportActivity extends FragmentActivity {
 	}
 
 	private void openSettings() {
-
+		Intent openSet = new Intent(this, SettingsActivity.class);
+        startActivity(openSet);
 	}
 
 	private void openPublish() {
@@ -469,5 +551,6 @@ public class ReportActivity extends FragmentActivity {
 				.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
 
 	}
+
 
 }

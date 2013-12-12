@@ -168,7 +168,8 @@ public class Home extends ActionBarActivity {
 	}
 
 	private void openSettings() {
-
+		Intent openSet = new Intent(this, SettingsActivity.class);
+        startActivity(openSet);
 	}
 
 	private void openAlerts() {
@@ -248,7 +249,7 @@ public class Home extends ActionBarActivity {
 			break;
 		case R.id.entry_7:
 			fragment = new FragmentCasesMap();
-			arguments.putInt("TYPE", SCREEN_ALERTS);
+			arguments.putInt("TYPE", SCREEN_MAP);
 			CURRENT_SCREEN = SCREEN_MAP;
 			break;
 		case R.id.entry_8:

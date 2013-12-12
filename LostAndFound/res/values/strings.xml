@@ -3,8 +3,7 @@
 
     <string name="app_id">430096713763448</string>
     <string name="app_name">Lost &amp; Found</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Ajustes</string>
     <string name="title_activity_splash">Splash</string>
     <string name="app_title">Lost &amp; Found</string>
     <string name="app_subtitle">busca • encuentra • reporta</string>
@@ -23,7 +22,6 @@
     <string name="report">Reportar</string>
     <string name="share">Compartir</string>
     <string name="numComnts">233</string>
-    <string name="title_activity_datail_1"></string>
     <string name="userMsgLarge">Acabo de ver un perrito abandonado cerca de la estación de Xochimilco, cada vez que paso lo veo comiendo basura, está lastimado.No veo que tenga dueño. Ojalá que alguien pueda hacerse cargo de él!</string>
     <string name="pinIt">Marcar</string>
     <string name="checked">Atendido o Resuelto</string>
@@ -44,10 +42,9 @@
     <string name="entry_title_3">Extraviados</string>
     <string name="entry_title_4">Encontrados</string>
     <string name="entry_title_5">Maltrato</string>
-    <string name="entry_title_6">Busca hogar</string> 
+    <string name="entry_title_6">Busca hogar</string>
     <string name="entry_title_7">Reportes en mapa</string>
     <string name="entry_title_8">Accidente</string>
-    <string name="title_activity_detail_2"></string>
     <string name="dog_label">Perro</string>
     <string name="reportDate_title">Fecha de reporte</string>
     <string name="report_date">10 / Ago  / 2013</string>
@@ -58,7 +55,6 @@
     <string name="user2Name">Julius</string>
     <string name="user2Msg">¿Sabes si alguien está cerca?</string>
     <string name="postTime2">hace 2 minutos</string>
-    <string name="title_activity_detail_3"></string>
     <string name="report_abuse">Reporte de Maltrato</string>
     <string name="userMsg2">Mi vecina tiene 3 gatos encerrados y desde afuera puedo ver que están flacos&#8230;</string>
     <string name="title_activity_register"></string>
@@ -76,12 +72,13 @@
     <string name="title_activity_list_reports"></string>
     <string name="reportListDateLbl">Fecha </string>
     <string name="cancel">Cancelar</string>
-    <string name="similary">Estos reportes son similares al tuyo:</string>
+    <string name="similary">Estos son los reportes similares:</string>
     <string name="title_activity_details"></string>
-    <string name="action_settings">Settings</string>
     <string name="title_section1">Imágenes</string>
     <string name="title_section2">Mensajes</string>
     <string name="title_section3">Mapa</string>
-    
+    <string name="title_activity_settings"></string>
+    <string name="lblOptsDialogSimilary">Ver reportes similares</string>
+    <string name="lblOptsInadequate">Reportar como inadecuado</string>
 
 </resources>
