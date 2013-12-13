@@ -24,6 +24,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,7 +65,7 @@ public class ReportActivity extends FragmentActivity {
 	private static int TAKE_PICTURE = 1;
 	private static int SELECT_PICTURE = 0;
 	private static int SERVICE_DISABLED = 3;
-	
+
 	private Bitmap setphoto;
 	private Bitmap bmpBowRotated;
 
@@ -228,11 +229,10 @@ public class ReportActivity extends FragmentActivity {
 
 	public void muestraPosicion(Location loc) {
 
-		if(map ==null){
+		if (map == null) {
 			map = ((SupportMapFragment) getSupportFragmentManager()
 					.findFragmentById(R.id.reportMap)).getMap();
 		}
-		
 
 		if (loc != null) {
 			coordenada = new LatLng(loc.getLatitude(), loc.getLongitude());
@@ -240,6 +240,9 @@ public class ReportActivity extends FragmentActivity {
 				marker.remove();
 			}
 			addMarker();
+			Toast.makeText(ReportActivity.this,
+					"¡Tu ubicación ya ha sido actualizada!", Toast.LENGTH_SHORT)
+					.show();
 		} else {
 			Toast toast2 = Toast.makeText(getApplicationContext(),
 					"Ocurrió un error al intentar obtener tu ubicación",
@@ -445,12 +448,13 @@ public class ReportActivity extends FragmentActivity {
 
 	private void openSettings() {
 		Intent openSet = new Intent(this, SettingsActivity.class);
-        startActivity(openSet);
+		startActivity(openSet);
 	}
 
 	private void openPublish() {
 
 		Intent detailsIntent = new Intent(this, DetailsActivity.class);
+		detailsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(detailsIntent);
 
 	}
@@ -552,5 +556,24 @@ public class ReportActivity extends FragmentActivity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+		Intent intent = new Intent(this, Home.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		startActivity(intent);
+		this.finish();
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		this.finish();
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		finish();
+	}
 
 }
