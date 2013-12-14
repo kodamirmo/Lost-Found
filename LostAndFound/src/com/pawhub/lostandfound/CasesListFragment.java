@@ -8,6 +8,7 @@ import com.pawhub.lostandfound.data.ReportsList;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -101,12 +102,16 @@ public class CasesListFragment extends Fragment{
 	}
 	
 	private void initScreenReports(){
-		ArrayList<View> auxList=reportList.getAllReports();
+		/*ArrayList<View> auxList=reportList.getAllReports();
 		Iterator<View> iterator=auxList.iterator();
 		
 		while(iterator.hasNext()){
 			parentLayout.addView(iterator.next());
-		}	
+		}	*/
+		//muestra lista con reportes levantados por usuario
+		Intent openMyReports = new Intent(getActivity(), ListReportsActivity.class);
+		openMyReports.putExtra("myString", "Mis reportes:");
+        startActivity(openMyReports);
 	}
 	
 	private void initScreenLosts(){

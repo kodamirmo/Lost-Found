@@ -6,9 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
-
+import com.facebook.Session;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -16,6 +16,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -32,7 +33,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TableRow;
 import android.widget.Toast;
-import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 
 public class Home extends ActionBarActivity {
 
@@ -63,7 +63,7 @@ public class Home extends ActionBarActivity {
 	private final int SCREEN_MAP = 7;
 
 	private int CURRENT_SCREEN = 0;
-	private String currentTitle;
+	private String currentTitle, prefName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,12 @@ public class Home extends ActionBarActivity {
 		initSlidingMenu();
 		initViews();
 		showScreen(0);
+		 
+		
+		SharedPreferences preferences = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+		prefName = preferences.getString("username", "nothing");
+		
+		Log.i("username",""+prefName);
 	}
 
 	private void initSlidingMenu() {
@@ -168,21 +174,37 @@ public class Home extends ActionBarActivity {
 	}
 
 	private void openSettings() {
-
+		Intent openSet = new Intent(this, SettingsActivity.class);
+        startActivity(openSet);
 	}
 
 	private void openAlerts() {
- 
+		Toast.makeText(this,
+				"Esta opción aún no está disponible en el demo",
+				Toast.LENGTH_LONG).show();
 	}
 
 	private void openCamera() {
-		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(cameraIntent, TAKE_PICTURE);
+		if(!prefName.equals("guest")){
+			Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			startActivityForResult(cameraIntent, TAKE_PICTURE);
+		}else{
+			Toast.makeText(this,
+					"Como invitado no puedes usar esta opción",
+					Toast.LENGTH_LONG).show();
+		}
+		
 	}
 
 	private void openReport() {
+		if(!prefName.equals("guest")){
 		Intent openRepo = new Intent(this, ReportActivity.class);
         startActivity(openRepo);
+		}else{
+			Toast.makeText(this,
+					"Como invitado no puedes usar esta opción",
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
@@ -248,7 +270,7 @@ public class Home extends ActionBarActivity {
 			break;
 		case R.id.entry_7:
 			fragment = new FragmentCasesMap();
-			arguments.putInt("TYPE", SCREEN_ALERTS);
+			arguments.putInt("TYPE", SCREEN_MAP);
 			CURRENT_SCREEN = SCREEN_MAP;
 			break;
 		case R.id.entry_8:

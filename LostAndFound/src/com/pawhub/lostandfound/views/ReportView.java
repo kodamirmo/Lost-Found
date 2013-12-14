@@ -25,10 +25,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.pawhub.lostandfound.DetailsActivity;
 import com.pawhub.lostandfound.R;
 import com.pawhub.lostandfound.transferobjects.Report;
 
@@ -62,6 +64,15 @@ public class ReportView {
 		colorBackGound
 				.setBackgroundResource(getTransparentColorReport(reportObject
 						.getTypeReport()));
+		
+		ImageView imageChart = (ImageView)v.findViewById(R.id.reportImagemain);
+		imageChart.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				detailsIntent();
+			}
+		});
 
 		reportChart = v;
 	}
@@ -148,6 +159,27 @@ public class ReportView {
 				task.execute((Void[]) null);
 			}
 		});
+		
+		// /////// Leer más text
+		TextView leerMas = (TextView)v.findViewById(R.id.leerMasDetailChart2); 
+		leerMas.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				detailsIntent();
+			}
+		});
+		
+		// //// Intent for LinearMain 
+		LinearLayout linearInten = (LinearLayout)v.findViewById(R.id.linearmain2);
+		linearInten.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				detailsIntent();
+			}
+		});
+		
 
 		// /////////////////////////////////////////////////////
 
@@ -193,6 +225,11 @@ public class ReportView {
 		tvUserShortMessage.setText(reportObject.getComments());
 		// /////////////////////////////////////////////////////
 
+	}
+
+	protected void detailsIntent() {
+		Intent detailsIntent = new Intent(inflater.getContext(), DetailsActivity.class);
+		inflater.getContext().startActivity(detailsIntent);		
 	}
 
 	private int getTransparentColorReport(int type) {
