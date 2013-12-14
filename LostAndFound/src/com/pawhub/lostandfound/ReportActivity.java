@@ -85,10 +85,10 @@ public class ReportActivity extends FragmentActivity {
 	private Location location;
 
 	static Marker marker;
-
+ 
 	// data for report types
 	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
-			"Busca Hogar", "Accidente" };
+			"Busca Hogar", "Accidente" }; 
 	int arr_images[] = { R.drawable.missing_icon_blue,
 			R.drawable.found_icon_blue, R.drawable.abuse_icon_blue,
 			R.drawable.home_icon_blue, R.drawable.acci_icon_blue };
@@ -291,7 +291,7 @@ public class ReportActivity extends FragmentActivity {
 											+ File.separator + "Pawhub"
 											+ File.separator + pic);
 							photo.prepareToDraw();
-							photo.compress(CompressFormat.JPEG, 100, stream);
+							photo.compress(CompressFormat.JPEG, 0, stream);
 							stream.flush();
 							stream.close();
 						} catch (FileNotFoundException e) {
@@ -554,26 +554,6 @@ public class ReportActivity extends FragmentActivity {
 		this.fancyCoverFlow
 				.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
 
-	}
-
-	@Override
-	public void onBackPressed() {
-		Intent intent = new Intent(this, Home.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-		startActivity(intent);
-		this.finish();
-	}
-	
-	@Override
-	public void onPause() {
-		super.onPause();
-		this.finish();
-	}
-	
-	@Override
-	public void onStop() {
-		super.onStop();
-		finish();
 	}
 
 }

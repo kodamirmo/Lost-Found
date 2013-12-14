@@ -31,7 +31,7 @@ import android.view.Window;
 import java.net.URL;
 
 @SuppressLint("HandlerLeak")
-public class TwitterApp {
+public class TwitterApp {  
 	private Twitter mTwitter;
 	private TwitterSession mSession;
 	private AccessToken mAccessToken;

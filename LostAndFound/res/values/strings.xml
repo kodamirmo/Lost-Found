@@ -80,5 +80,7 @@
     <string name="title_activity_settings"></string>
     <string name="lblOptsDialogSimilary">Ver reportes similares</string>
     <string name="lblOptsInadequate">Reportar como inadecuado</string>
+    <string name="title_activity_full_image">FullImage</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

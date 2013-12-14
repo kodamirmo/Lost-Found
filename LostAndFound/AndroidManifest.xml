@@ -92,9 +92,13 @@
             android:label="@string/title_activity_details" >
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.pawhub.lostandfound.SettingsActivity"
             android:icon="@drawable/app_name2"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.pawhub.lostandfound.FullImage"
+            android:label="@string/title_activity_full_image" >
         </activity>
     </application>
 

@@ -7,5 +7,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="src" path="/google-play-services_lib"/>
+	<classpathentry exported="true" kind="lib" path="D:/ejemplos Android/oauth-signpost/signpost-commonshttp4-1.2.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/ejemplos Android/oauth-signpost/signpost-core-1.2.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/ejemplos Android/tw/lib/twitter4j-core-3.0.5.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

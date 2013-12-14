@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -35,6 +36,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -109,17 +111,23 @@ public class DetailsActivity extends FragmentActivity {
 	}
 
 	private void shareIntent() {
-		Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+		Toast.makeText(this,
+				"Esta opción aún no está disponible en el demo",
+				Toast.LENGTH_LONG).show();
+		/*Intent sharingIntent = new Intent(Intent.ACTION_SEND);
 		sharingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		sharingIntent.setType("text/html");
 		sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,
 				"Texto a compartir");
-		startActivity(Intent.createChooser(sharingIntent, "Compartir con"));
+		startActivity(Intent.createChooser(sharingIntent, "Compartir con"));*/
 	}
 
 	private void openSettings() {
-		Intent openSet = new Intent(this, SettingsActivity.class);
-        startActivity(openSet);
+		Toast.makeText(this,
+				"Esta opción aún no está disponible en el demo",
+				Toast.LENGTH_LONG).show();
+		/*Intent openSet = new Intent(this, SettingsActivity.class);
+        startActivity(openSet);*/
 	}
 
 	private void makeResolve() {
@@ -128,7 +136,9 @@ public class DetailsActivity extends FragmentActivity {
 	}
 
 	private void makeAlert() {
-
+		Toast.makeText(this,
+				"Esta opción aún no está disponible en el demo",
+				Toast.LENGTH_LONG).show();
 	}
 
 	/**
@@ -224,6 +234,28 @@ public class DetailsActivity extends FragmentActivity {
 		}
 
 		private void fill1() {
+			
+			/*ImageView pic1 = (ImageView) rootView
+					.findViewById(R.id.image1Detail1);
+			ImageView pic2 = (ImageView) rootView
+					.findViewById(R.id.image1Detail1);
+			ImageView pic3 = (ImageView) rootView
+					.findViewById(R.id.image1Detail1);
+			
+			pic1.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					//getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+					Toast toast2 = Toast.makeText(getActivity(),
+							"Entra", Toast.LENGTH_SHORT);
+					toast2.show();
+					Intent intent = new Intent(context, FullImage.class);
+					intent.putExtra("imageUri", R.drawable.finding_home);
+				}
+				
+			});*/
+			
 
 			ImageView arrowDown = (ImageView) rootView
 					.findViewById(R.id.imageArrowDownDetail1);

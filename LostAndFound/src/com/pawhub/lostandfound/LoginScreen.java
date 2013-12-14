@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -24,10 +26,16 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
+import com.google.android.gms.maps.internal.IUiSettingsDelegate;
 import com.pawhub.lostandfound.tw.TwitterApp;
 import com.pawhub.lostandfound.tw.TwitterApp.TwDialogListener;
 
 public class LoginScreen extends Activity implements OnClickListener {
+	
+	private final String ENTER_USERNAME="Ingresa un usuario";
+    private final String ENTER_PASSWORD="Ingresa la contraseña";
+    private final String INCORRECT_USERNAME="Usuario incorrecto";
+    private final String INCORRECT_PASSWORD="Contraseña incorrecta";
 
 	// For Twitter
 	private TwitterApp mTwitter;
@@ -38,15 +46,16 @@ public class LoginScreen extends Activity implements OnClickListener {
 
 	private ImageButton btnLogin;
 	private ImageButton btnLoginFacebook;
+	private ImageButton btnGuest;
 	private Button btnRegister;
-	
-	//For Facebook
-	
+
+	// For Facebook
+
 	private UiLifecycleHelper uiHelper;
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 
 		@Override
-		public void call(Session session, SessionState state,
+		public void call(final Session session, SessionState state,
 				Exception exception) {
 
 			if (session.isOpened()) {
@@ -59,17 +68,29 @@ public class LoginScreen extends Activity implements OnClickListener {
 						if (user != null) {
 							String id = user.getId();
 							String name = user.getName();
+
+							SharedPreferences sharedPref = LoginScreen.this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+							SharedPreferences.Editor editor = sharedPref.edit();
+							editor.putString("username",""+name);
+							editor.commit();
 							
-							Toast.makeText(LoginScreen.this, "Conectado mediante Facebook como " + name, Toast.LENGTH_LONG).show();
+							Toast.makeText(LoginScreen.this,
+									"Conectado mediante Facebook como " + name,
+									Toast.LENGTH_LONG).show();
+							
 							simpleLogin();
-							
+
 						} else {
-							Toast.makeText(LoginScreen.this, "No se pudo iniciar sesión", Toast.LENGTH_LONG).show();
+							Toast.makeText(LoginScreen.this,
+									"No se pudo iniciar sesión",
+									Toast.LENGTH_LONG).show();
 						}
 					}
 				}).executeAsync();
 			} else {
-				Toast.makeText(LoginScreen.this, "Espera mientras se inicia la sesión", Toast.LENGTH_LONG).show();
+				Toast.makeText(LoginScreen.this,
+						"Espera mientras se inicia la sesión",
+						Toast.LENGTH_LONG).show();
 			}
 		}
 	};
@@ -81,6 +102,12 @@ public class LoginScreen extends Activity implements OnClickListener {
 
 		uiHelper = new UiLifecycleHelper(this, callback);
 		uiHelper.onCreate(savedInstanceState);
+		
+		SharedPreferences preferences = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+		String prefName = preferences.getString("username", "nothing");
+		
+		if((prefName.equals("guest"))||(prefName.equals("demo")))
+			simpleLogin();
 
 		initViews();
 	}
@@ -100,12 +127,14 @@ public class LoginScreen extends Activity implements OnClickListener {
 
 		btnLoginFacebook = (ImageButton) findViewById(R.id.loginFbBtn);
 		btnLogin = (ImageButton) findViewById(R.id.loginBtn);
+		btnGuest = (ImageButton) findViewById(R.id.loginGuestBtn); 
 		btnRegister = (Button) findViewById(R.id.register);
 		mTwitterBtn = (ImageButton) findViewById(R.id.loginTwBtn);
 
 		btnLogin.setOnClickListener(this);
 		btnLoginFacebook.setOnClickListener(this);
 		btnRegister.setOnClickListener(this);
+		btnGuest.setOnClickListener(this);
 		mTwitterBtn.setOnClickListener(this);
 
 		mTwitter = new TwitterApp(this, twitter_consumer_key,
@@ -116,14 +145,9 @@ public class LoginScreen extends Activity implements OnClickListener {
 		if (mTwitter.hasAccessToken()) {
 			simpleLogin();
 		}
-		
 
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		uiHelper.onSaveInstanceState(outState);
+		if (Session.getActiveSession().getPermissions().size() != 0)
+			simpleLogin();
 	}
 
 	private void initFacebookSession() {
@@ -150,7 +174,8 @@ public class LoginScreen extends Activity implements OnClickListener {
 									dialog.cancel();
 
 									Toast.makeText(getApplicationContext(),
-											"Se canceló la petición", Toast.LENGTH_LONG).show();
+											"Se canceló la petición",
+											Toast.LENGTH_LONG).show();
 								}
 							});
 			final AlertDialog alert = builder.create();
@@ -159,6 +184,40 @@ public class LoginScreen extends Activity implements OnClickListener {
 		} else {
 			mTwitter.authorize();
 		}
+
+	}
+
+	private void onRegisteredLogin() {
+		EditText user = (EditText) findViewById(R.id.editTextNombre);
+		EditText password = (EditText) findViewById(R.id.editTextPassword);
+
+		if (user.getText().toString().equals("")) {
+			Toast.makeText(getApplicationContext(), ENTER_USERNAME,
+					Toast.LENGTH_SHORT).show();
+			return;
+		} else if (password.getText().toString().equals("")) {
+			Toast.makeText(getApplicationContext(), ENTER_PASSWORD,
+					Toast.LENGTH_SHORT).show();
+			return;
+		} else if(!user.getText().toString().equals("demo")){
+			Toast.makeText(getApplicationContext(), INCORRECT_USERNAME,
+					Toast.LENGTH_SHORT).show();
+			return;
+		} else if(!password.getText().toString().equals("demo")){
+			Toast.makeText(getApplicationContext(), INCORRECT_PASSWORD,
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		SharedPreferences sharedPref = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putString("username",user.getText().toString());
+		editor.commit();
+		
+		Toast.makeText(LoginScreen.this,
+				"Conectado como demo",
+				Toast.LENGTH_LONG).show();
+		simpleLogin();
 
 	}
 
@@ -179,12 +238,18 @@ public class LoginScreen extends Activity implements OnClickListener {
 		if (v == btnLoginFacebook)
 			initFacebookSession();
 		else if (v == btnLogin)
-			simpleLogin();
+			onRegisteredLogin();
 		else if (v == btnRegister)
 			registerUser();
 		else if (v == mTwitterBtn)
 			onTwitterClick();
-
+		else if(v == btnGuest){
+			SharedPreferences sharedPref = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPref.edit();
+			editor.putString("username","guest");
+			editor.commit();
+			simpleLogin();
+		}
 	}
 
 	@Override
@@ -194,20 +259,33 @@ public class LoginScreen extends Activity implements OnClickListener {
 				resultCode, data);
 	}
 
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		uiHelper.onSaveInstanceState(outState);
+	}
+
 	private final TwDialogListener mTwLoginDialogListener = new TwDialogListener() {
 
 		@Override
 		public void onComplete(String value) {
 			String username = mTwitter.getUsername();
-            username                = (username.equals("")) ? "Sin nombre" : username;
-            
-            Toast.makeText(LoginScreen.this, "Conectado mediante Twitter como " + username, Toast.LENGTH_LONG).show();
-            simpleLogin();
+			username = (username.equals("")) ? "Sin nombre" : username;
+
+			Toast.makeText(LoginScreen.this,
+					"Conectado mediante Twitter como " + username,
+					Toast.LENGTH_LONG).show();
+			SharedPreferences sharedPref = LoginScreen.this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPref.edit();
+			editor.putString("username",""+username);
+			editor.commit();
+			simpleLogin();
 		}
 
 		@Override
 		public void onError(String value) {
-			Toast.makeText(LoginScreen.this, "La conexión con Twitter falló", Toast.LENGTH_LONG).show();
+			Toast.makeText(LoginScreen.this, "La conexión con Twitter falló",
+					Toast.LENGTH_LONG).show();
 		}
 
 	};
