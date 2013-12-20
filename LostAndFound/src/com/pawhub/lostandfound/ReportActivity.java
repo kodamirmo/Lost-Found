@@ -53,6 +53,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
+import com.pawhub.lostandfound.adapters.PetTypeAdapter;
+import com.pawhub.lostandfound.adapters.PetTypesAdapter;
 
 public class ReportActivity extends FragmentActivity {
 
@@ -70,8 +72,8 @@ public class ReportActivity extends FragmentActivity {
 	private Bitmap bmpBowRotated;
 
 	private Spinner reportType;
-	private Spinner petAge;
-	private Spinner petType;
+	private Spinner spinnerPetAge;
+	private Spinner spinnerPetType;
 	private EditText petName;
 	private EditText reportTel;
 	private EditText petFeatures;
@@ -85,10 +87,10 @@ public class ReportActivity extends FragmentActivity {
 	private Location location;
 
 	static Marker marker;
- 
+
 	// data for report types
 	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
-			"Busca Hogar", "Accidente" }; 
+			"Busca Hogar", "Accidente" };
 	int arr_images[] = { R.drawable.missing_icon_blue,
 			R.drawable.found_icon_blue, R.drawable.abuse_icon_blue,
 			R.drawable.home_icon_blue, R.drawable.acci_icon_blue };
@@ -96,10 +98,7 @@ public class ReportActivity extends FragmentActivity {
 	String[] ageRangeArray = { "0 - 3 meses", "3 - 6 meses", "6 - 9 meses",
 			"9 meses - 1 año", "1 - 4 años", "4 - 8 años", "8 - 12 años",
 			"12 en adelante" };
-	// data for pet types
-	String[] petTypeArray = { "Perro", "Gato", "Otro" };
-	int arr_petType_images[] = { R.drawable.dog_icon, R.drawable.cat_icon,
-			R.drawable.doc_icon };
+	
 
 	// array list for images
 	ArrayList<Bitmap> fancyPics = new ArrayList<Bitmap>();
@@ -116,8 +115,8 @@ public class ReportActivity extends FragmentActivity {
 		// calling layout elements
 
 		reportType = (Spinner) findViewById(R.id.spinnerReportType);
-		petAge = (Spinner) findViewById(R.id.spinnerReportPetAge);
-		petType = (Spinner) findViewById(R.id.spinnerReportPetType);
+		spinnerPetAge = (Spinner) findViewById(R.id.spinnerReportPetAge);
+		spinnerPetType = (Spinner) findViewById(R.id.spinnerReportPetType);
 		petName = (EditText) findViewById(R.id.editTextpetName);
 		reportTel = (EditText) findViewById(R.id.editTextpetReportTel);
 		petFeatures = (EditText) findViewById(R.id.editTextpetFeatures);
@@ -130,11 +129,13 @@ public class ReportActivity extends FragmentActivity {
 		// adapter for age range
 		ArrayAdapter<String> ageRangesAdapter = new ArrayAdapter<String>(this,
 				R.layout.spinner_report_age, ageRangeArray);
-		petAge.setAdapter(ageRangesAdapter);
+		spinnerPetAge.setAdapter(ageRangesAdapter);
 
 		// adapter for pet types
-		petType.setAdapter(new PetTypesAdapter(ReportActivity.this,
-				R.layout.spinner_report_types, petTypeArray));
+		
+		PetTypeAdapter petTypeAdapter=new PetTypeAdapter(this, PetTypeAdapter.getPetTypes());
+		
+		spinnerPetType.setAdapter(petTypeAdapter);
 
 		// adding Bitmap from home
 		if (bitmap != null) {
@@ -170,14 +171,23 @@ public class ReportActivity extends FragmentActivity {
 			}
 		});
 		// SERVICE DISABLE if device not have google play services
-		if ((map == null)
-				&& (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != SERVICE_DISABLED))
+		if ((map == null) && (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != SERVICE_DISABLED)){
 			try {
 				initMap();
 			} catch (GooglePlayServicesNotAvailableException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		if(savedInstanceState!=null){
+			restablecer(savedInstanceState);
+		}
 
+	}// Termina on create
+
+	private void restablecer(Bundle bundle) {
+		reportTel.setText(bundle.getString("TELEFONO"));
+		spinnerPetType.setSelection(bundle.getInt("POSITION_PETTYPE"));
 	}
 
 	private void initMap() throws GooglePlayServicesNotAvailableException {
@@ -199,13 +209,15 @@ public class ReportActivity extends FragmentActivity {
 			}
 
 			public void onProviderDisabled(String provider) {
-				Toast toast2 = Toast.makeText(getApplicationContext(),
-						"Es necesario tener el GPS habilitado",
-						Toast.LENGTH_SHORT);
-				toast2.show();
-				Intent intent = new Intent(
-						android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-				startActivity(intent);
+				/*if (location == null) {
+					Toast toast2 = Toast.makeText(getApplicationContext(),
+							"Es necesario tener el GPS habilitado",
+							Toast.LENGTH_SHORT);
+					toast2.show();
+					Intent intent = new Intent(
+							android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					startActivity(intent);
+				}*/
 			}
 
 			public void onProviderEnabled(String provider) {
@@ -225,6 +237,8 @@ public class ReportActivity extends FragmentActivity {
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				15000, 0, locationListener);
+		locationManager.requestLocationUpdates(
+				LocationManager.NETWORK_PROVIDER, 15000, 0, locationListener);
 	}
 
 	public void muestraPosicion(Location loc) {
@@ -240,16 +254,14 @@ public class ReportActivity extends FragmentActivity {
 				marker.remove();
 			}
 			addMarker();
-			Toast.makeText(ReportActivity.this,
+			/*Toast.makeText(ReportActivity.this,
 					"¡Tu ubicación ya ha sido actualizada!", Toast.LENGTH_SHORT)
-					.show();
-		} else {
-			Toast toast2 = Toast.makeText(getApplicationContext(),
-					"Ocurrió un error al intentar obtener tu ubicación",
-					Toast.LENGTH_SHORT);
-			toast2.show();
+					.show();*/
+			if (locationListener != null)
+				locationManager.removeUpdates(locationListener);
+
+		} else 
 			coordenada = new LatLng(19.4326018, -99.1332049);
-		}
 
 		CameraPosition camPos = new CameraPosition.Builder().target(coordenada)
 				.zoom(15).build();
@@ -266,7 +278,6 @@ public class ReportActivity extends FragmentActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.i("entró", requestCode + "r" + resultCode + "ok" + RESULT_OK);
 		// Review if the image come from the camera or the gallery
 		Toast toast2 = Toast.makeText(getApplicationContext(),
 				"Ocurrió un error", Toast.LENGTH_SHORT);
@@ -447,11 +458,16 @@ public class ReportActivity extends FragmentActivity {
 	}
 
 	private void openSettings() {
+		if (locationListener != null)
+			locationManager.removeUpdates(locationListener);
+
 		Intent openSet = new Intent(this, SettingsActivity.class);
 		startActivity(openSet);
 	}
 
 	private void openPublish() {
+		if (locationListener != null)
+			locationManager.removeUpdates(locationListener);
 
 		Intent detailsIntent = new Intent(this, DetailsActivity.class);
 		detailsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -504,42 +520,7 @@ public class ReportActivity extends FragmentActivity {
 		}
 	}
 
-	public class PetTypesAdapter extends ArrayAdapter<String> {
-
-		public PetTypesAdapter(Context context, int textViewResourceId,
-				String[] objects) {
-			super(context, textViewResourceId, objects);
-		}
-
-		@Override
-		public View getDropDownView(int position, View convertView,
-				ViewGroup parent) {
-			return getCustomView(position, convertView, parent);
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			return getCustomView(position, convertView, parent);
-		}
-
-		public View getCustomView(int position, View convertView,
-				ViewGroup parent) {
-
-			LayoutInflater inflater = getLayoutInflater();
-			View row = inflater.inflate(R.layout.spinner_report_pet_types,
-					parent, false);
-			TextView label = (TextView) row
-					.findViewById(R.id.textPetTypeSpinnerAdptr);
-			label.setText(petTypeArray[position]);
-
-			ImageView icon = (ImageView) row
-					.findViewById(R.id.imgPetTypeSpinnerAdptr);
-			icon.setImageResource(arr_petType_images[position]);
-
-			return row;
-		}
-	}
-
+	
 	private void createFancy() {
 		this.fancyCoverFlow = (FancyCoverFlow) this
 				.findViewById(R.id.fancyCoverFlow);
@@ -554,6 +535,21 @@ public class ReportActivity extends FragmentActivity {
 		this.fancyCoverFlow
 				.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
 
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (locationListener != null)
+			locationManager.removeUpdates(locationListener);
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		outState.putString("TELEFONO", reportTel.getText().toString());
+		int positionPetType=spinnerPetType.getSelectedItemPosition();
+		outState.putInt("POSITION_PETTYPE", positionPetType);
+		super.onSaveInstanceState(outState);
 	}
 
 }

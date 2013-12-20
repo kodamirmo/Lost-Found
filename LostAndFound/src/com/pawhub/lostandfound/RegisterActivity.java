@@ -24,6 +24,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +41,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends Activity implements OnClickListener{
 
 	private Spinner spinnerUserSex;
 	private TextView terms;
@@ -54,6 +55,8 @@ public class RegisterActivity extends Activity {
 	private static int SELECT_PICTURE = 0;
 	private Bitmap setphoto;
 	private Bitmap bmpBowRotated;
+	
+	private Bitmap temPhoto;
 
 	// data for spinner for sex
 	String[] userSex = { "Mujer", "Hombre" };
@@ -62,7 +65,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		
+	
 		//Log.i("dimensiones", ""+ R.string.screen_type);
 
 		// set adapter for spinner sex
@@ -93,7 +96,6 @@ public class RegisterActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				new DatePickerDialog(RegisterActivity.this, date, myCalendar
 						.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
 						myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -109,38 +111,37 @@ public class RegisterActivity extends Activity {
 		imgViewUserPic = (ImageView) findViewById(R.id.imgViewUserPic);
 
 		takePicBtn = (ImageButton) findViewById(R.id.btnTakePhotoRegister);
-		takePicBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent cameraIntent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent, TAKE_PICTURE);
-			}
-		});
+		takePicBtn.setOnClickListener(this);
 
 		// choose pic intent
 
 		choosePicBtn = (ImageButton) findViewById(R.id.btnSelectPhotoRegister);
-		choosePicBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Intent galeryIntent = new Intent(
-						Intent.ACTION_PICK,
-						android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-				startActivityForResult(galeryIntent, SELECT_PICTURE);
-			}
-		});
+		choosePicBtn.setOnClickListener(this);
+		
+		if(savedInstanceState!=null)
+			onRestore(savedInstanceState);
 
 	}
 
+	private void initActionImage(){
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		//startActivity(cameraIntent);
+		this.startActivityForResult(cameraIntent, TAKE_PICTURE);
+	}
+	private void initActionPick(){
+		Intent galeryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+		//startActivity(galeryIntent);
+		this.startActivityForResult(galeryIntent, SELECT_PICTURE);
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		Toast toast2 = Toast.makeText(getApplicationContext(),
-				"Ocurrió un error", Toast.LENGTH_SHORT);
+		
+		Log.i("TAG", "Aqui 3!!!");
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.i("TAG", "Aqui 2!!!");
+		
+		Toast toast2 = Toast.makeText(getApplicationContext(),"Ocurrió un error", Toast.LENGTH_SHORT);
 
 		// Review if the image come from the camera or the gallery
 
@@ -153,29 +154,24 @@ public class RegisterActivity extends Activity {
 						Bitmap photo = (Bitmap) data.getExtras().get("data");
 
 						try {
-							File temp = new File(
-									Environment.getExternalStorageDirectory(),
-									File.separator + "Pawhub");
+							File temp = new File(Environment.getExternalStorageDirectory(), File.separator + "Pawhub");
 							if (!temp.exists())
 								temp.mkdirs();
 							OutputStream stream = new FileOutputStream(
-									Environment.getExternalStorageDirectory()
-											+ File.separator + "Pawhub"
+									Environment.getExternalStorageDirectory()+ File.separator + "Pawhub"
 											+ File.separator + pic);
 							photo.compress(CompressFormat.JPEG, 100, stream);
 							stream.flush();
 							stream.close();
 						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 							toast2.show();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 							toast2.show();
 						}
 
-						photo = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(),photo.getHeight());
+						temPhoto = photo = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(),photo.getHeight());
 						imgViewUserPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 						imgViewUserPic.setImageBitmap(photo);
 						
@@ -190,7 +186,8 @@ public class RegisterActivity extends Activity {
 
 				try {
 					this.imageFromGallery(resultCode, data, 200, 200);
-					imgViewUserPic.setImageBitmap(null);
+					temPhoto=setphoto;
+					//imgViewUserPic.setImageBitmap(null);
 					imgViewUserPic.setImageBitmap(setphoto);
 
 				} catch (IOException e) {
@@ -308,7 +305,6 @@ public class RegisterActivity extends Activity {
 	}
 
 	private void openPublish() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -353,4 +349,25 @@ public class RegisterActivity extends Activity {
 		}
 	}
 
+	@Override
+	public void onClick(View v) {
+		if(v==choosePicBtn)
+			initActionPick();
+		else if(v==takePicBtn)
+			initActionImage();
+	}
+
+	protected void onSaveInstanceState(Bundle outState){
+		
+		if(temPhoto!=null){
+			outState.putParcelable("PHOTO", temPhoto);
+		}
+		super.onSaveInstanceState(outState);
+	}
+	
+	private void onRestore(Bundle bundle){
+		Bitmap photoBitmap=bundle.getParcelable("PHOTO");
+		imgViewUserPic.setImageBitmap(photoBitmap);
+		temPhoto=photoBitmap;
+	}
 }

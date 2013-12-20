@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="0.1" >
 
-    <uses-sdk
+    <uses-sdk  
         android:minSdkVersion="9"
         android:targetSdkVersion="19" />
 
@@ -69,7 +69,6 @@
             android:name="com.pawhub.lostandfound.RegisterActivity"
             android:icon="@drawable/app_name2"
             android:label="@string/title_activity_register"
-            android:noHistory="true"
             android:parentActivityName="com.pawhub.lostandfound.LoginScreen" >
         </activity>
         <activity

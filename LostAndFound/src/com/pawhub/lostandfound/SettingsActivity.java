@@ -2,6 +2,7 @@ package com.pawhub.lostandfound;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -31,6 +32,8 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends PreferenceActivity {
+	
+	static String prefName;
 	/**
 	 * Determines whether to always show the simplified settings UI, where
 	 * settings are presented in a single list. When false, settings are shown
@@ -43,6 +46,9 @@ public class SettingsActivity extends PreferenceActivity {
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 
+		SharedPreferences preferences = getSharedPreferences("userPrefs",MODE_PRIVATE);
+		prefName = preferences.getString("username", "nothing");
+		
 		setupSimplePreferencesScreen();
 	}
 
@@ -55,7 +61,7 @@ public class SettingsActivity extends PreferenceActivity {
 		if (!isSimplePreferences(this)) {
 			return;
 		}
-
+ 
 		// In the simplified UI, fragments are not used at all and we instead
 		// use the older PreferenceActivity APIs.
 
@@ -69,10 +75,11 @@ public class SettingsActivity extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.pref_notification);
 
 		// Add 'data and sync' preferences, and a corresponding header.
-		//fakeHeader = new PreferenceCategory(this);
-		//fakeHeader.setTitle(R.string.pref_header_data_sync);
-		//getPreferenceScreen().addPreference(fakeHeader);
-		//addPreferencesFromResource(R.xml.pref_data_sync);
+		fakeHeader = new PreferenceCategory(this);
+		String user = getString(R.string.pref_header_data_sync)+": "+prefName;
+		fakeHeader.setTitle(user);
+		getPreferenceScreen().addPreference(fakeHeader);
+		addPreferencesFromResource(R.xml.pref_data_sync);
 
 		// Bind the summaries of EditText/List/Dialog/Ringtone preferences to
 		// their values. When their values change, their summaries are updated
