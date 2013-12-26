@@ -7,6 +7,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -356,13 +357,14 @@ public class DetailsActivity extends FragmentActivity {
 
 						@Override
 						public void onClick(View v) {
-
-							Toast toast = Toast
+							Toast.makeText(getActivity(),
+									"Esta opción aún no está disponible en el demo",
+									Toast.LENGTH_LONG).show();
+							/*Toast toast = Toast
 									.makeText(
 											getActivity(),
 											"¡Muchas gracias por tu aporte! El reporte ya fue enviado a revisión",
-											Toast.LENGTH_SHORT);
-							toast.show();
+											Toast.LENGTH_SHORT);*/
 							dialog.dismiss();
 						}
 					});
@@ -418,15 +420,14 @@ public class DetailsActivity extends FragmentActivity {
 					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pointer)));
 		}
 
-		@Override
-		public void onDestroyView() {
-			super.onDestroyView();
-			SupportMapFragment f = (SupportMapFragment) getFragmentManager()
-					.findFragmentById(R.id.detailReportMap);
-			if (f != null)
-				getFragmentManager().beginTransaction().remove(f).commit();
-		}
-
+	}
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		MapFragment f = (MapFragment) getFragmentManager()
+				.findFragmentById(R.id.detailReportMap);
+		if (f != null)
+			getFragmentManager().beginTransaction().remove(f).commit();
 	}
 
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pawhub.lostandfound"
-    android:versionCode="1"
-    android:versionName="0.1" >
+    android:versionCode="4"
+    android:versionName="2.5" >
 
     <uses-sdk  
         android:minSdkVersion="9"
         android:targetSdkVersion="19" />
-
+   
     <permission
         android:name="com.pawhub.lostandfound.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />

@@ -18,6 +18,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -80,13 +81,6 @@ public class FragmentCasesMap extends Fragment {
 			}
 
 			public void onProviderDisabled(String provider) {
-				Toast toast2 = Toast.makeText(context,
-						"Es necesario tener el GPS habilitado",
-						Toast.LENGTH_SHORT);
-				toast2.show();
-				Intent intent = new Intent(
-						android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-				startActivity(intent);
 			}
 
 			public void onProviderEnabled(String provider) {
@@ -106,6 +100,8 @@ public class FragmentCasesMap extends Fragment {
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				15000, 0, locationListener);
+		locationManager.requestLocationUpdates(
+				LocationManager.NETWORK_PROVIDER, 15000, 0, locationListener);
 	}
 
 	public void muestraPosicion(Location location) {
@@ -117,10 +113,6 @@ public class FragmentCasesMap extends Fragment {
 			coordenada = new LatLng(location.getLatitude(),
 					location.getLongitude());
 		} else {
-			Toast toast2 = Toast.makeText(context,
-					"Ocurrió un error al intentar obtener tu ubicación",
-					Toast.LENGTH_SHORT);
-			toast2.show();
 			coordenada = new LatLng(19.4326018, -99.1332049);
 		}
 
@@ -154,8 +146,4 @@ public class FragmentCasesMap extends Fragment {
 				.icon(BitmapDescriptorFactory.fromResource(R.drawable.pointer)));
 	}
 	
-	@Override
-	public void onDestroyView() {
-		//removeMap();
-	}
 }

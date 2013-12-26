@@ -252,7 +252,6 @@ public class LoginScreen extends Activity implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		Log.i("TAG", "Aqui!!!");
 		Session.getActiveSession().onActivityResult(this, requestCode,
 				resultCode, data);
 	}

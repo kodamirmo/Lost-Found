@@ -24,20 +24,15 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 
@@ -54,7 +49,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pawhub.lostandfound.adapters.FancyCoverFlowSampleAdapter;
 import com.pawhub.lostandfound.adapters.PetTypeAdapter;
-import com.pawhub.lostandfound.adapters.PetTypesAdapter;
+import com.pawhub.lostandfound.adapters.ReportTypeAdapter;
 
 public class ReportActivity extends FragmentActivity {
 
@@ -71,7 +66,7 @@ public class ReportActivity extends FragmentActivity {
 	private Bitmap setphoto;
 	private Bitmap bmpBowRotated;
 
-	private Spinner reportType;
+	private Spinner spinnerReportType;
 	private Spinner spinnerPetAge;
 	private Spinner spinnerPetType;
 	private EditText petName;
@@ -88,12 +83,6 @@ public class ReportActivity extends FragmentActivity {
 
 	static Marker marker;
 
-	// data for report types
-	String[] reportTypesArray = { "Extraviado", "Encontrado", "Maltrato",
-			"Busca Hogar", "Accidente" };
-	int arr_images[] = { R.drawable.missing_icon_blue,
-			R.drawable.found_icon_blue, R.drawable.abuse_icon_blue,
-			R.drawable.home_icon_blue, R.drawable.acci_icon_blue };
 	// data for age range
 	String[] ageRangeArray = { "0 - 3 meses", "3 - 6 meses", "6 - 9 meses",
 			"9 meses - 1 año", "1 - 4 años", "4 - 8 años", "8 - 12 años",
@@ -114,7 +103,7 @@ public class ReportActivity extends FragmentActivity {
 
 		// calling layout elements
 
-		reportType = (Spinner) findViewById(R.id.spinnerReportType);
+		spinnerReportType = (Spinner) findViewById(R.id.spinnerReportType);
 		spinnerPetAge = (Spinner) findViewById(R.id.spinnerReportPetAge);
 		spinnerPetType = (Spinner) findViewById(R.id.spinnerReportPetType);
 		petName = (EditText) findViewById(R.id.editTextpetName);
@@ -123,8 +112,8 @@ public class ReportActivity extends FragmentActivity {
 		reportMsg = (EditText) findViewById(R.id.editTextReportMsg);
 
 		// adding adapter for types
-		reportType.setAdapter(new TypesAdapter(ReportActivity.this,
-				R.layout.spinner_report_types, reportTypesArray));
+		ReportTypeAdapter reportTypeAdapter=new ReportTypeAdapter(this, ReportTypeAdapter.getReportTypes());
+		spinnerReportType.setAdapter(reportTypeAdapter);
 
 		// adapter for age range
 		ArrayAdapter<String> ageRangesAdapter = new ArrayAdapter<String>(this,
@@ -132,9 +121,7 @@ public class ReportActivity extends FragmentActivity {
 		spinnerPetAge.setAdapter(ageRangesAdapter);
 
 		// adapter for pet types
-		
 		PetTypeAdapter petTypeAdapter=new PetTypeAdapter(this, PetTypeAdapter.getPetTypes());
-		
 		spinnerPetType.setAdapter(petTypeAdapter);
 
 		// adding Bitmap from home
@@ -186,8 +173,19 @@ public class ReportActivity extends FragmentActivity {
 	}// Termina on create
 
 	private void restablecer(Bundle bundle) {
-		reportTel.setText(bundle.getString("TELEFONO"));
+		spinnerReportType.setSelection(bundle.getInt("POSITION_REPORTYPE"));
+		petName.setText(bundle.getString("NOMBRE"));
+		spinnerPetAge.setSelection(bundle.getInt("POSITION_PETAGE"));
 		spinnerPetType.setSelection(bundle.getInt("POSITION_PETTYPE"));
+		reportTel.setText(bundle.getString("TELEFONO"));
+		petFeatures.setText(bundle.getString("CARACTERS"));
+		reportMsg.setText(bundle.getString("MENSAJE"));
+		ArrayList<Bitmap> arrayPhotos = bundle.getParcelableArrayList("FOTOS"); 
+		for(int i=0; i<arrayPhotos.size();i++){
+			fancyPics.add(arrayPhotos.get(i));
+			createFancy();
+		}
+		
 	}
 
 	private void initMap() throws GooglePlayServicesNotAvailableException {
@@ -485,41 +483,6 @@ public class ReportActivity extends FragmentActivity {
 		startActivity(Intent.createChooser(sharingIntent, "Compartir con"));
 
 	}
-
-	public class TypesAdapter extends ArrayAdapter<String> {
-
-		public TypesAdapter(Context context, int textViewResourceId,
-				String[] objects) {
-			super(context, textViewResourceId, objects);
-		}
-
-		@Override
-		public View getDropDownView(int position, View convertView,
-				ViewGroup parent) {
-			return getCustomView(position, convertView, parent);
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			return getCustomView(position, convertView, parent);
-		}
-
-		public View getCustomView(int position, View convertView,
-				ViewGroup parent) {
-
-			LayoutInflater inflater = getLayoutInflater();
-			View row = inflater.inflate(R.layout.spinner_report_types, parent,
-					false);
-			TextView label = (TextView) row.findViewById(R.id.textSpinnerAdptr);
-			label.setText(reportTypesArray[position]);
-
-			ImageView icon = (ImageView) row.findViewById(R.id.imgSpinnerAdptr);
-			icon.setImageResource(arr_images[position]);
-
-			return row;
-		}
-	}
-
 	
 	private void createFancy() {
 		this.fancyCoverFlow = (FancyCoverFlow) this
@@ -546,9 +509,20 @@ public class ReportActivity extends FragmentActivity {
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		outState.putString("TELEFONO", reportTel.getText().toString());
+		int positionReportType=spinnerReportType.getSelectedItemPosition();
+		outState.putInt("POSITION_REPORTYPE", positionReportType);
+		outState.putString("NOMBRE", petName.getText().toString());
+		int positionPetAge=spinnerPetAge.getSelectedItemPosition();
+		outState.putInt("POSITION_PETAGE", positionPetAge);
 		int positionPetType=spinnerPetType.getSelectedItemPosition();
 		outState.putInt("POSITION_PETTYPE", positionPetType);
+		outState.putString("TELEFONO", reportTel.getText().toString());
+		outState.putString("CARACTERS", petFeatures.getText().toString());
+		outState.putString("MENSAJE", reportMsg.getText().toString());
+		if(!fancyPics.isEmpty()){
+			outState.putParcelableArrayList("FOTOS", fancyPics);
+		}
+		
 		super.onSaveInstanceState(outState);
 	}
 

@@ -24,7 +24,6 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -56,6 +56,13 @@ public class RegisterActivity extends Activity implements OnClickListener{
 	private Bitmap setphoto;
 	private Bitmap bmpBowRotated;
 	
+	//data from user
+	private EditText userName;
+	private EditText userMail;
+	private EditText userCountry;
+	private EditText userCity;
+	private EditText userPass;
+	private EditText userPassCon;
 	private Bitmap temPhoto;
 
 	// data for spinner for sex
@@ -66,7 +73,13 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 	
-		//Log.i("dimensiones", ""+ R.string.screen_type);
+		// calling layout elements
+		userName = (EditText) findViewById(R.id.registerUserName);
+		userMail = (EditText) findViewById(R.id.registerUserMail);
+		userCountry = (EditText) findViewById(R.id.registerUserCountry);
+		userCity = (EditText) findViewById(R.id.registerUserCity);
+		userPass = (EditText) findViewById(R.id.registerUserPass);
+		userPassCon = (EditText) findViewById(R.id.registerUserPassConf);
 
 		// set adapter for spinner sex
 		spinnerUserSex = (Spinner) findViewById(R.id.spinnerUserSex);
@@ -136,10 +149,6 @@ public class RegisterActivity extends Activity implements OnClickListener{
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
-		Log.i("TAG", "Aqui 3!!!");
-		super.onActivityResult(requestCode, resultCode, data);
-		Log.i("TAG", "Aqui 2!!!");
 		
 		Toast toast2 = Toast.makeText(getApplicationContext(),"Ocurrió un error", Toast.LENGTH_SHORT);
 
@@ -305,7 +314,16 @@ public class RegisterActivity extends Activity implements OnClickListener{
 	}
 
 	private void openPublish() {
+		String userP = userPass.getText().toString();
+		String userPC = userPassCon.getText().toString();
 		
+		if(userP.contentEquals(userPC))
+			Toast.makeText(this, "Esta opción aún no está disponible en el demo", Toast.LENGTH_LONG).show();
+		else{
+			Toast.makeText(this, "El password y su confirmación no coinciden", Toast.LENGTH_LONG).show();
+			userPass.setBackgroundResource(R.drawable.corner_and_border_red_editext);
+			userPassCon.setBackgroundResource(R.drawable.corner_and_border_red_editext);
+		}
 	}
 
 	// Method for update the text in button for birthday
@@ -358,14 +376,30 @@ public class RegisterActivity extends Activity implements OnClickListener{
 	}
 
 	protected void onSaveInstanceState(Bundle outState){
-		
-		if(temPhoto!=null){
+		outState.putString("NOMBRE", userName.getText().toString());
+		int positionGenre=spinnerUserSex.getSelectedItemPosition();
+		outState.putInt("GENERO", positionGenre);
+		outState.putString("BIRTHDAY", birthBtn.getText().toString());
+		outState.putString("EMAIL", userMail.getText().toString());
+		outState.putString("PAIS", userCountry.getText().toString());
+		outState.putString("CIUDAD", userCity.getText().toString());
+		outState.putString("PASS", userPass.getText().toString());
+		outState.putString("CONFIRM", userPassCon.getText().toString());
+		if((temPhoto!=null)){
 			outState.putParcelable("PHOTO", temPhoto);
 		}
 		super.onSaveInstanceState(outState);
 	}
 	
 	private void onRestore(Bundle bundle){
+		userName.setText(bundle.getString("NOMBRE"));
+		spinnerUserSex.setSelection(bundle.getInt("GENERO"));
+		birthBtn.setText(bundle.getString("BIRTHDAY"));
+		userMail.setText(bundle.getString("EMAIL"));
+		userCountry.setText(bundle.getString("PAIS"));
+		userCity.setText(bundle.getString("CIUDAD"));
+		userPass.setText(bundle.getString("PASS"));
+		userPassCon.setText(bundle.getString("CONFIRM"));
 		Bitmap photoBitmap=bundle.getParcelable("PHOTO");
 		imgViewUserPic.setImageBitmap(photoBitmap);
 		temPhoto=photoBitmap;
