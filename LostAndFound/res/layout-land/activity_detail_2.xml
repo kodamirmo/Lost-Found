@@ -127,7 +127,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageArrowDownDetailP"
+                    android:id="@+id/imageArrowDownDetail2"
                     android:layout_width="25dp"
                     android:layout_height="18dp"
                     android:layout_alignRight="@+id/linearTypePostDetailP"

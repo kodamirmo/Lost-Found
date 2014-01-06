@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import com.facebook.Session;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -14,6 +17,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -39,6 +43,9 @@ public class Home extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	
+	private Fragment fragment;
+	private Bundle arguments;
+
 	private static int TAKE_PICTURE = 1;
 
 	// Change the numbers to the actions name like btn_alerts
@@ -51,6 +58,8 @@ public class Home extends ActionBarActivity {
 	private TableRow btn_6;
 	private TableRow btn_7;
 	private TableRow btn_8;
+	private TableRow btn_9;
+	private TableRow btn_10;
 
 	private final int SCREEN_HOME = 0;
 	private final int SCREEN_ALERTS = 1;
@@ -61,6 +70,8 @@ public class Home extends ActionBarActivity {
 	private final int SCREEN_HOMELESS = 6;
 	private final int SCREEN_ACCIDENT = 8;
 	private final int SCREEN_MAP = 7;
+	private final int SCREEN_RANK = 9;
+	private final int SCREEN_DONATE = 10;
 
 	private int CURRENT_SCREEN = 0;
 	private String currentTitle, prefName;
@@ -73,12 +84,12 @@ public class Home extends ActionBarActivity {
 		initSlidingMenu();
 		initViews();
 		showScreen(0);
-		 
-		
-		SharedPreferences preferences = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
+
+		SharedPreferences preferences = this.getSharedPreferences("userPrefs",
+				MODE_PRIVATE);
 		prefName = preferences.getString("username", "nothing");
-		
-		Log.i("username",""+prefName);
+
+		Log.i("username", "" + prefName);
 	}
 
 	private void initSlidingMenu() {
@@ -126,6 +137,8 @@ public class Home extends ActionBarActivity {
 		btn_6 = (TableRow) findViewById(R.id.entry_6);
 		btn_7 = (TableRow) findViewById(R.id.entry_7);
 		btn_8 = (TableRow) findViewById(R.id.entry_8);
+		btn_9 = (TableRow) findViewById(R.id.entry_9);
+		btn_10 = (TableRow) findViewById(R.id.entry_10);
 
 		MenuListener listener = new MenuListener();
 		btn_0.setOnClickListener(listener);
@@ -137,6 +150,8 @@ public class Home extends ActionBarActivity {
 		btn_6.setOnClickListener(listener);
 		btn_7.setOnClickListener(listener);
 		btn_8.setOnClickListener(listener);
+		btn_9.setOnClickListener(listener);
+		btn_10.setOnClickListener(listener);
 	}
 
 	@Override
@@ -175,34 +190,31 @@ public class Home extends ActionBarActivity {
 
 	private void openSettings() {
 		Intent openSet = new Intent(this, SettingsActivity.class);
-        startActivity(openSet);
+		startActivity(openSet);
 	}
 
 	private void openAlerts() {
-		Toast.makeText(this,
-				"Esta opción aún no está disponible en el demo",
+		Toast.makeText(this, "Esta opción aún no está disponible en el demo",
 				Toast.LENGTH_LONG).show();
 	}
 
 	private void openCamera() {
-		if(!prefName.equals("guest")){
+		if (!prefName.equals("guest")) {
 			Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 			startActivityForResult(cameraIntent, TAKE_PICTURE);
-		}else{
-			Toast.makeText(this,
-					"Como invitado no puedes usar esta opción",
+		} else {
+			Toast.makeText(this, "Como invitado no puedes usar esta opción",
 					Toast.LENGTH_LONG).show();
 		}
-		
+
 	}
 
 	private void openReport() {
-		if(!prefName.equals("guest")){
-		Intent openRepo = new Intent(this, ReportActivity.class);
-        startActivity(openRepo);
-		}else{
-			Toast.makeText(this,
-					"Como invitado no puedes usar esta opción",
+		if (!prefName.equals("guest")) {
+			Intent openRepo = new Intent(this, ReportActivity.class);
+			startActivity(openRepo);
+		} else {
+			Toast.makeText(this, "Como invitado no puedes usar esta opción",
 					Toast.LENGTH_LONG).show();
 		}
 	}
@@ -226,8 +238,8 @@ public class Home extends ActionBarActivity {
 
 	private void showScreen(int id) {
 
-		Fragment fragment = null;
-		Bundle arguments = new Bundle();
+		fragment = null;
+		arguments = new Bundle();
 
 		switch (id) {
 
@@ -269,14 +281,22 @@ public class Home extends ActionBarActivity {
 			CURRENT_SCREEN = SCREEN_HOMELESS;
 			break;
 		case R.id.entry_7:
-			fragment = new FragmentCasesMap();
-			arguments.putInt("TYPE", SCREEN_MAP);
-			CURRENT_SCREEN = SCREEN_MAP;
+			initMap();
 			break;
 		case R.id.entry_8:
 			fragment = new CasesListFragment();
 			arguments.putInt("TYPE", SCREEN_ACCIDENT);
 			CURRENT_SCREEN = SCREEN_ACCIDENT;
+			break;
+		case R.id.entry_9:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_RANK);
+			CURRENT_SCREEN = SCREEN_HOME;
+			break;
+		case R.id.entry_10:
+			fragment = new CasesListFragment();
+			arguments.putInt("TYPE", SCREEN_DONATE);
+			CURRENT_SCREEN = SCREEN_HOME;
 			break;
 		default:
 			fragment = new CasesListFragment();
@@ -292,6 +312,12 @@ public class Home extends ActionBarActivity {
 		fragmentManager.beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
 		mDrawerLayout.closeDrawers();
+	}
+
+	private void initMap() {
+		fragment = new FragmentCasesMap();
+		arguments.putInt("TYPE", SCREEN_MAP);
+		CURRENT_SCREEN = SCREEN_MAP;
 	}
 
 	public void removeMap() {
@@ -320,7 +346,7 @@ public class Home extends ActionBarActivity {
 			showScreen(id);
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -360,19 +386,17 @@ public class Home extends ActionBarActivity {
 							e.printStackTrace();
 							toast2.show();
 						}
-						
+
 						Intent openRepo = new Intent(this, ReportActivity.class);
 						openRepo.putExtra("BitmapImage", photo);
-		                startActivity(openRepo);
-
-						
+						startActivity(openRepo);
 
 					} else {
 						toast2.show();
 					}
 				}
 
-			} 
+			}
 
 		}
 	}

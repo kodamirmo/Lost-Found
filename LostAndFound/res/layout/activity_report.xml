@@ -160,44 +160,45 @@
                     android:textSize="14sp" >
                 </EditText>
             </TableRow>
-
-            <TableRow
-                android:id="@+id/alertRowPetReportFeatures"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/textReportpetReportFeatures"
-                    android:layout_width="99dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="open-sans"
-                    android:text="@string/reportPetFeatures_lbl"
-                    android:textColor="#3A3A3A" 
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/editTextpetFeatures"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="open-sans"
-                    android:hint="@string/reportPetFeatures_lbl"
-                    android:inputType="text"
-                    android:textColor="#B4B4B4"
-                    android:textSize="14sp" >
-                </EditText>
-            </TableRow>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textReportpetReportFeatures"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearreport2"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="open-sans"
+            android:text="@string/reportPetFeatures_lbl"
+            android:textColor="#3A3A3A"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextpetFeatures"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/textReportpetReportFeatures"
+            android:layout_marginTop="10dp" 
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:fontFamily="open-sans"
+            android:gravity="top"
+            android:hint="@string/reportPetFeatures_txt"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:textAlignment="textStart"
+            android:textColor="#B4B4B4"
+            android:textSize="14sp" >
+        </EditText>
 
         <EditText
             android:id="@+id/editTextReportMsg"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_below="@+id/linearreport2"
+            android:layout_below="@+id/editTextpetFeatures"
             android:layout_marginTop="20dp"
             android:background="#FFFFFF"
             android:ems="10"
@@ -234,6 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center" />
+                
             </LinearLayout>
 
             <LinearLayout

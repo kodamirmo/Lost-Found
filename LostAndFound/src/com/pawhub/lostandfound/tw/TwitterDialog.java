@@ -67,7 +67,7 @@ public class TwitterDialog extends Dialog {
         mSpinner = new ProgressDialog(getContext());
         
         mSpinner.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mSpinner.setMessage("Loading...");
+        mSpinner.setMessage("Cargando...");
 
         mContent = new LinearLayout(getContext());
         

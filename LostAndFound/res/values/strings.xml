@@ -35,6 +35,7 @@
     <string name="reportPetReportMsg_lbl">Escribe tu mensaje</string>
     <string name="reportPetReportTakePic_lbl">Toma Foto</string>
     <string name="reportPetReportSelectPic_lbl">Escoge Foto</string>
+    <string name="reportPetFeatures_txt">(Color, tamaño, raza, etc.)</string>
     <string name="publish">Publicar</string>
     <string name="entry_title_home">Home</string>
     <string name="entry_title_1">Mostrar Alertas</string>
@@ -45,6 +46,8 @@
     <string name="entry_title_6">Busca hogar</string>
     <string name="entry_title_7">Reportes en mapa</string>
     <string name="entry_title_8">Accidente</string>
+    <string name="entry_title_9">Califica nuestra app</string>
+    <string name="entry_title_10">DONAR</string>
     <string name="dog_label">Perro</string>
     <string name="reportDate_title">Fecha de reporte</string>
     <string name="report_date">10 / Ago  / 2013</string>

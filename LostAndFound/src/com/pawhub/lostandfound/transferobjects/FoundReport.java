@@ -12,7 +12,7 @@ public class FoundReport extends Report{
 			String pathPicture, String comments, int agePet, String colorPet,
 			String actuallyLocation,boolean isAlert,int numComments, boolean isResolve,String userName) {
 		
-		super(idReport, petType, lastlocation, pathPicture, comments,isAlert,numComments,isResolve,userName);
+		super(idReport, typeReport, petType, lastlocation, pathPicture, comments,isAlert,numComments,isResolve,userName);
 		
 		this.agePet = agePet;
 		this.colorPet = colorPet;

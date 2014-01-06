@@ -283,6 +283,64 @@
                         android:textColor="#FFF"
                         android:textSize="17sp" />
                 </TableRow>
+
+                <TableRow
+                    android:id="@+id/entry_9"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:background="#333333"
+                    android:clickable="true"
+                    android:paddingBottom="6sp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="6sp"
+                    android:soundEffectsEnabled="true" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/menu_rate_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="7dp"
+                        android:text="@string/entry_title_9"
+                        android:textColor="#FFF"
+                        android:textSize="17sp" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/entry_10"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="#333333"
+                    android:clickable="true"
+                    android:paddingBottom="6sp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="6sp"
+                    android:soundEffectsEnabled="true" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/menu_donate_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="7dp"
+                        android:text="@string/entry_title_10"
+                        android:textColor="#FFF"
+                        android:textSize="17sp" />
+                </TableRow>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

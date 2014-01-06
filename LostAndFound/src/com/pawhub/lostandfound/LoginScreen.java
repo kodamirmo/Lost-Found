@@ -105,9 +105,6 @@ public class LoginScreen extends Activity implements OnClickListener {
 		
 		SharedPreferences preferences = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
 		String prefName = preferences.getString("username", "nothing");
-		
-		if((prefName.equals("guest"))||(prefName.equals("demo")))
-			simpleLogin();
 
 		initViews();
 	}
@@ -188,7 +185,7 @@ public class LoginScreen extends Activity implements OnClickListener {
 	}
 
 	private void onRegisteredLogin() {
-		EditText user = (EditText) findViewById(R.id.editTextNombre);
+		/* EditText user = (EditText) findViewById(R.id.editTextNombre);
 		EditText password = (EditText) findViewById(R.id.editTextPassword);
 
 		if (user.getText().toString().equals("")) {
@@ -199,7 +196,7 @@ public class LoginScreen extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), ENTER_PASSWORD,
 					Toast.LENGTH_SHORT).show();
 			return;
-		} else if(!user.getText().toString().equals("demo")){
+		}else if(!user.getText().toString().equals("demo")){
 			Toast.makeText(getApplicationContext(), INCORRECT_USERNAME,
 					Toast.LENGTH_SHORT).show();
 			return;
@@ -207,16 +204,16 @@ public class LoginScreen extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), INCORRECT_PASSWORD,
 					Toast.LENGTH_SHORT).show();
 			return;
-		}
+		}*/
 		
 		SharedPreferences sharedPref = this.getSharedPreferences("userPrefs",MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPref.edit();
-		editor.putString("username",user.getText().toString());
+		editor.putString("username","loginD");
 		editor.commit();
 		
-		Toast.makeText(LoginScreen.this,
+		/*Toast.makeText(LoginScreen.this,
 				"Conectado como demo",
-				Toast.LENGTH_LONG).show();
+				Toast.LENGTH_LONG).show();*/
 		simpleLogin();
 
 	}
@@ -287,6 +284,5 @@ public class LoginScreen extends Activity implements OnClickListener {
 			Toast.makeText(LoginScreen.this, "La conexión con Twitter falló",
 					Toast.LENGTH_LONG).show();
 		}
-
 	};
 }

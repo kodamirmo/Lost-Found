@@ -9,11 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import android.media.ExifInterface;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -23,7 +18,13 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,13 +35,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends Activity implements OnClickListener{
 
 	private Spinner spinnerUserSex;
 	private TextView terms;
@@ -54,6 +56,15 @@ public class RegisterActivity extends Activity {
 	private static int SELECT_PICTURE = 0;
 	private Bitmap setphoto;
 	private Bitmap bmpBowRotated;
+	
+	//data from user
+	private EditText userName;
+	private EditText userMail;
+	private EditText userCountry;
+	private EditText userCity;
+	private EditText userPass;
+	private EditText userPassCon;
+	private Bitmap temPhoto;
 
 	// data for spinner for sex
 	String[] userSex = { "Mujer", "Hombre" };
@@ -62,8 +73,14 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		
-		//Log.i("dimensiones", ""+ R.string.screen_type);
+	
+		// calling layout elements
+		userName = (EditText) findViewById(R.id.registerUserName);
+		userMail = (EditText) findViewById(R.id.registerUserMail);
+		userCountry = (EditText) findViewById(R.id.registerUserCountry);
+		userCity = (EditText) findViewById(R.id.registerUserCity);
+		userPass = (EditText) findViewById(R.id.registerUserPass);
+		userPassCon = (EditText) findViewById(R.id.registerUserPassConf);
 
 		// set adapter for spinner sex
 		spinnerUserSex = (Spinner) findViewById(R.id.spinnerUserSex);
@@ -93,7 +110,6 @@ public class RegisterActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				new DatePickerDialog(RegisterActivity.this, date, myCalendar
 						.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
 						myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -109,38 +125,33 @@ public class RegisterActivity extends Activity {
 		imgViewUserPic = (ImageView) findViewById(R.id.imgViewUserPic);
 
 		takePicBtn = (ImageButton) findViewById(R.id.btnTakePhotoRegister);
-		takePicBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent cameraIntent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent, TAKE_PICTURE);
-			}
-		});
+		takePicBtn.setOnClickListener(this);
 
 		// choose pic intent
 
 		choosePicBtn = (ImageButton) findViewById(R.id.btnSelectPhotoRegister);
-		choosePicBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Intent galeryIntent = new Intent(
-						Intent.ACTION_PICK,
-						android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-				startActivityForResult(galeryIntent, SELECT_PICTURE);
-			}
-		});
+		choosePicBtn.setOnClickListener(this);
+		
+		if(savedInstanceState!=null)
+			onRestore(savedInstanceState);
 
 	}
 
+	private void initActionImage(){
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		//startActivity(cameraIntent);
+		this.startActivityForResult(cameraIntent, TAKE_PICTURE);
+	}
+	private void initActionPick(){
+		Intent galeryIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+		//startActivity(galeryIntent);
+		this.startActivityForResult(galeryIntent, SELECT_PICTURE);
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		Toast toast2 = Toast.makeText(getApplicationContext(),
-				"Ocurrió un error", Toast.LENGTH_SHORT);
+		
+		Toast toast2 = Toast.makeText(getApplicationContext(),"Ocurrió un error", Toast.LENGTH_SHORT);
 
 		// Review if the image come from the camera or the gallery
 
@@ -153,32 +164,29 @@ public class RegisterActivity extends Activity {
 						Bitmap photo = (Bitmap) data.getExtras().get("data");
 
 						try {
-							File temp = new File(
-									Environment.getExternalStorageDirectory(),
-									File.separator + "Pawhub");
+							File temp = new File(Environment.getExternalStorageDirectory(), File.separator + "Pawhub");
 							if (!temp.exists())
 								temp.mkdirs();
 							OutputStream stream = new FileOutputStream(
-									Environment.getExternalStorageDirectory()
-											+ File.separator + "Pawhub"
+									Environment.getExternalStorageDirectory()+ File.separator + "Pawhub"
 											+ File.separator + pic);
 							photo.compress(CompressFormat.JPEG, 100, stream);
 							stream.flush();
 							stream.close();
 						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 							toast2.show();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 							toast2.show();
 						}
 
-						photo = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(),photo.getHeight());
-						imgViewUserPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
+						temPhoto = photo = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(),photo.getHeight());
 						imgViewUserPic.setImageBitmap(photo);
-						
+						int w = photo.getWidth();
+						int h = photo.getHeight();
+						Log.i("h"+h,"w"+w);
+						imgViewUserPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 					} else {
 						toast2.show();
@@ -189,8 +197,8 @@ public class RegisterActivity extends Activity {
 			} else if (requestCode == SELECT_PICTURE) {
 
 				try {
-					this.imageFromGallery(resultCode, data, 200, 200);
-					imgViewUserPic.setImageBitmap(null);
+					this.imageFromGallery(resultCode, data, 300, 300);
+					temPhoto=setphoto;
 					imgViewUserPic.setImageBitmap(setphoto);
 
 				} catch (IOException e) {
@@ -308,8 +316,16 @@ public class RegisterActivity extends Activity {
 	}
 
 	private void openPublish() {
-		// TODO Auto-generated method stub
+		String userP = userPass.getText().toString();
+		String userPC = userPassCon.getText().toString();
 		
+		if(userP.contentEquals(userPC))
+			Toast.makeText(this, "Esta opción aún no está disponible en el demo", Toast.LENGTH_LONG).show();
+		else{
+			Toast.makeText(this, "El password y su confirmación no coinciden", Toast.LENGTH_LONG).show();
+			userPass.setBackgroundResource(R.drawable.corner_and_border_red_editext);
+			userPassCon.setBackgroundResource(R.drawable.corner_and_border_red_editext);
+		}
 	}
 
 	// Method for update the text in button for birthday
@@ -353,4 +369,41 @@ public class RegisterActivity extends Activity {
 		}
 	}
 
+	@Override
+	public void onClick(View v) {
+		if(v==choosePicBtn)
+			initActionPick();
+		else if(v==takePicBtn)
+			initActionImage();
+	}
+
+	protected void onSaveInstanceState(Bundle outState){
+		outState.putString("NOMBRE", userName.getText().toString());
+		int positionGenre=spinnerUserSex.getSelectedItemPosition();
+		outState.putInt("GENERO", positionGenre);
+		outState.putString("BIRTHDAY", birthBtn.getText().toString());
+		outState.putString("EMAIL", userMail.getText().toString());
+		outState.putString("PAIS", userCountry.getText().toString());
+		outState.putString("CIUDAD", userCity.getText().toString());
+		outState.putString("PASS", userPass.getText().toString());
+		outState.putString("CONFIRM", userPassCon.getText().toString());
+		if((temPhoto!=null)){
+			outState.putParcelable("PHOTO", temPhoto);
+		}
+		super.onSaveInstanceState(outState);
+	}
+	
+	private void onRestore(Bundle bundle){
+		userName.setText(bundle.getString("NOMBRE"));
+		spinnerUserSex.setSelection(bundle.getInt("GENERO"));
+		birthBtn.setText(bundle.getString("BIRTHDAY"));
+		userMail.setText(bundle.getString("EMAIL"));
+		userCountry.setText(bundle.getString("PAIS"));
+		userCity.setText(bundle.getString("CIUDAD"));
+		userPass.setText(bundle.getString("PASS"));
+		userPassCon.setText(bundle.getString("CONFIRM"));
+		Bitmap photoBitmap=bundle.getParcelable("PHOTO");
+		imgViewUserPic.setImageBitmap(photoBitmap);
+		temPhoto=photoBitmap;
+	}
 }

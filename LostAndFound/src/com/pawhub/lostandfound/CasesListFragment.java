@@ -9,12 +9,14 @@ import com.pawhub.lostandfound.data.ReportsList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class CasesListFragment extends Fragment{
 
@@ -26,6 +28,8 @@ public class CasesListFragment extends Fragment{
 	private final int SCREEN_ABUSE = 5;
 	private final int SCREEN_HOMELESS = 6;
 	private final int SCREEN_ACCIDENT = 8;
+	private final int SCREEN_RANK = 9;
+	private final int SCREEN_DONATE = 10;
 	
 	private LinearLayout parentLayout;
 	private LayoutInflater inflater;
@@ -78,9 +82,13 @@ public class CasesListFragment extends Fragment{
 			case SCREEN_ACCIDENT:
 				initScreenAccident();
 				break;
+			case SCREEN_RANK:
+				initScreenRank();
+				break;
+			case SCREEN_DONATE:
+				initScreenDonate();
 		}
 	}
-	
 	
 
 	private void initScreenHome(){
@@ -158,6 +166,23 @@ public class CasesListFragment extends Fragment{
 			parentLayout.addView(iterator.next());
 		}
 		
+	}
+	
+	private void initScreenDonate() {
+		/*
+		Intent i = new Intent(Intent.ACTION_VIEW,
+				Uri.parse("http://pawhub.me/donativos.html"));
+		startActivity(i);*/
+		initScreenHome();
+		Toast.makeText(getActivity(), "Esta opción aún no está disponible en el demo", Toast.LENGTH_LONG).show();
+	}
+
+	private void initScreenRank() {
+		initScreenHome();
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri
+				.parse("market://details?id=com.pawhub.lostandfound"));
+		startActivity(intent);
 	}
 	
 }

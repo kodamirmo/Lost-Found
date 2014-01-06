@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import android.graphics.Color;
 
-public abstract class Report implements Serializable{
+public class Report implements Serializable{
 	
 	private static final long serialVersionUID = 2330015619136786055L;
 	
@@ -31,7 +31,7 @@ public abstract class Report implements Serializable{
 	private String pathPicture;
 	private String comments;
 	
-	protected int typeReport;
+	protected static int typeReport;
 	
 	////////////////////////////////////////////
 	private boolean isAlert;
@@ -39,10 +39,11 @@ public abstract class Report implements Serializable{
 	private boolean isResolve;
 	private String userName;
 	
-	public Report(String idReport, int petType, String lastlocation,String pathPicture,String comments,
+	public Report(String idReport, int typeReport, int petType, String lastlocation,String pathPicture,String comments,
 				boolean isAlert,int numComments, boolean isResolve,String userName) {
 		
 		this.idReport = idReport;
+		this.typeReport = typeReport;
 		this.petType = petType;
 		this.lastlocation = lastlocation;
 		this.comments= comments;
