@@ -9,11 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import android.media.ExifInterface;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -23,7 +18,13 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -181,9 +182,11 @@ public class RegisterActivity extends Activity implements OnClickListener{
 						}
 
 						temPhoto = photo = Bitmap.createBitmap(photo, 0, 0, photo.getWidth(),photo.getHeight());
-						imgViewUserPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 						imgViewUserPic.setImageBitmap(photo);
-						
+						int w = photo.getWidth();
+						int h = photo.getHeight();
+						Log.i("h"+h,"w"+w);
+						imgViewUserPic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 					} else {
 						toast2.show();
@@ -194,9 +197,8 @@ public class RegisterActivity extends Activity implements OnClickListener{
 			} else if (requestCode == SELECT_PICTURE) {
 
 				try {
-					this.imageFromGallery(resultCode, data, 200, 200);
+					this.imageFromGallery(resultCode, data, 300, 300);
 					temPhoto=setphoto;
-					//imgViewUserPic.setImageBitmap(null);
 					imgViewUserPic.setImageBitmap(setphoto);
 
 				} catch (IOException e) {
