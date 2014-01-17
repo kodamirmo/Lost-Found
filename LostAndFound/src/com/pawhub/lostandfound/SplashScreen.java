@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import com.pawhub.lostandfound.constants.Constants;
+import com.pawhub.lostandfound.data.DataCache;
 import com.pawhub.lostandfound.preferences.ConfigData;
 import com.pawhub.lostandfound.services.AllReportsWebService;
 import com.pawhub.lostandfound.services.ReportsByIdWebService;
@@ -72,6 +73,10 @@ public class SplashScreen extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			
+			
+			AllReportsWebService handler = new AllReportsWebService();
+			DataCache.saveCache(handler.getReports());
+			
 			try {
 				if (Constants.isDebug())
 					Thread.sleep(100);
@@ -101,8 +106,7 @@ public class SplashScreen extends Activity {
 				
 					
 				 //get all reports
-				AllReportsWebService handler = new AllReportsWebService();
-				handler.getReports();
+				
 				
 				
 		
